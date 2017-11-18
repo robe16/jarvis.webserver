@@ -14,24 +14,34 @@ def discover_services(services):
         if data.startswith('jarvis'):
             data = data.split('::')
             #
-            url = 'http://{ip}:{port}{uri}'.format(ip=addr[0],
-                                                   port=data[3],
-                                                   uri=service_uri_config)
-            r = requests.get(url)
+            ip = addr[0]
+            service_id = str(data[1])
+            service_type = str(data[2])
+            port = str(data[3])
             #
-            if r.status_code == requests.codes.ok:
-                r = r.json()
-                service_name = r['name']
-                service_groups = r['groups']
+            if not str(data[1]) in services.keys():
+                #
+                url = 'http://{ip}:{port}{uri}'.format(ip=ip,
+                                                       port=port,
+                                                       uri=service_uri_config)
+                r = requests.get(url)
+                #
+                if r.status_code == requests.codes.ok:
+                    r = r.json()
+                    service_name = r['name']
+                    service_groups = r['groups']
+                else:
+                    service_name = ''
+                    service_groups = []
             else:
-                service_name = ''
-                service_groups = []
+                service_name = services[service_id]['name']
+                service_groups = services[service_id]['groups']
             #
-            services[str(data[1])] = {'service_id': str(data[1]),
-                                      'service_type': str(data[2]),
+            services[service_id] = {'service_id': service_id,
+                                      'service_type': service_type,
                                       'name': service_name,
                                       'groups': service_groups,
-                                      'ip': addr[0],
-                                      'port': str(data[3]),
+                                      'ip': ip,
+                                      'port': port,
                                       'active': True,
                                       'timestamp': datetime.datetime.now()}
