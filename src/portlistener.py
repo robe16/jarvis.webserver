@@ -139,14 +139,14 @@ def start_bottle(self_port, services):
     # Error pages/responses
     ################################################################################################
 
-    @error(404)
-    def error404(error):
-        return HTTPResponse(body=create_error(404), status=404)
+    # @error(404)
+    # def error404(error):
+    #     return HTTPResponse(body=create_error(404), status=404)
 
 
-    @error(500)
-    def error500(error):
-        return HTTPResponse(body=create_error(500), status=500)
+    # @error(500)
+    # def error500(error):
+    #     return HTTPResponse(body=create_error(500), status=500)
 
 
     ################################################################################################
