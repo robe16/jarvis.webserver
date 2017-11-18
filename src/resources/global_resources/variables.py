@@ -20,8 +20,12 @@ timeformat = '%Y/%m/%d %H.%M.%S.%f'
 uri_home = '/'
 uri_service = '/web/service/<service_id>'
 uri_command = '/command/service/<service_id>'
-uri_image = '/img/<filename>'
+
+uri_favicon = '/favicon.ico'
+uri_image = '/img/<category>/<filename>'
 uri_resource = '/resource/<type>/<filename>'
+
+service_uri_config = '/config'
 
 httpStatusSuccess = 200
 httpStatusBadrequest = 400
