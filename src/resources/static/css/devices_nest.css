@@ -1,0 +1,240 @@
+.nest_device_container{
+    width: 175px;
+    margin: 25px auto;
+}
+.nest-box-shadow {
+    -webkit-box-shadow: 0px 0px 20px 5px rgba(50, 50, 50, 0.7);
+    -moz-box-shadow: 0px 0px 20px 5px rgba(50, 50, 50, 0.7);
+    box-shadow: 0px 0px 20px 5px rgba(50, 50, 50, 0.7);
+}
+
+
+/* Thermostats */
+
+
+.nest_therm_border {
+    display: inline-block;
+    position: relative;
+    height: 175px;
+    width: 175px;
+    background-color: #9FA5AB;
+    z-index: 1000;
+}
+
+
+.obj_thermostat {
+    display: block;
+    position: relative;
+    height: 168px;
+    width: 168px;
+    vertical-align: middle;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1100;
+}
+.obj_thermostat_heating {
+    background-color: #ec7800;
+    /* box-shadow: 0 0.8rem 1.6rem #e86500; */
+    /* card bg = #eb6d00 */
+}
+.obj_thermostat_cooling {
+    background-color: #0060ff;
+    /* box-shadow: 0 0.8rem 1.6rem #0048ff; */
+    /* card bg = #05f */
+}
+.obj_thermostat_off {
+    background-color: #3b444c;
+    /* box-shadow: 0 0.8rem 1.6rem #333B43; */
+    /* card bg = #373f48 */
+}
+.obj_thermostat_offline {
+    background-color: #3b444c;
+    /* box-shadow: 0 0.8rem 1.6rem #333B43; */
+    /* card bg = #373f48 */
+}
+
+
+.therm_temp_label {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);%;
+    color: white;
+}
+
+
+.therm_temp_cmds {
+    margin: 10px 0px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    z-index: 1200;
+}
+
+
+.therm_temp_glyph {
+    display: inline-block;
+    font-size: 20px;
+    margin: 0px 2px;
+    cursor: pointer;
+    color: white;
+}
+.therm_temp_glyph_online {
+    visibility: visible;
+}
+.therm_temp_glyph_offline {
+    visibility: hidden;
+}
+
+
+.img_leaf {
+    margin: 10px auto;
+    top: 0;
+    width: 30px;
+    height: 30px;
+    z-index: 1200;
+}
+.leaf_true {
+    visibility: visible;
+}
+.leaf_false {
+    visibility: hidden;
+}
+
+
+svg .ticks .background-ticks line {
+    stroke-width: 1.5;
+}
+.obj_thermostat_heating svg .ticks .background-ticks line {
+    stroke: #f4a700;
+}
+.obj_thermostat_cooling svg .ticks .background-ticks line {
+    stroke: #009dff;
+}
+.obj_thermostat_off svg .ticks .background-ticks line {
+    stroke: #687078;
+}
+.obj_thermostat_offline svg {
+    display: none;
+}
+
+
+svg .ticks .target-ticks line {
+    display: none;
+    stroke-width: 9;
+    stroke: #D2D5D7;
+}
+svg .ticks .target-ticks .tick-target-active {
+    display: inherit;
+}
+
+
+svg .ticks .ambient-ticks line {
+    display: none;
+    stroke-width: 6;
+    stroke: #D2D5D7;
+}
+svg .ticks .ambient-ticks .tick-ambient-active {
+    display: inherit;
+}
+svg .ticks .ambient-ticks .tick-ambient-active-blue {
+    stroke: #05f;
+}
+svg .ticks .ambient-ticks .tick-ambient-active-red {
+    stroke: #eb6d00;
+}
+
+
+/* protect */
+
+
+.nest_protect {
+    height: 175px;
+    width: 175px;
+}
+.nest_protect_container {
+    display: inline-block;
+    position: relative;
+    height: 175px;
+    width: 175px;
+    z-index: 1000;
+}
+.nest_protect_img {
+    height: 175px;
+    width: 175px;
+}
+.nest_protect_img {
+    height: 175px;
+    width: 175px;
+    display: block;
+    position: relative;
+    z-index: 1100;
+}
+
+.obj_protect_circle {
+    height: 90px;
+    width: 90px;
+    display: block;
+    position: absolute;
+    vertical-align: middle;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1200;
+}
+.nest_protect_gray {
+    -webkit-box-shadow: inset 0px 0px 10px 2px #B8B8BE;
+    -moz-box-shadow: inset 0px 0px 10px 2px #B8B8BE;
+    box-shadow: inset 0px 0px 10px 2px #B8B8BE;
+}
+.nest_protect_green {
+    -webkit-box-shadow: inset 0px 0px 10px 2px #39C226;
+    -moz-box-shadow: inset 0px 0px 10px 2px #39C226;
+    box-shadow: inset 0px 0px 10px 2px #39C226;
+}
+.nest_protect_yellow {
+    -webkit-box-shadow: inset 0px 0px 10px 2px #FBCD36;
+    -moz-box-shadow: inset 0px 0px 10px 2px #FBCD36;
+    box-shadow: inset 0px 0px 10px 2px #FBCD36;
+}
+.nest_protect_red {
+    -webkit-box-shadow: inset 0px 0px 10px 2px #E63117;
+    -moz-box-shadow: inset 0px 0px 10px 2px #E63117;
+    box-shadow: inset 0px 0px 10px 2px #E63117;
+}
+.obj_protect_online {
+    background-color: white;
+}
+.obj_protect_offline {
+    background-color: #B8B8BE;
+}
+
+
+/* Cameras */
+
+
+.img_nest_cam {
+    margin: 10px 35px;
+    top: 0;
+    width: 105px;
+    height: 105px;
+    z-index: 1000;
+}
+
+
+/* Device type dropdowns */
+
+.nest_device_type_header {
+    padding: 5px 15px;
+    width: 100%;
+    height: 50px;
+    margin: 5px 0px;
+    cursor: pointer;
+}
+.nest_device_type_body {
+    padding: 5px 15px;
+    width: 100%;
+}
