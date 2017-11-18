@@ -94,6 +94,27 @@ body {
 
 
 
+.servicestatus_logo {
+    margin: auto;
+    display: block;
+    max-width: 90px;
+    max-height: 90px;
+}
+@media (max-width: 767px) {
+    .servicestatus_logo {
+        margin: auto;
+        display: block;
+        max-width: 75px;
+        max-height: 75px;
+    }
+}
+
+.servicestatus_label {margin-top: 0px;}
+
+.servicestatus_Online {color: #4CAF50; font-weight: bold;}
+.servicestatus_Offline {color: #D50000; font-weight: bold;}
+
+
 .material-text-dark-primary {color: #000000; opacity: 0.87;}
 .material-text-dark-secondary {color: #000000; opacity: 0.54;}
 .material-text-dark-disabled {color: #000000; opacity: 0.38;}
