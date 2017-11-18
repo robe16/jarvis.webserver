@@ -8,6 +8,7 @@ from log.log import Log
 
 from html.home import create_home
 from html.error import create_error
+from html.service_status import create_servicestatus
 
 
 def start_bottle(self_port, services):
@@ -42,6 +43,27 @@ def start_bottle(self_port, services):
         except Exception as e:
             status = httpStatusServererror
             _log.new_entry(logCategoryClient, request['REMOTE_ADDR'], request.url, 'GET', status, level=logLevelError)
+            raise HTTPError(status)
+
+    ################################################################################################
+    # Service Status
+    ################################################################################################
+
+    @get(uri_servicestatus)
+    def get_servicestatus():
+        try:
+            #
+            page = create_servicestatus(services)
+            #
+            status = httpStatusSuccess
+            #
+            _log.new_entry(logCategoryClient, request['REMOTE_ADDR'], request.url, 'GET', status, level=logLevelInfo)
+            #
+            return HTTPResponse(body=page, status=status)
+            #
+        except Exception as e:
+            status = httpStatusServererror
+            _log.new_entry(logCategoryClient, request['REMOTE_ADDR'], request.url, 'GET', e, level=logLevelError)
             raise HTTPError(status)
 
     ################################################################################################
