@@ -17,7 +17,7 @@ logCategoryDevice = 'service'
 
 timeformat = '%Y/%m/%d %H.%M.%S.%f'
 
-uri_home = ''
+uri_home = '/'
 uri_service = '/web/service/<service_id>'
 uri_command = '/command/service/<service_id>'
 uri_servicestatus = '/servicestatus'
