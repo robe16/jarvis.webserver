@@ -17,15 +17,23 @@ def create_servicestatus(services):
         #
         status = 'Online' if services[s]['active'] else 'Offline'
         #
-        args = {'service_name': services[s]['name'],
+        groups = ''
+        for g in services[s]['groups']:
+            groups += ', ' if groups == '' else ''
+            groups += g
+        #
+        args = {'service_id': services[s]['service_id'],
+                'service_name': services[s]['name'],
                 'status': status,
-                'groups': services[s]['groups'],
+                'groups': groups,
                 'img': '/img/services/{img}'.format(img=img)}
         #
         page_body += urlopen('resources/html/service_status/service.html').read().encode('utf-8').format(**args)
     #
     if page_body == '':
         page_body = urlopen('resources/html/service_status/service_null.html').read().encode('utf-8')
+    else:
+        page_body = '<div class="row">{body}</div>'.format(body=page_body)
     #
     return create_page(services,
                        page_body,
