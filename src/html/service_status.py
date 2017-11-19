@@ -26,7 +26,7 @@ def create_servicestatus(services):
                 'service_name': services[s]['name'],
                 'status': status,
                 'groups': groups,
-                'img': '/img/services/{img}'.format(img=img)}
+                'img': '/img/service/{img}'.format(img=img)}
         #
         page_body += urlopen('resources/html/service_status/service.html').read().encode('utf-8').format(**args)
     #
