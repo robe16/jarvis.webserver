@@ -19,7 +19,7 @@ def create_servicestatus(services):
         #
         groups = ''
         for g in services[s]['groups']:
-            groups += ', ' if groups == '' else ''
+            groups += ', ' if not groups == '' else ''
             groups += g
         #
         args = {'service_id': services[s]['service_id'],
