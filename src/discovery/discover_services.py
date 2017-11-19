@@ -38,10 +38,10 @@ def discover_services(services):
                 service_groups = services[service_id]['groups']
             #
             services[service_id] = {'service_id': service_id,
-                                      'service_type': service_type,
-                                      'name': service_name,
-                                      'groups': service_groups,
-                                      'ip': ip,
-                                      'port': port,
-                                      'active': True,
-                                      'timestamp': datetime.datetime.now()}
+                                    'service_type': service_type,
+                                    'name': service_name,
+                                    'groups': service_groups,
+                                    'ip': ip,
+                                    'port': port,
+                                    'active': True,
+                                    'timestamp': datetime.datetime.now()}
