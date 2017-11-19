@@ -1,5 +1,6 @@
 from urllib import urlopen
 from html.page_body import create_page
+from resources.global_resources.services import service_variables
 
 
 def create_servicestatus(services):
@@ -10,8 +11,8 @@ def create_servicestatus(services):
         #
         type = services[s]['service_type']
         #
-        if type == 'tv_lg_netcast':
-            img = 'logo_lg.png'
+        if type in service_variables:
+            img = service_variables[type]['logo']
         else:
             img = 'logo_other.png'
         #
