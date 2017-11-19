@@ -93,23 +93,24 @@ def start_bottle(self_port, services):
     # Image files
     ################################################################################################
 
-    # @get(uri_favicon)
-    # def get_favicon():
-    #     global _server_url
-    #     log = log_msg(request, uri_favicon)
-    #     #
-    #     try:
-    #         r = requests.get('{url}/{uri}'.format(url=_server_url, uri='favicon.ico'))
-    #         #
-    #         log_general(log)
-    #         if r.status_code == requests.codes.ok:
-    #             return HTTPResponse(status=200, body=r.content)
-    #         else:
-    #             return HTTPResponse(status=400)
-    #         #
-    #     except Exception as e:
-    #         log_error('{log} - {error}'.format(log=log, error=e))
-    #         raise HTTPError(500)
+    @get(uri_favicon)
+    def get_favicon():
+        #
+        try:
+            #
+            status = httpStatusSuccess
+            #
+            rsp = static_file('favicon.ico',
+                              root=os.path.join(os.path.dirname(__file__), 'resources/images/general'))
+            #
+            _log.new_entry(logCategoryClient, request['REMOTE_ADDR'], request.url, 'GET', status, level=logLevelInfo)
+            #
+            return rsp
+            #
+        except Exception as e:
+            status = httpStatusServererror
+            _log.new_entry(logCategoryClient, request['REMOTE_ADDR'], request.url, 'GET', e, level=logLevelError)
+            raise HTTPError(status)
 
 
     @get(uri_image)
