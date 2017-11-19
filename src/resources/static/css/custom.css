@@ -94,7 +94,7 @@ body {
     background-color: #d9d9d9;
 }
 
-
+/* Service Status */
 
 .servicestatus_logo {
     margin: auto;
@@ -115,6 +115,7 @@ body {
 .servicestatus_Online {color: #4CAF50; font-weight: bold;}
 .servicestatus_Offline {color: #D50000; font-weight: bold;}
 
+/* COLORS */
 
 .material-text-dark-primary {color: #000000; opacity: 0.87;}
 .material-text-dark-secondary {color: #000000; opacity: 0.54;}
