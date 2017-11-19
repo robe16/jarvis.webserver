@@ -1,14 +1,17 @@
 import os
+
 from bottle import HTTPError
-from bottle import get, post, error, static_file
+from bottle import get, post, static_file
 from bottle import request, run, HTTPResponse
 
-from resources.global_resources.variables import *
-from log.log import Log
-
 from html.home import create_home
-from html.error import create_error
 from html.service_status import create_servicestatus
+from log.log import Log
+from resources.global_resources.variables import *
+
+from service_commands.services import serviceCommand
+from service_images.services import serviceImage
+from service_page.services import servicePage
 
 
 def start_bottle(self_port, services):
@@ -65,6 +68,66 @@ def start_bottle(self_port, services):
             status = httpStatusServererror
             _log.new_entry(logCategoryClient, request['REMOTE_ADDR'], request.url, 'GET', e, level=logLevelError)
             raise HTTPError(status)
+
+    ################################################################################################
+    # Services
+    ################################################################################################
+
+    @get(uri_servicePage)
+    def get_servicePage(service_id):
+        try:
+            #
+            page = servicePage(services, service_id)
+            #
+            status = httpStatusSuccess
+            #
+            _log.new_entry(logCategoryClient, request['REMOTE_ADDR'], request.url, 'GET', status, level=logLevelInfo)
+            #
+            return HTTPResponse(body=page, status=status)
+            #
+        except Exception as e:
+            status = httpStatusServererror
+            _log.new_entry(logCategoryClient, request['REMOTE_ADDR'], request.url, 'GET', e, level=logLevelError)
+            raise HTTPError(status)
+
+    @post(uri_serviceCommand)
+    def post_serviceCommand(service_id):
+        try:
+            #
+            command = request.query
+            #
+            rsp = serviceCommand(services, service_id, command)
+            #
+            status = httpStatusSuccess if rsp else httpStatusFailure
+            #
+            _log.new_entry(logCategoryClient, request['REMOTE_ADDR'], request.url, 'POST', status, level=logLevelInfo)
+            #
+            return HTTPResponse(status=status)
+            #
+        except Exception as e:
+            status = httpStatusServererror
+            _log.new_entry(logCategoryClient, request['REMOTE_ADDR'], request.url, 'POST', e, level=logLevelError)
+            raise HTTPError(status)
+
+    @get(uri_serviceImage)
+    def get_serviceImage(service_id, filename):
+        try:
+            #
+            query = request.query
+            #
+            rsp = serviceImage(services, service_id, filename, query)
+            #
+            status = httpStatusSuccess if bool(rsp) else httpStatusFailure
+            #
+            _log.new_entry(logCategoryClient, request['REMOTE_ADDR'], request.url, 'GET', status, level=logLevelInfo)
+            #
+            return HTTPResponse(body=rsp, status=status)
+            #
+        except Exception as e:
+            status = httpStatusServererror
+            _log.new_entry(logCategoryClient, request['REMOTE_ADDR'], request.url, 'GET', e, level=logLevelError)
+            raise HTTPError(status)
+
 
     ################################################################################################
     # Resources
