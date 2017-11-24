@@ -7,18 +7,15 @@ def sendCmd_tv_lg_netcast(service, command):
     if command['command'] == 'keyInput':
         key = command['key']
         auid = ''
-        name = ''
     elif command['command'] == 'executeApp':
         key = ''
         auid = command['auid']
-        name = command['name']
     else:
         return False
     #
     cmd = {'command': command['command'],
            'keyInput': {'key': key},
-           'executeApp': {'auid': auid,
-                          'name': name}}
+           'executeApp': {'auid': auid}}
     #
     service_url = 'http://{ip}:{port}{uri}'.format(ip=service['ip'],
                                                    port=service['port'],

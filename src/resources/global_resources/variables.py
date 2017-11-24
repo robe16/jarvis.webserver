@@ -32,7 +32,7 @@ service_uri_config = '/config'
 service_uri_command = '/command'
 service_uri_info = '/info/{resource_requested}'
 
-service_uri_lgtvnetcast_image = '/img/appicon/{auid}/{name}'
+service_uri_lgtvnetcast_image = '/img/appicon/{auid}'
 
 httpStatusSuccess = 200
 httpStatusBadrequest = 400

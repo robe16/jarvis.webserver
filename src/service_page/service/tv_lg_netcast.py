@@ -27,12 +27,11 @@ def _html_apps(service):
         for app in json_applist:
             try:
                 #
-                html += ('<td class="grid_item" style="width: 20%; cursor: pointer; vertical-align: top;" align="center" onclick="sendHttp(\'/service/command/{service_id}?command=executeApp&auid={auid}&name={app_name}\', null, \'POST\', false, true)">' +
-                         '<img src="/service/image/{service_id}/appIcon?auid={auid}&name={app_name}" style="height:50px;"/>' +
+                html += ('<td class="grid_item" style="width: 20%; cursor: pointer; vertical-align: top;" align="center" onclick="sendHttp(\'/service/command/{service_id}?command=executeApp&auid={auid}\', null, \'POST\', false, true)">' +
+                         '<img src="/service/image/{service_id}/appIcon?auid={auid}" style="height:50px;"/>' +
                          '<p style="text-align:center; font-size: 13px;">{name}</p>' +
                          '</td>').format(service_id=service['service_id'],
                                          auid=json_applist[app]['auid'],
-                                         app_name=json_applist[app]['name'].replace(' ', '%20'),
                                          name=json_applist[app]['name'])
                 #
                 if count % 4 == 0:
