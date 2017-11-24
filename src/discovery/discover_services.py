@@ -11,15 +11,15 @@ def discover_services(services):
     while True:
         data, addr = s.recvfrom(1024)
         data = data.decode("utf-8")
-        if data.startswith('jarvis'):
+        if data.startswith('jarvis::discovery'):
             data = data.split('::')
             #
             ip = addr[0]
-            service_id = str(data[1])
-            service_type = str(data[2])
-            port = str(data[3])
+            service_id = str(data[2])
+            service_type = str(data[3])
+            port = str(data[4])
             #
-            if not str(data[1]) in services.keys():
+            if not service_id in services.keys():
                 #
                 url = 'http://{ip}:{port}{uri}'.format(ip=ip,
                                                        port=port,
