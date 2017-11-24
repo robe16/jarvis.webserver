@@ -37,7 +37,7 @@ node {
         build_args = ["--build-arg portApplication=${portApplication}"].join(" ")
         //
         //
-        docker_volumes = ["-v ${params.folderLog}:/jarvis/lgtv_netcast/log/logfiles/"].join(" ")
+        docker_volumes = ["-v ${params.folderLog}:/jarvis/webserver/log/logfiles/"].join(" ")
         //
         //
         deployLogin = "${params.deploymentUsername}@${params.deploymentServer}"
