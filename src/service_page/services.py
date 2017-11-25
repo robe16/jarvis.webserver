@@ -24,4 +24,4 @@ def servicePage(services, service_id):
     #
     return create_page(services,
                        page_body,
-                       title='Jarvis')
+                       title='Jarvis: {name}'.format(name=services[service_id]['name']))
