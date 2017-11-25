@@ -2,7 +2,9 @@ import requests
 import ast
 from urllib import urlopen
 from resources.global_resources.variables import *
+from log.log import Log
 
+_log = Log()
 
 def createPage_tv_lg_netcast(service):
     #
@@ -51,23 +53,24 @@ def _html_apps(service):
 
 def _get_applist(service):
     #
-    data = _getData(service, 'applist')
+    data = _getData(service)
     #
     if data:
         return ast.literal_eval(data)
     else:
         return False
 
-def _getData(service, datarequest):
+def _getData(service):
     #
     service_url = 'http://{ip}:{port}{uri}'.format(ip=service['ip'],
                                                    port=service['port'],
-                                                   uri=service_uri_info.format(resource_requested=datarequest))
+                                                   uri=service_uri_lgtvnetcast_apps_all)
     #
     r = requests.get(service_url)
     #
     if r.status_code == requests.codes.ok:
+        _log.new_entry(logCategoryProcess, service['service_id'], service_uri_lgtvnetcast_apps_all, 'GET', r.status_code, level=logLevelInfo)
         return r.content
     else:
-        # log_error('LG TV - Attempted to request {data} from server - {status}'.format(data=datarequest, status=r.status_code))
+        _log.new_entry(logCategoryProcess, service['service_id'], service_uri_lgtvnetcast_apps_all, 'GET', r.status_code, level=logLevelError)
         return False
