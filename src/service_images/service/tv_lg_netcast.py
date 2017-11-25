@@ -1,5 +1,9 @@
 import requests
+from log.log import Log
 from resources.global_resources.variables import *
+
+
+_log = Log()
 
 
 def getImage_tv_lg_netcast(service, filename, query):
@@ -19,7 +23,8 @@ def _getImage(service, auid):
     r = requests.get(service_url)
     #
     if r.status_code == requests.codes.ok:
+        _log.new_entry(logCategoryProcess, service_url, 'Get app image', 'GET', r.status_code, level=logLevelInfo)
         return r.content
     else:
-        # log_error('LG TV - Attempted to request {data} from server - {status}'.format(data=datarequest, status=r.status_code))
+        _log.new_entry(logCategoryProcess, service_url, 'Get app image', 'GET', r.status_code, level=logLevelError)
         return False
