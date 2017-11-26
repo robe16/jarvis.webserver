@@ -7,6 +7,7 @@ from resources.global_resources.services import service_variables
 def html_menu(services):
     html = _html_menu_lhs(services)
     html += _html_menu_rhs()
+    html += urlopen('resources/html/common/menu_command_result.html').read().encode('utf-8')
     return html
 
 
