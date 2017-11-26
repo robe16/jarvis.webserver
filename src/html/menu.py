@@ -22,7 +22,7 @@ def _html_menu_lhs(services):
             img = 'logo_other.png'
         #
         html += urlopen('resources/html/common/menu_sidebar_item.html').read().encode('utf-8').\
-            format(href='/service/page/{info}'.format(info=url_encode(services[s]['service_id'])),
+            format(href='/service/page/{service_id}'.format(service_id=url_encode(services[s]['service_id'])),
                    id='{info}'.format(info=services[s]['service_id']),
                    cls='',
                    name=services[s]['name'],
