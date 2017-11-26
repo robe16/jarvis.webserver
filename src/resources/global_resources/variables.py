@@ -20,7 +20,7 @@ logDescDeviceService_infoRequest = ''
 timeformat = '%Y/%m/%d %H.%M.%S.%f'
 
 uri_home = '/'
-uri_servicestatus = '/servicestatus'
+uri_servicestatus = '/services/status'
 
 uri_servicePage = '/service/page/<service_id>'
 uri_serviceCommand = '/service/command/<service_id>'
