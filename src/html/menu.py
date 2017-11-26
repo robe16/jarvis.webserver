@@ -16,6 +16,7 @@ def _html_menu_lhs(services):
     #
     for s in services.keys():
         #
+        type = services[s]['service_type']
         if type in service_variables:
             img = service_variables[type]['logo']
         else:
