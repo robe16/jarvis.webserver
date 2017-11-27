@@ -28,18 +28,22 @@ def discover_services(services):
                 #
                 if r.status_code == requests.codes.ok:
                     r = r.json()
-                    service_name = r['name']
+                    name_long = r['name_long']
+                    name_short = r['name_short']
                     service_groups = r['groups']
                 else:
-                    service_name = ''
+                    name_long = ''
+                    name_short = ''
                     service_groups = []
             else:
-                service_name = services[service_id]['name']
+                name_long = services[service_id]['name_long']
+                name_short = services[service_id]['name_short']
                 service_groups = services[service_id]['groups']
             #
             services[service_id] = {'service_id': service_id,
                                     'service_type': service_type,
-                                    'name': service_name,
+                                    'name_long': name_long,
+                                    'name_short': name_short,
                                     'groups': service_groups,
                                     'ip': ip,
                                     'port': port,
