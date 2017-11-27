@@ -24,7 +24,8 @@ def create_servicestatus(services):
             groups += g
         #
         args = {'service_id': services[s]['service_id'],
-                'service_name': services[s]['name'],
+                'name_long': services[s]['name_long'],
+                'name_short': services[s]['name_short'],
                 'status': status,
                 'groups': groups,
                 'img': '/img/service/{img}'.format(img=img)}
