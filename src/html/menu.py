@@ -27,7 +27,7 @@ def _html_menu_lhs(services):
             format(href='/service/page/{service_id}'.format(service_id=url_encode(services[s]['service_id'])),
                    id='{info}'.format(info=services[s]['service_id']),
                    cls='',
-                   name=services[s]['name'],
+                   name=services[s]['name_long'],
                    img='/img/service/{img}'.format(img=img))
     #
     return urlopen('resources/html/common/menu_lhs.html').read().encode('utf-8').format(menu=html)
