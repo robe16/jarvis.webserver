@@ -6,7 +6,7 @@ from bottle import request, run, HTTPResponse
 
 from html.home import create_home
 from html.service_status import create_servicestatus
-from log.log import Log
+from log.log import log_inbound, log_internal
 from resources.global_resources.variables import *
 
 from service_commands.services import serviceCommand
@@ -15,8 +15,6 @@ from service_page.services import servicePage
 
 
 def start_bottle(self_port, services):
-
-    _log = Log()
 
     ################################################################################################
     # Enable cross domain scripting
@@ -39,13 +37,13 @@ def start_bottle(self_port, services):
             #
             status = httpStatusSuccess
             #
-            _log.new_entry(logCategoryClient, request['REMOTE_ADDR'], request.url, 'GET', status, level=logLevelInfo)
+            log_inbound(True, request['REMOTE_ADDR'], request.url, 'GET', status)
             #
             return HTTPResponse(body=page, status=status)
             #
         except Exception as e:
             status = httpStatusServererror
-            _log.new_entry(logCategoryClient, request['REMOTE_ADDR'], request.url, 'GET', status, level=logLevelError)
+            log_inbound(False, request['REMOTE_ADDR'], request.url, 'GET', status, exception=e)
             raise HTTPError(status)
 
     ################################################################################################
@@ -60,13 +58,13 @@ def start_bottle(self_port, services):
             #
             status = httpStatusSuccess
             #
-            _log.new_entry(logCategoryClient, request['REMOTE_ADDR'], request.url, 'GET', status, level=logLevelInfo)
+            log_inbound(True, request['REMOTE_ADDR'], request.url, 'GET', status)
             #
             return HTTPResponse(body=page, status=status)
             #
         except Exception as e:
             status = httpStatusServererror
-            _log.new_entry(logCategoryClient, request['REMOTE_ADDR'], request.url, 'GET', e, level=logLevelError)
+            log_inbound(False, request['REMOTE_ADDR'], request.url, 'GET', status, exception=e)
             raise HTTPError(status)
 
     ################################################################################################
@@ -81,13 +79,13 @@ def start_bottle(self_port, services):
             #
             status = httpStatusSuccess
             #
-            _log.new_entry(logCategoryClient, request['REMOTE_ADDR'], request.url, 'GET', status, level=logLevelInfo)
+            log_inbound(True, request['REMOTE_ADDR'], request.url, 'GET', status)
             #
             return HTTPResponse(body=page, status=status)
             #
         except Exception as e:
             status = httpStatusServererror
-            _log.new_entry(logCategoryClient, request['REMOTE_ADDR'], request.url, 'GET', e, level=logLevelError)
+            log_inbound(False, request['REMOTE_ADDR'], request.url, 'GET', status, exception=e)
             raise HTTPError(status)
 
     @post(uri_serviceCommand)
@@ -100,13 +98,13 @@ def start_bottle(self_port, services):
             #
             status = httpStatusSuccess if rsp else httpStatusFailure
             #
-            _log.new_entry(logCategoryClient, request['REMOTE_ADDR'], request.url, 'POST', status, level=logLevelInfo)
+            log_inbound(True, request['REMOTE_ADDR'], request.url, 'POST', status, desc=request.query)
             #
             return HTTPResponse(status=status)
             #
         except Exception as e:
             status = httpStatusServererror
-            _log.new_entry(logCategoryClient, request['REMOTE_ADDR'], request.url, 'POST', e, level=logLevelError)
+            log_inbound(False, request['REMOTE_ADDR'], request.url, 'POST', status, desc=request.query, exception=e)
             raise HTTPError(status)
 
     @get(uri_serviceImage)
@@ -119,13 +117,13 @@ def start_bottle(self_port, services):
             #
             status = httpStatusSuccess if bool(rsp) else httpStatusFailure
             #
-            _log.new_entry(logCategoryClient, request['REMOTE_ADDR'], request.url, 'GET', status, level=logLevelInfo)
+            log_inbound(True, request['REMOTE_ADDR'], request.url, 'GET', status, desc=request.query)
             #
             return HTTPResponse(body=rsp, status=status)
             #
         except Exception as e:
             status = httpStatusServererror
-            _log.new_entry(logCategoryClient, request['REMOTE_ADDR'], request.url, 'GET', e, level=logLevelError)
+            log_inbound(False, request['REMOTE_ADDR'], request.url, 'GET', status, desc=request.query, exception=e)
             raise HTTPError(status)
 
 
@@ -142,13 +140,13 @@ def start_bottle(self_port, services):
             rsp = static_file(filename, root=os.path.join(os.path.dirname(__file__),
                                                           ('resources/static/{folder}'.format(folder=type))))
             #
-            _log.new_entry(logCategoryClient, request['REMOTE_ADDR'], request.url, 'GET', status, level=logLevelInfo)
+            log_inbound(True, request['REMOTE_ADDR'], request.url, 'GET', status)
             #
             return rsp
             #
         except Exception as e:
             status = httpStatusServererror
-            _log.new_entry(logCategoryClient, request['REMOTE_ADDR'], request.url, 'GET', e, level=logLevelError)
+            log_inbound(False, request['REMOTE_ADDR'], request.url, 'GET', status, exception=e)
             raise HTTPError(status)
 
 
@@ -166,13 +164,13 @@ def start_bottle(self_port, services):
             rsp = static_file('favicon.ico',
                               root=os.path.join(os.path.dirname(__file__), 'resources/images/general'))
             #
-            _log.new_entry(logCategoryClient, request['REMOTE_ADDR'], request.url, 'GET', status, level=logLevelInfo)
+            log_inbound(True, request['REMOTE_ADDR'], request.url, 'GET', status)
             #
             return rsp
             #
         except Exception as e:
             status = httpStatusServererror
-            _log.new_entry(logCategoryClient, request['REMOTE_ADDR'], request.url, 'GET', e, level=logLevelError)
+            log_inbound(False, request['REMOTE_ADDR'], request.url, 'GET', status, exception=e)
             raise HTTPError(status)
 
 
@@ -190,13 +188,13 @@ def start_bottle(self_port, services):
                               root=root,
                               mimetype='image/{mimetype}'.format(mimetype=mimetype))
             #
-            _log.new_entry(logCategoryClient, request['REMOTE_ADDR'], request.url, 'GET', status, level=logLevelInfo)
+            log_inbound(True, request['REMOTE_ADDR'], request.url, 'GET', status)
             #
             return rsp
             #
         except Exception as e:
             status = httpStatusServererror
-            _log.new_entry(logCategoryClient, request['REMOTE_ADDR'], request.url, 'GET', e, level=logLevelError)
+            log_inbound(False, request['REMOTE_ADDR'], request.url, 'GET', status, exception=e)
             raise HTTPError(status)
 
     ################################################################################################
@@ -216,5 +214,5 @@ def start_bottle(self_port, services):
     ################################################################################################
 
     host='0.0.0.0'
-    _log.new_entry(logCategoryProcess, '-', 'Port listener', '{host}:{port}'.format(host=host, port=self_port), 'started')
+    log_internal(True, 'Port listener', desc='started')
     run(host=host, port=self_port, debug=True)

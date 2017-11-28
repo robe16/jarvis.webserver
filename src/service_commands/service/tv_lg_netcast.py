@@ -1,5 +1,6 @@
 import requests
 from resources.global_resources.variables import *
+from log.log import log_outbound
 
 
 def sendCmd_tv_lg_netcast(service, command):
@@ -22,6 +23,8 @@ def sendCmd_tv_lg_netcast(service, command):
                                                    uri=service_uri_command)
     #
     r = requests.post(service_url, json=cmd)
-    print(r.url)
+    #
+    log_outbound(r.status_code == requests.codes.ok, '{ip}:{port}'.format(ip=service['ip'], port=service['port']),
+                 service_uri_command, 'GET', r.status_code)
     #
     return r.status_code == requests.codes.ok

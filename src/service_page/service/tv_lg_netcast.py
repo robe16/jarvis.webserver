@@ -1,9 +1,7 @@
 import requests
 from urllib import urlopen
 from resources.global_resources.variables import *
-from log.log import Log
-
-_log = Log()
+from log.log import log_outbound
 
 
 def createPage_tv_lg_netcast(service):
@@ -60,8 +58,10 @@ def _get_applist(service):
     r = requests.get(service_url)
     #
     if r.status_code == requests.codes.ok:
-        _log.new_entry(logCategoryProcess, service['service_id'], service_uri_lgtvnetcast_apps_all, 'GET', r.status_code, level=logLevelInfo)
+        log_outbound(True, '{ip}:{port}'.format(ip=service['ip'], port=service['port']),
+                     service_uri_lgtvnetcast_apps_all, 'GET', r.status_code)
         return r.json()
     else:
-        _log.new_entry(logCategoryProcess, service['service_id'], service_uri_lgtvnetcast_apps_all, 'GET', r.status_code, level=logLevelError)
+        log_outbound(False, '{ip}:{port}'.format(ip=service['ip'], port=service['port']),
+                     service_uri_lgtvnetcast_apps_all, 'GET', r.status_code)
         return False

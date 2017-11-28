@@ -1,5 +1,4 @@
 from urllib import urlopen
-# from menu import html_menu
 
 
 def create_error(code):

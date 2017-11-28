@@ -1,9 +1,6 @@
 import requests
-from log.log import Log
+from log.log import log_outbound
 from resources.global_resources.variables import *
-
-
-_log = Log()
 
 
 def getImage_tv_lg_netcast(service, filename, query):
@@ -23,8 +20,10 @@ def _getImage(service, auid):
     r = requests.get(service_url)
     #
     if r.status_code == requests.codes.ok:
-        _log.new_entry(logCategoryProcess, service_url, 'Get app image', 'GET', r.status_code, level=logLevelInfo)
+        log_outbound(True, '{ip}:{port}'.format(ip=service['ip'], port=service['port']),
+                     service_uri_lgtvnetcast_image.format(auid=auid), 'GET', r.status_code)
         return r.content
     else:
-        _log.new_entry(logCategoryProcess, service_url, 'Get app image', 'GET', r.status_code, level=logLevelError)
+        log_outbound(False, '{ip}:{port}'.format(ip=service['ip'], port=service['port']),
+                     service_uri_lgtvnetcast_image.format(auid=auid), 'GET', r.status_code)
         return False

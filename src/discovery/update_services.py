@@ -13,4 +13,3 @@ def update_services(services):
     #
     thread_discover.join()
     thread_cleanup.join()
-
