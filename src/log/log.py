@@ -10,14 +10,10 @@ from resources.global_resources.variables import logMsg_Internal_Info, logMsg_In
 from resources.global_resources.variables import logMsg_Outbound_Info, logMsg_Outbound_Error
 
 
-def log_inbound(result, ip, uri, method, httpresponse, desc='-', exception=''):
+def log_inbound(result, ip, uri, method, httpresponse, desc='-', exception=False):
     #
-    if exception == '':
+    if exception:
         result = logException
-    else:
-        result = logPass if result else logFail
-    #
-    if exception == '':
         log_msg = logMsg_Inbound_Error.format(timestamp=_timestamp(),
                                               serviceid=serviceId,
                                               servicetype=serviceType,
@@ -30,6 +26,7 @@ def log_inbound(result, ip, uri, method, httpresponse, desc='-', exception=''):
                                               desc=desc)
         level = 40
     else:
+        result = logPass if result else logFail
         log_msg = logMsg_Inbound_Info.format(timestamp=_timestamp(),
                                              serviceid=serviceId,
                                              servicetype=serviceType,
@@ -44,14 +41,10 @@ def log_inbound(result, ip, uri, method, httpresponse, desc='-', exception=''):
     _log(log_msg, level)
 
 
-def log_internal(result, operation, desc='-', exception=''):
+def log_internal(result, operation, desc='-', exception=False):
     #
-    if exception == '':
+    if exception:
         result = logException
-    else:
-        result = logPass if result else logFail
-    #
-    if exception == '':
         log_msg = logMsg_Internal_Error.format(timestamp=_timestamp(),
                                                serviceid=serviceId,
                                                servicetype=serviceType,
@@ -61,6 +54,7 @@ def log_internal(result, operation, desc='-', exception=''):
                                                desc=desc)
         level = 40
     else:
+        result = logPass if result else logFail
         log_msg = logMsg_Internal_Info.format(timestamp=_timestamp(),
                                               serviceid=serviceId,
                                               servicetype=serviceType,
@@ -72,14 +66,10 @@ def log_internal(result, operation, desc='-', exception=''):
     _log(log_msg, level)
 
 
-def log_outbound(result, ip, uri, method, desc='-', exception=''):
+def log_outbound(result, ip, uri, method, desc='-', exception=False):
     #
-    if exception == '':
+    if exception:
         result = logException
-    else:
-        result = logPass if result else logFail
-    #
-    if exception == '':
         log_msg = logMsg_Outbound_Error.format(timestamp=_timestamp(),
                                                serviceid=serviceId,
                                                servicetype=serviceType,
@@ -91,6 +81,7 @@ def log_outbound(result, ip, uri, method, desc='-', exception=''):
                                                desc=desc)
         level = 40
     else:
+        result = logPass if result else logFail
         log_msg = logMsg_Outbound_Info.format(timestamp=_timestamp(),
                                               serviceid=serviceId,
                                               servicetype=serviceType,
