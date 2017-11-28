@@ -18,7 +18,8 @@ def log_inbound(result, ip, uri, method, httpresponse, desc='-', exception=''):
         result = logPass if result else logFail
     #
     if exception == '':
-        log_msg = logMsg_Inbound_Error.format(serviceid=serviceId,
+        log_msg = logMsg_Inbound_Error.format(timestamp=_timestamp(),
+                                              serviceid=serviceId,
                                               servicetype=serviceType,
                                               result=result,
                                               exception=exception,
@@ -29,7 +30,8 @@ def log_inbound(result, ip, uri, method, httpresponse, desc='-', exception=''):
                                               desc=desc)
         level = 40
     else:
-        log_msg = logMsg_Inbound_Info.format(serviceid=serviceId,
+        log_msg = logMsg_Inbound_Info.format(timestamp=_timestamp(),
+                                             serviceid=serviceId,
                                              servicetype=serviceType,
                                              result=result,
                                              ip=ip,
@@ -50,7 +52,8 @@ def log_internal(result, operation, desc='-', exception=''):
         result = logPass if result else logFail
     #
     if exception == '':
-        log_msg = logMsg_Internal_Error.format(serviceid=serviceId,
+        log_msg = logMsg_Internal_Error.format(timestamp=_timestamp(),
+                                               serviceid=serviceId,
                                                servicetype=serviceType,
                                                result=result,
                                                exception=exception,
@@ -58,7 +61,8 @@ def log_internal(result, operation, desc='-', exception=''):
                                                desc=desc)
         level = 40
     else:
-        log_msg = logMsg_Internal_Info.format(serviceid=serviceId,
+        log_msg = logMsg_Internal_Info.format(timestamp=_timestamp(),
+                                              serviceid=serviceId,
                                               servicetype=serviceType,
                                               result=result,
                                               operation=operation,
@@ -76,7 +80,8 @@ def log_outbound(result, ip, uri, method, desc='-', exception=''):
         result = logPass if result else logFail
     #
     if exception == '':
-        log_msg = logMsg_Outbound_Error.format(serviceid=serviceId,
+        log_msg = logMsg_Outbound_Error.format(timestamp=_timestamp(),
+                                               serviceid=serviceId,
                                                servicetype=serviceType,
                                                result=result,
                                                exception=exception,
@@ -86,7 +91,8 @@ def log_outbound(result, ip, uri, method, desc='-', exception=''):
                                                desc=desc)
         level = 40
     else:
-        log_msg = logMsg_Outbound_Info.format(serviceid=serviceId,
+        log_msg = logMsg_Outbound_Info.format(timestamp=_timestamp(),
+                                              serviceid=serviceId,
                                               servicetype=serviceType,
                                               result=result,
                                               ip=ip,
