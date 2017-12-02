@@ -36,6 +36,8 @@ service_uri_command = '/command'
 service_uri_lgtvnetcast_apps_all = '/apps/all'
 service_uri_lgtvnetcast_image = '/img/appicon/{auid}'
 
+service_header_clientid_label = 'jarvis.client-service'
+
 httpStatusSuccess = 200
 httpStatusBadrequest = 400
 httpStatusForbidden = 404

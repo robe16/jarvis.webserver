@@ -55,7 +55,8 @@ def _get_applist(service):
                                                    port=service['port'],
                                                    uri=service_uri_lgtvnetcast_apps_all)
     #
-    r = requests.get(service_url)
+    headers = {service_header_clientid_label: serviceId}
+    r = requests.get(service_url, headers=headers)
     #
     if r.status_code == requests.codes.ok:
         log_outbound(True, '{ip}:{port}'.format(ip=service['ip'], port=service['port']),
