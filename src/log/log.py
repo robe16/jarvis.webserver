@@ -10,7 +10,7 @@ from resources.global_resources.variables import logMsg_Internal_Info, logMsg_In
 from resources.global_resources.variables import logMsg_Outbound_Info, logMsg_Outbound_Error
 
 
-def log_inbound(result, ip, uri, method, httpresponse, desc='-', exception=False):
+def log_inbound(result, client, uri, method, httpresponse, desc='-', exception=False):
     #
     if exception:
         result = logException
@@ -19,7 +19,7 @@ def log_inbound(result, ip, uri, method, httpresponse, desc='-', exception=False
                                               servicetype=serviceType,
                                               result=result,
                                               exception=exception,
-                                              ip=ip,
+                                              client=client,
                                               uri=uri,
                                               method=method,
                                               httpresponse=httpresponse,
@@ -31,7 +31,7 @@ def log_inbound(result, ip, uri, method, httpresponse, desc='-', exception=False
                                              serviceid=serviceId,
                                              servicetype=serviceType,
                                              result=result,
-                                             ip=ip,
+                                             client=client,
                                              uri=uri,
                                              method=method,
                                              httpresponse=httpresponse,
@@ -96,7 +96,6 @@ def log_outbound(result, ip, uri, method, desc='-', exception=False):
 
 
 def _log(log_msg, level):
-    _set_logfile()
     #
     if level == 50:
         logging.critical(log_msg)
@@ -110,9 +109,8 @@ def _log(log_msg, level):
         logging.debug(log_msg)
 
 
-def _set_logfile():
-    filename = '{timestamp}.{filename}.log'.format(timestamp=datetime.now().strftime(logFileNameTimeformat),
-                                                   filename=logFileName)
+def set_logfile():
+    filename = '{filename}.log'.format(filename=logFileName)
     logfile = os.path.join(os.path.dirname(__file__), 'logfiles', filename)
     logging.basicConfig(filename=logfile, level=20)
 

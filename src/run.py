@@ -2,10 +2,17 @@ import sys
 from multiprocessing import Process, Manager
 from discovery.update_services import update_services
 from portlistener import start_bottle
-from log.log import log_internal
+from log.log import log_internal, set_logfile
 
 
 try:
+
+    ################################
+    # Set logfile
+
+    set_logfile()
+
+    ################################
 
     log_internal(True, 'Starting micro service', desc='started')
 
