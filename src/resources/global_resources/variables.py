@@ -33,6 +33,8 @@ uri_resource = '/resource/<type>/<filename>'
 service_uri_config = '/config'
 service_uri_command = '/command'
 
+service_uri_lgtvnetcast_command_keyInput = '/command/keyInput'
+service_uri_lgtvnetcast_command_executeApp = '/command/executeApp'
 service_uri_lgtvnetcast_apps_all = '/apps/all'
 service_uri_lgtvnetcast_image = '/img/appicon/{auid}'
 
