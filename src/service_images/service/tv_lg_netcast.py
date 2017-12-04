@@ -21,10 +21,8 @@ def _getImage(service, auid):
     r = requests.get(service_url, headers=headers)
     #
     if r.status_code == requests.codes.ok:
-        log_outbound(True, '{ip}:{port}'.format(ip=service['ip'], port=service['port']),
-                     service_uri_lgtvnetcast_image.format(auid=auid), 'GET', r.status_code)
+        log_outbound(True, service['service_id'], service_uri_lgtvnetcast_image.format(auid=auid), 'GET', r.status_code)
         return r.content
     else:
-        log_outbound(False, '{ip}:{port}'.format(ip=service['ip'], port=service['port']),
-                     service_uri_lgtvnetcast_image.format(auid=auid), 'GET', r.status_code)
+        log_outbound(False, service['service_id'], service_uri_lgtvnetcast_image.format(auid=auid), 'GET', r.status_code)
         return False
