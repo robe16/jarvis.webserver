@@ -2,6 +2,7 @@ import datetime
 from socket import socket, AF_INET, SOCK_DGRAM
 from resources.global_resources.variables import jarvis_broadcastPort, service_uri_config
 import requests
+from log.log import log_outbound
 
 
 def discover_services(services):
@@ -21,10 +22,12 @@ def discover_services(services):
             #
             if not service_id in services.keys():
                 #
-                url = 'http://{ip}:{port}{uri}'.format(ip=ip,
-                                                       port=port,
-                                                       uri=service_uri_config)
-                r = requests.get(url)
+                host = 'http://{ip}:{port}'.format(ip=ip, port=port)
+                uri = service_uri_config
+                #
+                r = requests.get('{host}{uri}'.format(host=host, uri=uri))
+                #
+                log_outbound((r.status_code == requests.codes.ok), host, uri, 'GET', r.status_code)
                 #
                 if r.status_code == requests.codes.ok:
                     r = r.json()
