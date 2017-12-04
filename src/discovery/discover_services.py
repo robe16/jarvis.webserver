@@ -27,7 +27,7 @@ def discover_services(services):
                 #
                 r = requests.get('{host}{uri}'.format(host=host, uri=uri))
                 #
-                log_outbound((r.status_code == requests.codes.ok), host, uri, 'GET', r.status_code)
+                log_outbound((r.status_code == requests.codes.ok), service_id, uri, 'GET', r.status_code)
                 #
                 if r.status_code == requests.codes.ok:
                     r = r.json()
