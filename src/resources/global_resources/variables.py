@@ -38,6 +38,9 @@ service_uri_lgtvnetcast_command_executeApp = '/command/executeApp'
 service_uri_lgtvnetcast_apps_all = '/apps/all'
 service_uri_lgtvnetcast_image = '/img/appicon/{auid}'
 
+service_uri_virginmediativo_channel = '/channel'
+service_uri_virginmediativo_recordings = '/recordings'
+
 service_header_clientid_label = 'jarvis.client-service'
 
 httpStatusSuccess = 200

@@ -2,6 +2,7 @@ from urllib import urlopen
 
 from html.page_body import create_page
 from service_page.service.tv_lg_netcast import createPage_tv_lg_netcast
+from service_page.service.virginmedia_tivo import createPage_virginmedia_tivo
 
 
 def servicePage(services, service_id):
@@ -14,6 +15,8 @@ def servicePage(services, service_id):
             #
             if service_type == 'tv_lg_netcast':
                 page_body = createPage_tv_lg_netcast(services[service_id])
+            elif service_type == 'virginmedia_tivo':
+                page_body = createPage_virginmedia_tivo(services[service_id])
             else:
                 page_body = urlopen('resources/html/services/_unknown.html').read().encode('utf-8').format(service_id=service_id)
 
