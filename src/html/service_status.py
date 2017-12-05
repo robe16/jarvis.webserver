@@ -24,6 +24,7 @@ def create_servicestatus(services):
             groups += g
         #
         args = {'service_id': services[s]['service_id'],
+                'service_type': services[s]['service_type'],
                 'name_long': services[s]['name_long'],
                 'name_short': services[s]['name_short'],
                 'status': status,
