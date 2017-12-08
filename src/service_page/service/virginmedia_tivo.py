@@ -1,6 +1,7 @@
 import requests
 from urllib import urlopen
 from resources.global_resources.variables import service_uri_virginmediativo_recordings, service_uri_virginmediativo_channel
+from resources.global_resources.channels_functions import get_image
 from log.log import log_outbound, log_internal
 
 
@@ -33,11 +34,10 @@ def _current_chan(service):
     #
     if bool(chan_current):
         current_chan = {'name': chan_current['channel']['name'],
-                        'number': chan_current['channel']['number'],
-                        'logo': chan_current['channel']['logo']}
+                        'logo': get_image(chan_current['channel']['name'],
+                                          chan_current['channel']['quality'])}
     else:
         current_chan = {'name': '-',
-                        'number': '-',
                         'logo': 'ic_blank.png'}
     #
     return current_chan
