@@ -1,6 +1,7 @@
 import datetime
 from socket import socket, AF_INET, SOCK_DGRAM
-from resources.global_resources.variables import jarvis_broadcastPort, service_uri_config
+from resources.global_resources.variables import service_uri_config
+from resources.global_resources.broadcast import jarvis_broadcastPort
 import requests
 from log.log import log_outbound, log_internal
 

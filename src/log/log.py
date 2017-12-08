@@ -2,11 +2,12 @@ from datetime import datetime
 import logging
 import os
 
-from resources.global_resources.variables import serviceType, serviceId, timeformat
-from resources.global_resources.variables import logPass, logFail, logException
-from resources.global_resources.variables import logMsg_Inbound_Info, logMsg_Inbound_Error
-from resources.global_resources.variables import logMsg_Internal_Info, logMsg_Internal_Error
-from resources.global_resources.variables import logMsg_Outbound_Info, logMsg_Outbound_Error
+from resources.global_resources.variables import serviceType, serviceId
+from resources.global_resources.log import logTimeformat
+from resources.global_resources.log import logPass, logFail, logException
+from resources.global_resources.log import logMsg_Inbound_Info, logMsg_Inbound_Error
+from resources.global_resources.log import logMsg_Internal_Info, logMsg_Internal_Error
+from resources.global_resources.log import logMsg_Outbound_Info, logMsg_Outbound_Error
 
 
 def log_inbound(result, client, uri, method, httpresponse, desc='-', exception=False):
@@ -117,4 +118,4 @@ def set_logfile():
 
 
 def _timestamp():
-    return datetime.now().strftime(timeformat)
+    return datetime.now().strftime(logTimeformat)
