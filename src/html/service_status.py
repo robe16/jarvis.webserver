@@ -49,7 +49,7 @@ def create_servicestatus(services):
     else:
         page_body += '<div class="row">{body}</div>'.format(body=html_current)
     #
-    page_body += '<hr>A'
+    page_body += '<hr>'
     #
     # MIA
     page_body += urlopen('resources/html/service_status/service_header.html').read().encode('utf-8').format(header=service_status_mia_header,
