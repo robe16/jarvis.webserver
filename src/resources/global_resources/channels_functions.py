@@ -1,3 +1,5 @@
+from log.log import log_internal
+
 # Issue with IDE and production running of script - resolved with try/except below
 try:
     # IDE
@@ -27,6 +29,7 @@ def get_image(channel_name, quality=False):
         if img:
             return img
         #
+        log_internal(False, 'Could not get image name for "{chan}"'.format(chan=channel_name), desc='fail')
         return False
 
 
