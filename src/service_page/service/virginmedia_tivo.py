@@ -74,7 +74,8 @@ def _html_recordings(json_recordings):
                 else:
                     episodenumber = ''
                 #
-                img = '<img style="height: 25px;" src="/img/channel/{imgFile}"/>'.format(imgFile=iFile['channel']['image'])
+                imgFile = get_image(iFile['channel']['name'], iFile['channel']['quality'])
+                img = '<img style="height: 25px;" src="/img/channel/{imgFile}"/>'.format(imgFile=imgFile)
                 #
                 seriesdrop_html += '<div class="row">'
                 seriesdrop_html += '<div class="col-xs-9"><h5>{ep_title}</h5></div>'.format(ep_title=iFile['episodeTitle'])
