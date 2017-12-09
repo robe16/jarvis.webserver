@@ -17,7 +17,7 @@ def createPage_virginmedia_tivo(service):
     html_channels = createhtml_channels(service)
     #
     args = {'service_id': service['service_id'],
-            'html_recordings': _html_recordings(recordings['recordings']),
+            'html_recordings': _html_recordings(recordings),
             'timestamp_recordings': recordings['timestamp'],
             'now_viewing_logo': current_chan['logo'],
             'now_viewing': current_chan['name'],
