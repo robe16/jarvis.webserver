@@ -1,6 +1,6 @@
 import requests
 from urllib import urlopen
-from resources.global_resources.variables import service_uri_virginmediativo_recordings, service_uri_virginmediativo_channel
+from resources.global_resources.variables import *
 from resources.global_resources.channels_functions import get_image
 from log.log import log_outbound, log_internal
 
@@ -126,7 +126,8 @@ def _get_recordings(service):
                                        port=service['port'])
     uri = service_uri_virginmediativo_recordings
     #
-    r = requests.get('{host}{uri}'.format(host=host, uri=uri))
+    headers = {service_header_clientid_label: serviceId}
+    r = requests.get('{host}{uri}'.format(host=host, uri=uri), headers=headers)
     #
     log_outbound(r.status_code == requests.codes.ok, service['service_id'], uri, 'GET', r.status_code)
     #
@@ -142,7 +143,8 @@ def _get_current_chan(service):
                                        port=service['port'])
     uri = service_uri_virginmediativo_channel
     #
-    r = requests.get('{host}{uri}'.format(host=host, uri=uri))
+    headers = {service_header_clientid_label: serviceId}
+    r = requests.get('{host}{uri}'.format(host=host, uri=uri), headers=headers)
     #
     log_outbound(r.status_code == requests.codes.ok, service['service_id'], uri, 'GET', r.status_code)
     #
