@@ -1,11 +1,15 @@
 from urllib import urlopen
+import datetime
 from html.page_body import create_page
 from resources.global_resources.services import service_variables
+from resources.global_resources.variables import *
+from parameters import discovery_service_mia
 
 
 def create_servicestatus(services):
     #
-    page_body = ''
+    html_current = ''
+    html_mia = ''
     #
     for s in services.keys():
         #
@@ -31,12 +35,30 @@ def create_servicestatus(services):
                 'groups': groups,
                 'img': '/img/service/{img}'.format(img=img)}
         #
-        page_body += urlopen('resources/html/service_status/service.html').read().encode('utf-8').format(**args)
+        if services[s]['timestamp'] < (datetime.datetime.now() + datetime.timedelta(seconds=discovery_service_mia)):
+            html_current += urlopen('resources/html/service_status/service.html').read().encode('utf-8').format(**args)
+        else:
+            html_mia += urlopen('resources/html/service_status/service.html').read().encode('utf-8').format(**args)
     #
-    if page_body == '':
-        page_body = urlopen('resources/html/service_status/service_null.html').read().encode('utf-8')
+    # Current
+    page_body = urlopen('resources/html/service_status/service_header.html').read().encode('utf-8').format(header=service_status_active_header,
+                                                                                                           note=service_status_active_note)
+    if html_current == '':
+        page_body += urlopen('resources/html/service_status/service_null.html').read().encode('utf-8').format(message=service_status_active_none_msg,
+                                                                                                              note=service_status_none_note)
     else:
-        page_body = '<div class="row">{body}</div>'.format(body=page_body)
+        page_body += '<div class="row">{body}</div>'.format(body=html_current)
+    #
+    page_body += '<hr>A'
+    #
+    # MIA
+    page_body += urlopen('resources/html/service_status/service_header.html').read().encode('utf-8').format(header=service_status_mia_header,
+                                                                                                            note=service_status_mia_note)
+    if html_mia == '':
+        page_body += urlopen('resources/html/service_status/service_null.html').read().encode('utf-8').format(message=service_status_mia_none_msg,
+                                                                                                              note=service_status_none_note)
+    else:
+        page_body += '<div class="row">{body}</div>'.format(body=html_mia)
     #
     return create_page(services,
                        page_body,

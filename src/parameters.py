@@ -1,2 +1,4 @@
-discovery_cleanup_expiry = 30 # seconds
-discovery_cleanup_sleep = 30 # seconds
+# seconds
+discovery_cleanup_expiry = 30
+discovery_cleanup_sleep = 30
+discovery_service_mia = 120
