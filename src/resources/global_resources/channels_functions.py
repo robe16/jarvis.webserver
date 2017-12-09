@@ -29,7 +29,7 @@ def get_image(channel_name, quality=False):
         if img:
             return img
         #
-        log_internal(False, 'Could not get image name for "{chan}"'.format(chan=channel_name), desc='fail')
+        log_internal(False, 'Could not get image name for \'{chan}\''.format(chan=channel_name), desc='fail')
         return False
 
 
