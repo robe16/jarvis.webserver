@@ -18,5 +18,6 @@ def create_error(code):
     body = urlopen('resources/html/error/error.html').read().encode('utf-8').format(**args)
     #
     return urlopen('resources/html/common/header.html').read().encode('utf-8').format(title='Error {code}'.format(code=str(code))) + \
+           urlopen('resources/html/common/menu_lhs.html').read().encode('utf-8').format(menu='') +\
            urlopen('resources/html/common/body.html').read().encode('utf-8').format(header='', body=body) +\
            urlopen('resources/html/common/footer.html').read().encode('utf-8')

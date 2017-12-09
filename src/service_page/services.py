@@ -1,5 +1,6 @@
 from urllib import urlopen
 
+from resources.global_resources.variables import projectName
 from html.page_body import create_page
 from service_page.service.tv_lg_netcast import createPage_tv_lg_netcast
 from service_page.service.virginmedia_tivo import createPage_virginmedia_tivo
@@ -27,4 +28,5 @@ def servicePage(services, service_id):
     #
     return create_page(services,
                        page_body,
-                       title='Jarvis: {name}'.format(name=services[service_id]['name_long']))
+                       title='{projectName}: {name}'.format(projectName=projectName,
+                                                            name=services[service_id]['name_long']))

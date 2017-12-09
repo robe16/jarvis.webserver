@@ -2,7 +2,8 @@ from urllib import urlopen
 import datetime
 from html.page_body import create_page
 from resources.global_resources.services import service_variables
-from resources.global_resources.variables import *
+from resources.global_resources.variables import projectName
+from resources.enGB.service_status import *
 from parameters import discovery_service_mia
 
 
@@ -44,7 +45,7 @@ def create_servicestatus(services):
                 'name_short': services[s]['name_short'],
                 'status': status,
                 'groups': groups,
-                'img_type': '/img/service/{img_type}'.format(img_logo=img_type),
+                'img_type': '/img/service/{img_type}'.format(img_type=img_type),
                 'img_logo': '/img/service/{img_logo}'.format(img_logo=img_logo)}
         #
         if services[s]['timestamp'] < (datetime.datetime.now() + datetime.timedelta(seconds=discovery_service_mia)):
@@ -74,5 +75,5 @@ def create_servicestatus(services):
     #
     return create_page(services,
                        page_body,
-                       title='Jarvis',
-                       header='Service status')
+                       title=projectName,
+                       header=service_status_page_header)

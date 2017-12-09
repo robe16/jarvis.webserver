@@ -1,4 +1,5 @@
 from urllib import urlopen
+from resources.global_resources.variables import projectName
 from html.page_body import create_page
 
 
@@ -8,4 +9,4 @@ def create_home(services):
     #
     return create_page(services,
                        page_body,
-                       title='Jarvis')
+                       title=projectName)
