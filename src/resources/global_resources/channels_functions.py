@@ -9,14 +9,14 @@ except:
     from channels import channels
 
 
-def get_image(channel_name, quality=False):
+def get_image(channel_name, quality=''):
     #
     try:
         chan_item = channels[channel_name]
     except:
         raise Exception('Channel name \'{chan}\' not found in list of available resources'.format(chan=channel_name))
     #
-    if quality:
+    if not quality == '':
         img = _get_image(chan_item, quality)
         return img if img else False
     else:
@@ -34,7 +34,7 @@ def get_image(channel_name, quality=False):
 
 
 def _get_image(chan_item, quality):
-    if not chan_item[quality]:
+    if chan_item[quality]:
         return chan_item[quality]['image']
     else:
         return False
