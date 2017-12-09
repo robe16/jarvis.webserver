@@ -7,4 +7,3 @@ service_status_mia_note = 'Services that have not been detected within the last 
 
 service_status_active_none_msg = 'No services have been identified during discovery.'
 service_status_mia_none_msg = 'All services have been detected within the last two minutes.'
-service_status_none_note = 'Please refresh this page for an update.'
