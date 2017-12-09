@@ -1,7 +1,15 @@
-service_variables = {'tv_lg_netcast': {'logo': 'logo_lg.png'},
-                     'virginmedia_tivo': {'logo': 'logo_virgin.png'},
-                     'nest': {'logo': 'logo_nest_blue.png'},
-                     'icloud': {'logo': 'logo_apple.png'},
-                     'news': {'logo': 'infoservice_news.png'},
-                     'weather': {'logo': 'infoservice_weather.png'},
-                     'tvlistings': {'logo': 'infoguide_.png'}}
+service_variables = {'tv_lg_netcast': {'logo': 'service_logo_lg.png',
+                                       'type': 'service_type_tv.png'},
+                     'virginmedia_tivo': {'logo': 'service_logo_virgin.png',
+                                       'type': 'service_type_set-top-box.png'},
+                     'nest': {'logo': 'service_logo_nest_blue.png',
+                                       'type': False},
+                     'icloud': {'logo': 'service_logo_apple.png',
+                                'type': False},
+                     'news': {'logo': False,
+                              'type': False},
+                     'weather': {'logo': 'service_logo_metoffice.png',
+                                 'type': False},
+                     'tvlistings': {'logo': False,
+                                    'type': False}
+                     }

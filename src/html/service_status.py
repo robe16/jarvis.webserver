@@ -16,9 +16,20 @@ def create_servicestatus(services):
         type = services[s]['service_type']
         #
         if type in service_variables:
-            img = service_variables[type]['logo']
+            #
+            if service_variables[type]['type']:
+                img_type = service_variables[type]['type']
+            else:
+                img_type = 'logo_other.png'
+            #
+            if service_variables[type]['logo']:
+                img_logo = service_variables[type]['logo']
+            else:
+                img_logo = 'logo_other.png'
+            #
         else:
-            img = 'logo_other.png'
+            img_type = 'logo_other.png'
+            img_logo = 'logo_other.png'
         #
         status = 'Online' if services[s]['active'] else 'Offline'
         #
@@ -33,7 +44,8 @@ def create_servicestatus(services):
                 'name_short': services[s]['name_short'],
                 'status': status,
                 'groups': groups,
-                'img': '/img/service/{img}'.format(img=img)}
+                'img_type': '/img/service/{img_type}'.format(img_logo=img_type),
+                'img_logo': '/img/service/{img_logo}'.format(img_logo=img_logo)}
         #
         if services[s]['timestamp'] < (datetime.datetime.now() + datetime.timedelta(seconds=discovery_service_mia)):
             html_current += urlopen('resources/html/service_status/service.html').read().encode('utf-8').format(**args)
