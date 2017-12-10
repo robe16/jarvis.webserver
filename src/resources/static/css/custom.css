@@ -111,7 +111,7 @@ body {
 @media (max-width: 767px) {
     .servicestatus_logo {
         margin: auto;
-        display: block;
+        display: inline-block;
         max-width: 75px;
         max-height: 75px;
         padding: 0.5em;

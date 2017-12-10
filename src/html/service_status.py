@@ -44,7 +44,7 @@ def create_servicestatus(services):
                 'name_long': services[s]['name_long'],
                 'name_short': services[s]['name_short'],
                 'groups': groups,
-                'subservices': '', # TODO
+                'subservices': _html_subservices(services[s]['subservices']),
                 'status': status,
                 'img_type': '/img/service/{img_type}'.format(img_type=img_type),
                 'img_logo': '/img/service/{img_logo}'.format(img_logo=img_logo)}
@@ -76,3 +76,17 @@ def create_servicestatus(services):
                        page_body,
                        title=projectName,
                        header=service_status_page_header)
+
+
+def _html_subservices(subservices):
+    #
+    if len(subservices) > 0:
+        html_subservices = ''
+        #
+        for sub in subservices:
+            pass
+        #
+    else:
+        html_subservices = '<p>n/a</p>'
+    #
+    return '<div class="row">{body}</div>'.format(body=html_subservices)
