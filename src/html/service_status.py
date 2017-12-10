@@ -34,10 +34,13 @@ def create_servicestatus(services):
         #
         status = 'Online' if services[s]['active'] else 'Offline'
         #
-        groups = ''
-        for g in services[s]['groups']:
-            groups += ', ' if not groups == '' else ''
-            groups += g
+        if len(services[s]['groups']) > 0:
+            groups = ''
+            for g in services[s]['groups']:
+                groups += ', ' if not groups == '' else ''
+                groups += g
+        else:
+            groups = 'n/a'
         #
         args = {'service_id': services[s]['service_id'],
                 'service_type': services[s]['service_type'],
@@ -84,7 +87,20 @@ def _html_subservices(subservices):
         html_subservices = ''
         #
         for sub in subservices:
-            pass
+            #
+            if len(sub['groups']) > 0:
+                groups = ''
+                for g in sub['groups']:
+                    groups += ', ' if not groups == '' else ''
+                    groups += g
+            else:
+                groups = 'n/a'
+            #
+            args = {'subservice_id': sub['id'],
+                    'subservice_type': sub['type'],
+                    'subservice_groups': groups}
+            #
+            html_subservices += urlopen('resources/html/service_status/subservice_item.html').read().encode('utf-8').format(**args)
         #
     else:
         html_subservices = '<p>n/a</p>'
