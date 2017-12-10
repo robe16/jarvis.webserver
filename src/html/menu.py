@@ -19,7 +19,7 @@ def _html_menu_lhs(services):
         #
         type = services[s]['service_type']
         if type in service_variables:
-            img = service_variables[type]['logo']
+            img = service_variables[type]['type']
         else:
             img = 'logo_other.png'
         #
