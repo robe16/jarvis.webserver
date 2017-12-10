@@ -96,6 +96,10 @@ body {
 
 /* Service Status */
 
+.servicestatus_col_img {
+    padding: 0;
+}
+
 .servicestatus_logo {
     margin: auto;
     display: block;
