@@ -40,7 +40,7 @@ def create_servicestatus(services):
             for g in services[s]['groups']:
                 g_args = {'group_name': g,
                           'img_filename': get_group_image(g)}
-                html_groups += urlopen('resources/html/service_status/service_group_item.html').read().encode('utf-8').format(**g_args)
+                html_groups += urlopen('resources/html/service_status/service_group_img.html').read().encode('utf-8').format(**g_args)
         else:
             html_groups = '<p>n/a</p>'
         #
@@ -95,7 +95,7 @@ def _html_subservices(subservices):
                 for g in sub['groups']:
                     g_args = {'group_name': g,
                               'img_filename': get_group_image(g)}
-                    html_groups += urlopen('resources/html/service_status/service_group_item.html').read().encode('utf-8').format(**g_args)
+                    html_groups += urlopen('resources/html/service_status/service_group_img.html').read().encode('utf-8').format(**g_args)
             else:
                 html_groups = '<p>n/a</p>'
             #
