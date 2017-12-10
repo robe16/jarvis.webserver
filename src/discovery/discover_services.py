@@ -36,20 +36,24 @@ def discover_services(services):
                         name_long = r['name_long']
                         name_short = r['name_short']
                         service_groups = r['groups']
+                        subservices = r['subservices']
                     else:
                         name_long = ''
                         name_short = ''
                         service_groups = []
+                        subservices = []
                 else:
                     name_long = services[service_id]['name_long']
                     name_short = services[service_id]['name_short']
                     service_groups = services[service_id]['groups']
+                    subservices = [services[service_id]['subservices']]
                 #
                 services[service_id] = {'service_id': service_id,
                                         'service_type': service_type,
                                         'name_long': name_long,
                                         'name_short': name_short,
                                         'groups': service_groups,
+                                        'subservices': subservices,
                                         'ip': ip,
                                         'port': port,
                                         'active': True,
