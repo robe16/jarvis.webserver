@@ -1,12 +1,5 @@
 from log.log import log_internal
-
-# Issue with IDE and production running of script - resolved with try/except below
-try:
-    # IDE
-    from resources.global_resources.channels import channels
-except:
-    # Production
-    from channels import channels
+from channels import channels
 
 
 def get_image(channel_name, quality=''):

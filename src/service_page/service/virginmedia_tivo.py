@@ -1,8 +1,10 @@
-import requests
 from urllib import urlopen
-from resources.global_resources.variables import *
-from resources.global_resources.channels_functions import get_image
+
+import requests
+
 from log.log import log_outbound, log_internal
+from resources.channels.channels_functions import get_image
+from resources.global_resources.variables import *
 
 
 def createhtml_channels(service):
