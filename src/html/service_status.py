@@ -106,6 +106,6 @@ def _html_subservices(subservices):
             html_subservices += urlopen('resources/html/service_status/subservice_item.html').read().encode('utf-8').format(**args)
         #
     else:
-        html_subservices = '<p>n/a</p>'
+        html_subservices = '<div class="row"><p>n/a</p></div>'
     #
     return '<div class="container-fluid">{body}</div>'.format(body=html_subservices)
