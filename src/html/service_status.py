@@ -2,6 +2,7 @@ from urllib import urlopen
 import datetime
 from html.page_body import create_page
 from resources.global_resources.services import service_variables
+from resources.groups.groups_functions import get_group_image
 from resources.global_resources.variables import projectName
 from resources.enGB.service_status import *
 from parameters import discovery_service_mia
@@ -35,18 +36,19 @@ def create_servicestatus(services):
         status = 'Online' if services[s]['active'] else 'Offline'
         #
         if len(services[s]['groups']) > 0:
-            groups = ''
+            html_groups = ''
             for g in services[s]['groups']:
-                groups += ', ' if not groups == '' else ''
-                groups += g
+                g_args = {'group_name': g,
+                          'img_filename': get_group_image(g)}
+                html_groups += urlopen('resources/html/service_status/service_group_item.html').read().encode('utf-8').format(**g_args)
         else:
-            groups = 'n/a'
+            html_groups = '<p>n/a</p>'
         #
         args = {'service_id': services[s]['service_id'],
                 'service_type': services[s]['service_type'],
                 'name_long': services[s]['name_long'],
                 'name_short': services[s]['name_short'],
-                'groups': groups,
+                'groups': html_groups,
                 'subservices': _html_subservices(services[s]['subservices']),
                 'status': status,
                 'img_type': '/img/service/{img_type}'.format(img_type=img_type),
@@ -89,16 +91,17 @@ def _html_subservices(subservices):
         for sub in subservices:
             #
             if len(sub['groups']) > 0:
-                groups = ''
+                html_groups = ''
                 for g in sub['groups']:
-                    groups += ', ' if not groups == '' else ''
-                    groups += g
+                    g_args = {'group_name': g,
+                              'img_filename': get_group_image(g)}
+                    html_groups += urlopen('resources/html/service_status/service_group_item.html').read().encode('utf-8').format(**g_args)
             else:
-                groups = 'n/a'
+                html_groups = '<p>n/a</p>'
             #
             args = {'subservice_id': sub['id'],
                     'subservice_type': sub['type'],
-                    'subservice_groups': groups}
+                    'subservice_groups': html_groups}
             #
             html_subservices += urlopen('resources/html/service_status/subservice_item.html').read().encode('utf-8').format(**args)
         #
