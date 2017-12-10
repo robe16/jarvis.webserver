@@ -108,4 +108,4 @@ def _html_subservices(subservices):
     else:
         html_subservices = '<p>n/a</p>'
     #
-    return '<div class="row">{body}</div>'.format(body=html_subservices)
+    return '<div class="container-fluid">{body}</div>'.format(body=html_subservices)

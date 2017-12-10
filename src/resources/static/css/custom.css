@@ -96,6 +96,10 @@ body {
 
 /* Service Status */
 
+.subservices_label{
+    margin: 0;
+}
+
 .servicestatus_col_img {
     padding: 0;
 }
@@ -110,7 +114,7 @@ body {
 }
 .servicestatus_group_logo{
     margin: auto;
-    display: block;
+    display: inline-block;
     max-width: 3em;
     max-height: 3em;
     padding: 0.25em;
