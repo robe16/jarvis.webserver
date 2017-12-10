@@ -43,8 +43,9 @@ def create_servicestatus(services):
                 'service_type': services[s]['service_type'],
                 'name_long': services[s]['name_long'],
                 'name_short': services[s]['name_short'],
-                'status': status,
                 'groups': groups,
+                'subservices': '', # TODO
+                'status': status,
                 'img_type': '/img/service/{img_type}'.format(img_type=img_type),
                 'img_logo': '/img/service/{img_logo}'.format(img_logo=img_logo)}
         #
