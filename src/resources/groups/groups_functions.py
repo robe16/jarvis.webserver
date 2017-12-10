@@ -2,6 +2,13 @@ from log.log import log_internal
 from groups import groups
 
 
+def get_group_list():
+    l = []
+    for g in groups:
+        l.append(g)
+    return l
+
+
 def get_group_image(group_name):
     #
     try:
