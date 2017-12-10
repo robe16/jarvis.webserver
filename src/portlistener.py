@@ -98,7 +98,7 @@ def start_bottle(self_port, services):
             #
             status = httpStatusSuccess if rsp else httpStatusFailure
             #
-            log_inbound(True, request['REMOTE_ADDR'], request.url, 'POST', status, desc=request.query)
+            log_inbound(True, request['REMOTE_ADDR'], request.url, 'POST', status, desc=_convert_query_to_string(request.query))
             #
             return HTTPResponse(status=status)
             #
@@ -117,7 +117,7 @@ def start_bottle(self_port, services):
             #
             status = httpStatusSuccess if bool(rsp) else httpStatusFailure
             #
-            log_inbound(True, request['REMOTE_ADDR'], request.url, 'GET', status, desc=request.query)
+            log_inbound(True, request['REMOTE_ADDR'], request.url, 'GET', status, desc=_convert_query_to_string(request.query))
             #
             return HTTPResponse(body=rsp, status=status)
             #
@@ -216,3 +216,14 @@ def start_bottle(self_port, services):
     host='0.0.0.0'
     log_internal(True, 'Port listener', desc='started')
     run(host=host, port=self_port, debug=True)
+
+
+def _convert_query_to_string(bottleDict):
+    #
+    str = '{'
+    for k in bottleDict:
+        str += ', ' if not str == '{' else ''
+        str += '{key}:{value}'.format(key=k, value=bottleDict[k])
+    str += '}'
+    #
+    return str
