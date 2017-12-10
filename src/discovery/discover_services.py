@@ -46,7 +46,7 @@ def discover_services(services):
                     name_long = services[service_id]['name_long']
                     name_short = services[service_id]['name_short']
                     service_groups = services[service_id]['groups']
-                    subservices = [services[service_id]['subservices']]
+                    subservices = services[service_id]['subservices']
                 #
                 services[service_id] = {'service_id': service_id,
                                         'service_type': service_type,
