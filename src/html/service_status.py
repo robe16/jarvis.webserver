@@ -54,7 +54,8 @@ def create_servicestatus(services):
             html_mia += urlopen('resources/html/service_status/service.html').read().encode('utf-8').format(**args)
     #
     # Current
-    page_body = urlopen('resources/html/service_status/service_header.html').read().encode('utf-8').format(header=service_status_active_header)
+    page_body = urlopen('resources/html/service_status/service_header.html').read().encode('utf-8').format(header=service_status_active_header,
+                                                                                                           note=service_status_active_note)
     if html_current == '':
         page_body += urlopen('resources/html/service_status/service_null.html').read().encode('utf-8').format(message=service_status_active_none_msg)
     else:
@@ -66,8 +67,7 @@ def create_servicestatus(services):
     page_body += urlopen('resources/html/service_status/service_header.html').read().encode('utf-8').format(header=service_status_mia_header,
                                                                                                             note=service_status_mia_note)
     if html_mia == '':
-        page_body += urlopen('resources/html/service_status/service_null.html').read().encode('utf-8').format(message=service_status_mia_none_msg,
-                                                                                                              note=service_status_none_note)
+        page_body += urlopen('resources/html/service_status/service_null.html').read().encode('utf-8').format(message=service_status_mia_none_msg)
     else:
         page_body += '<div class="row">{body}</div>'.format(body=html_mia)
     #
