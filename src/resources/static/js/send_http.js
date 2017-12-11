@@ -75,9 +75,8 @@ function commonHttp(url, method, alert, return_rsp_string, payload, callback_lvl
     callback_lvl2 = callback_lvl2 || false;
     //
     var xhr = new XMLHttpRequest();
-    xhr.open(method, url, true); // true = async
     //
-    xhr.onload = function () {
+    request.onreadystatechange = function () {
         if (xhr.readyState === 4) {
             httpCallback(xhr=xhr, alert=alert, return_rsp_string=return_rsp_string, callback_lvl2);
         }
@@ -87,6 +86,7 @@ function commonHttp(url, method, alert, return_rsp_string, payload, callback_lvl
         httpCallback(false);
     };
     //
+    xhr.open(method, url, true); // true = async
     xhr.send(payload);
 }
 
