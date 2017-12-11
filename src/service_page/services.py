@@ -8,6 +8,8 @@ from service_page.service.virginmedia_tivo import createPage_virginmedia_tivo
 
 def servicePage(services, service_id):
     #
+    page_javascript = ''
+    #
     if service_id in services.keys():
         #
         if services[service_id]['active']:
@@ -28,5 +30,6 @@ def servicePage(services, service_id):
     #
     return create_page(services,
                        page_body,
+                       page_javascript=page_javascript,
                        title='{projectName}: {name}'.format(projectName=projectName,
                                                             name=services[service_id]['name_long']))
