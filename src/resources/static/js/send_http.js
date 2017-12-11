@@ -52,7 +52,7 @@ function httpCallback(xhr, alert, return_rsp_string, callback_lvl2) {
         //
         if (callback_lvl2) {callback_lvl2(rsp);}
         //
-    }/
+    }
 }
 
 
