@@ -1,49 +1,58 @@
-function getHttp(url, callback, alert) {
+function getHttp(url, callback, alert, return_rsp_string, callback_lvl2) {
+    //
+    alert = alert || false;
+    return_rsp_string = return_rsp_string || false;
+    callback_lvl2 = callback_lvl2 || false;
     //
     try {
-        var xmlHttp = commonHttp(url=url, method="GET");
-//        var xmlHttp = new XMLHttpRequest();
-//        xmlHttp.open("GET", url, false);
-//        xmlHttp.send(data);
-        //
-        if (alert) {alertTrigger(xmlHttp.status==200)}
-        if (xmlHttp.status==200) {callback(xmlHttp.responseText);} else {callback(false);}
-        //
-    }
-    catch(err) {
+        var xmlHttp = commonHttp(url=url, method="GET", alert=alert, callback_lvl2=callback_lvl2);
+    } catch(err) {
         alertTrigger(false);
         return false;
     }
 }
 
-function postHttp(url, callback, alert, payload) {
+function postHttp(url, callback, alert, payload, callback_lvl2) {
+    //
+    alert = alert || false;
+    payload = payload || null;
+    callback_lvl2 = callback_lvl2 || false;
     //
     try {
-        var xmlHttp = commonHttp(url=url, method="POST", payload=payload);
-        //
-        if (alert) {alertTrigger(xmlHttp.status==200);}
-        callback(xmlHttp.status==200);
-        //
-    }
-    catch(err) {
+        var xmlHttp = commonHttp(url=url, method="POST", alert=alert, payload=payload, callback_lvl2=callback_lvl2);
+    } catch(err) {
         alertTrigger(false);
         return false;
     }
 }
 
-function deleteHttp(url, callback, alert) {
+function deleteHttp(url, callback, alert, callback_lvl2) {
+    //
+    alert = alert || false;
+    callback_lvl2 = callback_lvl2 || false;
     //
     try {
-        var xmlHttp = commonHttp(url=url, method="DELETE");
-        //
-        if (alert) {alertTrigger(xmlHttp.status==200);}
-        callback(xmlHttp.status==200);
-        //
-    }
-    catch(err) {
+        commonHttp(url=url, method="DELETE", alert=alert, callback_lvl2=callback_lvl2);
+    } catch(err) {
         alertTrigger(false);
         return false;
     }
+}
+
+function httpCallback(xhr, alert, return_rsp_string, callback_lvl2) {
+    if (xhr == true) {
+        //
+        if (alert) {alertTrigger(xhr.status==200);}
+        //
+        if (return_rsp_string) {
+            var rsp = xmlHttp.responseText;
+        } else {
+            var rsp = (xhr.status==200);
+        }
+        //
+        if (callback_lvl2) {callback_lvl2(rsp);}
+        //
+    }/
 }
 
 
@@ -58,21 +67,24 @@ function alertTrigger(success) {
 }
 
 
-function commonHttp(url, method, payload) {
+function commonHttp(url, method, alert, return_rsp_string, payload, callback_lvl2) {
     //
+    alert = alert || false;
+    return_rsp_string = return_rsp_string || false;
     payload = payload || null;
+    callback_lvl2 = callback_lvl2 || false;
     //
     var xhr = new XMLHttpRequest();
     xhr.open(method, url, true); // true = async
     //
-    xhr.onload = function (e) {
-      if (xhr.readyState === 4) {
-        return xhr;
-      }
+    xhr.onload = function () {
+        if (xhr.readyState === 4) {
+            httpCallback(xhr=xhr, alert=alert, return_rsp_string=return_rsp_string, callback_lvl2);
+        }
     };
-    xhr.onerror = function (e) {
-      console.error(xhr.statusText);
-      return False
+    xhr.onerror = function () {
+        console.error(xhr.statusText);
+        httpCallback(false);
     };
     //
     xhr.send(payload);
