@@ -58,8 +58,12 @@
                 <p class="servicestatus_{status}">{status}</p>
             </div>
         </div>
+    </div>
+    <div class="col-xs-12">
         <div class="row servicestatus_spacer">
-            <div class="col-xs-4"></div>
+            <div class="col-xs-4">
+                <p title="Remove service" onclick="sendHttp('/service/remove/{service_id}', null, 'DELETE', 0, true)">[X]</p>
+            </div>
             <div class="col-xs-8">
                 <a href="/service/page/{service_id}">Go to service page</a>
             </div>

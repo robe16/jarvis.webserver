@@ -1,11 +1,11 @@
-function sendHttp(url, data, getpost, responserequired, alert) {
+function sendHttp(url, data, method, responserequired, alert) {
     // responserequired:
     // 0 = none
     // 1 = text/body of response
     // 2 = success/failure boolean
     try {
         var xmlHttp = new XMLHttpRequest();
-        xmlHttp.open(getpost, url, false);
+        xmlHttp.open(method, url, false);
         xmlHttp.send(data);
         if (alert){
             if (xmlHttp.status==200){

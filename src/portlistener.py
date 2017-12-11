@@ -1,8 +1,10 @@
 import os
 
 from bottle import HTTPError
-from bottle import get, post, static_file
+from bottle import get, post, delete, static_file
 from bottle import request, run, HTTPResponse
+
+from discovery.remove_service import remove_service
 
 from html.home import create_home
 from html.service_status import create_servicestatus
@@ -65,6 +67,23 @@ def start_bottle(self_port, services):
         except Exception as e:
             status = httpStatusServererror
             log_inbound(False, request['REMOTE_ADDR'], request.url, 'GET', status, exception=e)
+            raise HTTPError(status)
+
+    @delete(uri_service_remove)
+    def delete_removeService(service_id):
+        try:
+            #
+            rsp = remove_service(services, service_id)
+            #
+            status = httpStatusSuccess if rsp else httpStatusFailure
+            #
+            log_inbound(True, request['REMOTE_ADDR'], request.url, 'DELETE', status)
+            #
+            return HTTPResponse(status=status)
+            #
+        except Exception as e:
+            status = httpStatusServererror
+            log_inbound(False, request['REMOTE_ADDR'], request.url, 'DELETE', status, exception=e)
             raise HTTPError(status)
 
     ################################################################################################
