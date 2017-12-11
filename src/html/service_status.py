@@ -10,7 +10,7 @@ from parameters import discovery_service_mia
 
 def create_servicestatus(services):
     #
-    page_javascript = '<script src="/resource/js/jarvis.service_status.js"></script>'
+    resources = '<script src="/resource/js/jarvis.service_status.js"></script>'
     #
     html_current = ''
     html_mia = ''
@@ -81,7 +81,7 @@ def create_servicestatus(services):
     #
     return create_page(services,
                        page_body,
-                       page_javascript=page_javascript,
+                       resources=resources,
                        title=projectName,
                        header=service_status_page_header)
 
