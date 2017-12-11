@@ -1,4 +1,4 @@
-function getHttp(url, alert) {
+function getHttp(url, callback, alert) {
     //
     try {
         var xmlHttp = commonHttp(url=url, method="GET");
@@ -7,7 +7,7 @@ function getHttp(url, alert) {
 //        xmlHttp.send(data);
         //
         if (alert) {alertTrigger(xmlHttp.status==200)}
-        if (xmlHttp.status==200) {return xmlHttp.responseText;} else {return false;}
+        if (xmlHttp.status==200) {callback(xmlHttp.responseText);} else {callback(false);}
         //
     }
     catch(err) {
@@ -16,13 +16,13 @@ function getHttp(url, alert) {
     }
 }
 
-function postHttp(url, alert, payload) {
+function postHttp(url, callback, alert, payload) {
     //
     try {
         var xmlHttp = commonHttp(url=url, method="POST", payload=payload);
         //
-        if (alert) {alertTrigger(xmlHttp.status==200)}
-        if (xmlHttp.status==200) {return true} else {return false;}
+        if (alert) {alertTrigger(xmlHttp.status==200);}
+        callback(xmlHttp.status==200);
         //
     }
     catch(err) {
@@ -31,13 +31,13 @@ function postHttp(url, alert, payload) {
     }
 }
 
-function deleteHttp(url, alert) {
+function deleteHttp(url, callback, alert) {
     //
     try {
         var xmlHttp = commonHttp(url=url, method="DELETE");
         //
-        if (alert) {alertTrigger(xmlHttp.status==200)}
-        if (xmlHttp.status==200) {return true} else {return false;}
+        if (alert) {alertTrigger(xmlHttp.status==200);}
+        callback(xmlHttp.status==200);
         //
     }
     catch(err) {

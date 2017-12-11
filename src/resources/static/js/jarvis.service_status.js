@@ -7,7 +7,7 @@ function removeService(serviceID) {
             //
             var url = '/services/remove/' + serviceID
             //
-            success = deleteHttp(url, false)
+            success = deleteHttp(url=url, alert=false, callback=removeService_callback)
             //
             if (success == true) {
                 alert("Service " + serviceID + "has been removed and will only be added to list of available services once re-discovered.")
@@ -17,6 +17,17 @@ function removeService(serviceID) {
             //
             alert("Action cancelled\n\nService " + serviceID + "has not been removed.")
             //
+        }
+    }
+    catch(err) {
+        alert("An error has been encountered, please try again.\n\n" + err)
+    }
+}
+
+function removeService_callback(success) {
+    try {
+        if (success == true) {
+            alert("Service " + serviceID + "has been removed and will only be added to list of available services once re-discovered.")
         }
     }
     catch(err) {
