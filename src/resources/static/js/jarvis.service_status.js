@@ -1,7 +1,7 @@
 function removeService(serviceID) {
     try {
         // Confirmation box
-        r = confirm("You are about to remove service '" + serviceID + '\n\nThe service will only be added again to the list of available services once re-discovered by the web server.\n\nAre you sure?");
+        r = confirm("You are about to remove service '" + serviceID + ""'\n\nThe service will only be added again to the list of available services once re-discovered by the web server.\n\nAre you sure?");
         //
         if (r == true){
             //
