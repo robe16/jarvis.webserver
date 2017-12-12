@@ -8,7 +8,7 @@ from service_page.service.virginmedia_tivo import createPage_virginmedia_tivo
 
 def servicePage(services, service_id):
     #
-    page_javascript = ''
+    resources = '<script src="/resource/js/jarvis.service_page.js"></script>'
     #
     if service_id in services.keys():
         #
@@ -30,6 +30,6 @@ def servicePage(services, service_id):
     #
     return create_page(services,
                        page_body,
-                       page_javascript=page_javascript,
+                       resources=resources,
                        title='{projectName}: {name}'.format(projectName=projectName,
                                                             name=services[service_id]['name_long']))
