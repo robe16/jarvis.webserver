@@ -7,11 +7,7 @@ function removeService(serviceID) {
             //
             var url = '/services/remove/' + serviceID
             //
-            success = deleteHttp(url=url, alert=false, callback_lvl2=removeService_callback)
-            //
-            if (success == true) {
-                alert("Service " + serviceID + "has been removed and will only be added to list of available services once re-discovered.")
-            }
+            deleteHttp(url=url, alert=false, callback_lvl2=removeService_callback)
             //
         } else {
             //
