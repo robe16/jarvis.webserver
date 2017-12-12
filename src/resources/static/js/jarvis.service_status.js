@@ -7,7 +7,7 @@ function removeService(serviceID) {
             //
             var url = '/services/remove/' + serviceID
             //
-            deleteHttp(url=url, alert=false, callback_lvl2=removeService_callback)
+            deleteHttp(url, false, removeService_callback)
             //
         } else {
             //

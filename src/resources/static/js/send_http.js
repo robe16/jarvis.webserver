@@ -1,38 +1,38 @@
-function getHttp(url, callback, alert, return_rsp_string, callback_lvl2) {
+function getHttp(url, alert, return_rsp_string, callback_lvl2) {
     //
     alert = alert || false;
     return_rsp_string = return_rsp_string || false;
     callback_lvl2 = callback_lvl2 || false;
     //
     try {
-        var xmlHttp = commonHttp(url=url, method="GET", alert=alert, callback_lvl2=callback_lvl2);
+        var xmlHttp = commonHttp(url, "GET", alert, , callback_lvl2);
     } catch(err) {
         alertTrigger(false);
         return false;
     }
 }
 
-function postHttp(url, callback, alert, payload, callback_lvl2) {
+function postHttp(url, alert, payload, callback_lvl2) {
     //
     alert = alert || false;
     payload = payload || null;
     callback_lvl2 = callback_lvl2 || false;
     //
     try {
-        var xmlHttp = commonHttp(url=url, method="POST", alert=alert, payload=payload, callback_lvl2=callback_lvl2);
+        var xmlHttp = commonHttp(url, "POST", alert, payload, callback_lvl2);
     } catch(err) {
         alertTrigger(false);
         return false;
     }
 }
 
-function deleteHttp(url, callback, alert, callback_lvl2) {
+function deleteHttp(url, alert, callback_lvl2) {
     //
     alert = alert || false;
     callback_lvl2 = callback_lvl2 || false;
     //
     try {
-        commonHttp(url=url, method="DELETE", alert=alert, callback_lvl2=callback_lvl2);
+        commonHttp(url, "DELETE", alert, , callback_lvl2);
     } catch(err) {
         alertTrigger(false);
         return false;
@@ -78,7 +78,7 @@ function commonHttp(url, method, alert, return_rsp_string, payload, callback_lvl
     //
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
-            httpCallback(xhr=xhr, alert=alert, return_rsp_string=return_rsp_string, callback_lvl2);
+            httpCallback(xhr, alert, return_rsp_string, callback_lvl2);
         }
     };
     xhr.onerror = function () {
