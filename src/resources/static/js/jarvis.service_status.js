@@ -16,7 +16,7 @@ function removeService(serviceID) {
             };
             xhr.onerror = function () {
                 console.error(xhr.statusText);
-                httpCallback(false);
+                removeService_callback(false);
             };
             //
             xhr.open("DELETE", url, true);
