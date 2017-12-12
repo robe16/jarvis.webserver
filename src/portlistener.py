@@ -117,13 +117,13 @@ def start_bottle(self_port, services):
             #
             status = httpStatusSuccess if rsp else httpStatusFailure
             #
-            log_inbound(True, request['REMOTE_ADDR'], request.url, 'POST', status, desc=_convert_query_to_string(request.query))
+            log_inbound(True, request['REMOTE_ADDR'], request.url, 'POST', status, desc=request.json)
             #
             return HTTPResponse(status=status)
             #
         except Exception as e:
             status = httpStatusServererror
-            log_inbound(False, request['REMOTE_ADDR'], request.url, 'POST', status, desc=request.query, exception=e)
+            log_inbound(False, request['REMOTE_ADDR'], request.url, 'POST', status, desc=request.json, exception=e)
             raise HTTPError(status)
 
     @get(uri_serviceImage)
@@ -142,7 +142,7 @@ def start_bottle(self_port, services):
             #
         except Exception as e:
             status = httpStatusServererror
-            log_inbound(False, request['REMOTE_ADDR'], request.url, 'GET', status, desc=request.query, exception=e)
+            log_inbound(False, request['REMOTE_ADDR'], request.url, 'GET', status, desc=_convert_query_to_string(request.query), exception=e)
             raise HTTPError(status)
 
 
