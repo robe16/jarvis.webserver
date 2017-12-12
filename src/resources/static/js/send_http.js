@@ -76,7 +76,7 @@ function commonHttp(url, method, alert, return_rsp_string, payload, callback_lvl
     //
     var xhr = new XMLHttpRequest();
     //
-    request.onreadystatechange = function () {
+    xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
             httpCallback(xhr=xhr, alert=alert, return_rsp_string=return_rsp_string, callback_lvl2);
         }
