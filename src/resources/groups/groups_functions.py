@@ -8,6 +8,15 @@ def get_group_list():
     return rooms + themes
 
 
+def get_group_category_list(cat):
+    if cat == 'rooms':
+        return get_group_rooms_list()
+    elif cat == 'themes':
+        return get_group_themes_list()
+    else:
+        return False
+
+
 def get_group_rooms_list():
     l = []
     for g in groups['rooms']:
