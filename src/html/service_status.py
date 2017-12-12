@@ -11,6 +11,7 @@ from parameters import discovery_service_mia
 def create_servicestatus(services):
     #
     resources = '<script src="/resource/js/jarvis.service_status.js"></script>'
+    resources += '<link rel="stylesheet" href="/resource/css/jarvis.service_status.css">'
     #
     html_current = ''
     html_mia = ''

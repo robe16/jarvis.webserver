@@ -9,6 +9,7 @@ from service_page.service.virginmedia_tivo import createPage_virginmedia_tivo
 def servicePage(services, service_id):
     #
     resources = '<script src="/resource/js/jarvis.service_page.js"></script>'
+    resources += '<link rel="stylesheet" href="/resource/css/jarvis.service_page.css">'
     #
     if service_id in services.keys():
         #

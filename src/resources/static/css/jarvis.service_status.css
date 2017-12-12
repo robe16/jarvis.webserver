@@ -1,0 +1,47 @@
+.subservices_label{
+    margin: 0;
+}
+
+.servicestatus_col_img {
+    padding: 0;
+}
+
+.servicestatus_logo {
+    margin: auto;
+    display: block;
+    max-width: 90px;
+    max-height: 90px;
+    padding: 0.5em;
+    margin-bottom: 1em;
+}
+.servicestatus_group_logo{
+    margin: auto;
+    display: inline-block;
+    max-width: 3em;
+    max-height: 3em;
+    padding: 0.25em;
+    margin-bottom: 0.5em;
+}
+
+@media (max-width: 767px) {
+    .servicestatus_logo {
+        margin: auto;
+        display: inline-block;
+        max-width: 75px;
+        max-height: 75px;
+        padding: 0.5em;
+        margin-bottom: 1em;
+    }
+    .servicestatus_group_logo {
+        max-width: 2em;
+        max-height: 2em;
+        padding: 0.15em;
+        margin-bottom: 0.5em;
+    }
+}
+
+
+.servicestatus_spacer {margin-bottom: 40px;}
+.servicestatus_label {margin-top: 0px;}
+.servicestatus_Online {color: #4CAF50; font-weight: bold;}
+.servicestatus_Offline {color: #D50000; font-weight: bold;}

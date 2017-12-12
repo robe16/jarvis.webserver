@@ -1,0 +1,24 @@
+html {
+    font-family: Roboto;
+}
+body {
+    font-family: Roboto;
+}
+
+.row-header {margin-bottom: 10px;}
+
+.grid_item:hover {
+    background-color: #d9d9d9;
+}
+
+
+
+/* TV guide table border */
+
+.tbl_border {
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+}
+.tbl_border_last {
+    border-bottom: 1px solid #ddd;
+}
