@@ -5,7 +5,7 @@ function getHttp(url, alert, return_rsp_string, callback_lvl2) {
     callback_lvl2 = callback_lvl2 || false;
     //
     try {
-        var xmlHttp = commonHttp(url, "GET", alert, , callback_lvl2);
+        var xmlHttp = commonHttp(url, "GET", alert, null, callback_lvl2);
     } catch(err) {
         alertTrigger(false);
         return false;
@@ -32,7 +32,7 @@ function deleteHttp(url, alert, callback_lvl2) {
     callback_lvl2 = callback_lvl2 || false;
     //
     try {
-        commonHttp(url, "DELETE", alert, , callback_lvl2);
+        commonHttp(url, "DELETE", alert, null, callback_lvl2);
     } catch(err) {
         alertTrigger(false);
         return false;
