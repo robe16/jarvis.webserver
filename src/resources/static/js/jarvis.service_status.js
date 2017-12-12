@@ -7,11 +7,24 @@ function removeService(serviceID) {
             //
             var url = '/services/remove/' + serviceID
             //
-            deleteHttp(url, false, removeService_callback)
+            var xhr = new XMLHttpRequest();
+            //
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    removeService_callback(xhr.status==200);
+                }
+            };
+            xhr.onerror = function () {
+                console.error(xhr.statusText);
+                httpCallback(false);
+            };
+            //
+            xhr.open("DELETE", url, true);
+            xhr.send();
             //
         } else {
             //
-            alert("Action cancelled\n\nService " + serviceID + "has not been removed.")
+            alert("Action cancelled\n\nService '" + serviceID + "' has not been removed.")
             //
         }
     }
@@ -23,7 +36,7 @@ function removeService(serviceID) {
 function removeService_callback(success) {
     try {
         if (success == true) {
-            alert("Service " + serviceID + "has been removed and will only be added to list of available services once re-discovered.")
+            alert("Service '" + serviceID + "' has been removed and will only be added to list of available services once re-discovered.")
         }
     }
     catch(err) {
