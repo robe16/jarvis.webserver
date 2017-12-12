@@ -111,7 +111,7 @@ def start_bottle(self_port, services):
     def post_serviceCommand(service_id):
         try:
             #
-            command = request.query
+            command = request.json
             #
             rsp = serviceCommand(services, service_id, command)
             #
