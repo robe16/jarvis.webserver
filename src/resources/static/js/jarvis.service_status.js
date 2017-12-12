@@ -11,12 +11,12 @@ function removeService(serviceID) {
             //
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4) {
-                    removeService_callback(xhr.status==200);
+                    removeService_callback(xhr.status==200, serviceID);
                 }
             };
             xhr.onerror = function () {
                 console.error(xhr.statusText);
-                removeService_callback(false);
+                removeService_callback(false, serviceID);
             };
             //
             xhr.open("DELETE", url, true);
@@ -33,7 +33,7 @@ function removeService(serviceID) {
     }
 }
 
-function removeService_callback(success) {
+function removeService_callback(success, serviceID) {
     try {
         if (success == true) {
             alert("Service '" + serviceID + "' has been removed and will only be added to list of available services once re-discovered.")
