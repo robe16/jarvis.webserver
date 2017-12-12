@@ -1,5 +1,6 @@
 from log.log import log_internal
 
+
 def remove_service(services, service_id):
     try:
         del services[service_id]
