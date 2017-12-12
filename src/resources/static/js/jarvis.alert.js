@@ -8,17 +8,10 @@ function alertTrigger(success) {
     setTimeout(function(){v.style.display="none"}, 2000);
 }
 
-
-
-
+//
+// Below code to be checked that all use is removed before deletion.
+//
 function sendHttp(url, data, method, responserequired, alert) {
-    //
-    url = url || "/";
-    data = data || "/";
-    method = method || "GET"; // Assume 'get' if not defined
-    responserequired = responserequired || 0
-    alert = alert || false
-    //
     // responserequired:
     // 0 = none
     // 1 = text/body of response
