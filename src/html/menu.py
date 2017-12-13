@@ -89,12 +89,13 @@ def _html_menu_lhs(services):
         else:
             img = 'logo_other.png'
         #
-        html += urlopen('resources/html/common/menu_item_service.html').read().encode('utf-8').\
-            format(href='/service/page/{service_id}'.format(service_id=url_encode(services[s]['service_id'])),
-                   id='{info}'.format(info=services[s]['service_id']),
-                   cls='',
-                   name=services[s]['name_long'],
-                   img='/img/service/{img}'.format(img=img))
+        args = {'id': '{info}'.format(info=services[s]['service_id']),
+                'class': '',
+                'href': '/service/page/{service_id}'.format(service_id=url_encode(services[s]['service_id'])),
+                'name': services[s]['name_long'],
+                'img': '/img/service/{img}'.format(img=img)}
+        #
+        html += urlopen('resources/html/common/menu_item_service.html').read().encode('utf-8').format(**args)
     #
     return urlopen('resources/html/common/menu_lhs.html').read().encode('utf-8').format(menu=html)
 
