@@ -46,7 +46,10 @@ def groupHtml(services, group_id):
             #
             html_buttons += urlopen('resources/html/services/group_service_img.html').read().encode('utf-8').format(**args)
             #
-            html_pages += serviceHtml(services, services[service]['service_id'])
+            args = {'id': services[service]['service_id'],
+                    'body': serviceHtml(services, services[service]['service_id'])}
+            #
+            html_pages += urlopen('resources/html/services/group_item.html').read().encode('utf-8').format(**args)
             #
         #
         for subservice in grouped_services[category][group_name]['subservices']:
