@@ -77,7 +77,7 @@ def _html_menu_lhs(services):
                 pass
         #
         if len(grouped_services[c].keys()) > 0:
-            html += '<span class="sidebar_divider box-shadow"></span>'
+            html += '<span class="menu_divider box-shadow"></span>'
     #
     ################
     #

@@ -1,15 +1,8 @@
 <li id="btn_{group_id}" class="dropdown btn_sidebar_lhs">
     <a class="menu_group-toggle" href="#" data-toggle="dropdown">
-        <img class="img-circle box-shadow" style="height:40px; width:40px;" src="{group_img}" title="{group_name}"/>
+        <img class="menu_img img-circle box-shadow" src="{group_img}" title="{group_name}"/>
     </a>
     <ul class="dropdown-menu dropdown-menu-left">
         {html_group_items}
     </ul>
 </li>
-<script>
-$(function() {{
-    $( "#btn_{group_id}" ).click(function() {{
-        $( "#item" ).toggle();
-    }});
-}});
-</script>
