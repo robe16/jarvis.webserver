@@ -99,7 +99,7 @@
 
 /* Shadows */
 
-.box-shadow {
+.shadow {
     -webkit-box-shadow: 2px 2px 7px 0px rgba(50, 50, 50, 0.7);
     -moz-box-shadow: 2px 2px 7px 0px rgba(50, 50, 50, 0.7);
     box-shadow: 2px 2px 7px 0px rgba(50, 50, 50, 0.7);
