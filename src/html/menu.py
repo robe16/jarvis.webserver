@@ -38,6 +38,7 @@ def _html_menu_lhs(services):
                         img = 'logo_other.png'
                     #
                     args = {'id': service,
+                            'class': 'menu_item_service',
                             'href': '/service/page/{service_id}'.format(service_id=service),
                             'name': services[service]['name_long'],
                             'img': '/img/service/{img}'.format(img=img)}
@@ -53,6 +54,7 @@ def _html_menu_lhs(services):
                         img = 'logo_other.png'
                     #
                     args = {'id': subservice['service_id'],
+                            'class': 'menu_item_service',
                             'href': '/service/page/{service_id}?group={group}'.format(service_id=subservice['service_id'],
                                                                                       group=url_encode(g)),
                             'name': services[subservice['service_id']]['name_long'],

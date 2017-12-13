@@ -91,6 +91,21 @@
     border-top: 1px solid black;
 }
 
+/* Items within group menu */
+
+ul.menu_item_service {
+    top: -18px;
+    left: 50px
+}
+
+span.menu_item_service {
+
+}
+
+img.menu_item_service {
+    margin: 10px;
+}
+
 /* Shadow to spans and images */
 
 span.box-shadow {
