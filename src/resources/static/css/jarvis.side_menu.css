@@ -92,7 +92,7 @@
     -webkit-transform:perspective(400) rotate3d(0,0,0,0);
 }
 
-.open > .dropdown-menu {
+.dropdown-menu {
     position:absolute;
     left:0;
     top:36px;
