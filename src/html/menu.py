@@ -26,16 +26,39 @@ def _html_menu_lhs(services):
         for g in grouped_services[c].keys():
             #
             try:
+                #
+                html_group = ''
+                #
+                for service in grouped_services[c][g]['services']:
+                    #
+                    type = services[service]['service_type']
+                    if type in service_variables:
+                        img = service_variables[type]['type']
+                    else:
+                        img = 'logo_other.png'
+                    #
+                    args = {'id': service,
+                            'href': '/service/page/{service_id}'.format(service_id=service),
+                            'name': services[service]['name_long'],
+                            'img': '/img/service/{img}'.format(img=img)}
+                    #
+                    html_group += urlopen('resources/html/common/menu_sidebar_item.html').read().encode('utf-8').format(**args)
+                #
+                for subservice in grouped_services[c][g]['subservices']:
+                    # TODO - work out how to represent subservices!
+                    pass
+                #
                 img = get_group_image(g)
                 img = img if img else 'logo_other.png'
                 #
-                args = {'href': '',
-                        'id': '{info}'.format(info=url_encode(g)),
-                        'cls': '',
-                        'name': g,
-                        'img': '/img/service/{img}'.format(img=img)}
+                args = {'group_id': '{info}'.format(info=url_encode(g)),
+                        'group_name': g,
+                        'group_img': '/img/group/{img}'.format(img=img),
+                        'html_group_items': html_group}
                 #
-                html += urlopen('resources/html/common/menu_sidebar_item.html').read().encode('utf-8').format(**args)
+                html += urlopen('resources/html/common/menu_group_item.html').read().encode('utf-8').format(**args)
+                #
+                #
             except:
                 pass
         #
