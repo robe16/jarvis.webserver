@@ -14,6 +14,7 @@ from resources.global_resources.variables import *
 from service_commands.services import serviceCommand
 from service_images.services import serviceImage
 from service_page.services import servicePage
+from service_page.groups import groupPage
 
 
 def start_bottle(self_port, services):
@@ -84,6 +85,27 @@ def start_bottle(self_port, services):
         except Exception as e:
             status = httpStatusServererror
             log_inbound(False, request['REMOTE_ADDR'], request.url, 'DELETE', status, exception=e)
+            raise HTTPError(status)
+
+    ################################################################################################
+    # Groups
+    ################################################################################################
+
+    @get(uri_groupPage)
+    def get_groupPage(group_id):
+        try:
+            #
+            page = groupPage(services, group_id)
+            #
+            status = httpStatusSuccess
+            #
+            log_inbound(True, request['REMOTE_ADDR'], request.url, 'GET', status)
+            #
+            return HTTPResponse(body=page, status=status)
+            #
+        except Exception as e:
+            status = httpStatusServererror
+            log_inbound(False, request['REMOTE_ADDR'], request.url, 'GET', status, exception=e)
             raise HTTPError(status)
 
     ################################################################################################

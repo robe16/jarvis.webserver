@@ -10,6 +10,8 @@ uri_home = '/'
 uri_servicestatus = '/services/status'
 uri_service_remove = '/services/remove/<service_id>'
 
+uri_groupPage = '/group/page/<group_id>'
+
 uri_servicePage = '/service/page/<service_id>'
 uri_serviceCommand = '/service/command/<service_id>'
 uri_serviceImage = '/service/image/<service_id>/<filename>'

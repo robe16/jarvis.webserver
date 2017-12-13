@@ -11,6 +11,14 @@ def servicePage(services, service_id):
     resources = '<script src="/resource/js/jarvis.service_page.js"></script>'
     resources += '<link rel="stylesheet" href="/resource/css/jarvis.service_page.css">'
     #
+    return create_page(services,
+                       serviceHtml(services, service_id),
+                       resources=resources,
+                       title='{projectName}: {name}'.format(projectName=projectName,
+                                                            name=services[service_id]['name_long']))
+
+def serviceHtml(services, service_id):
+    #
     if service_id in services.keys():
         #
         if services[service_id]['active']:
@@ -29,8 +37,4 @@ def servicePage(services, service_id):
     else:
         page_body = urlopen('resources/html/services/_null.html').read().encode('utf-8').format(service_id=service_id)
     #
-    return create_page(services,
-                       page_body,
-                       resources=resources,
-                       title='{projectName}: {name}'.format(projectName=projectName,
-                                                            name=services[service_id]['name_long']))
+    return page_body
