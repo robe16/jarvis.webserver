@@ -44,12 +44,12 @@ def groupHtml(services, group_id):
                     'img': img,
                     'name': services[service]['name_long']}
             #
-            html_buttons += urlopen('resources/html/services/group_service_img.html').read().encode('utf-8').format(**args)
+            html_buttons += urlopen('resources/html/groups/group_service_img.html').read().encode('utf-8').format(**args)
             #
             args = {'id': services[service]['service_id'],
                     'body': serviceHtml(services, services[service]['service_id'])}
             #
-            html_pages += urlopen('resources/html/services/group_item.html').read().encode('utf-8').format(**args)
+            html_pages += urlopen('resources/html/groups/group_item.html').read().encode('utf-8').format(**args)
             #
         #
         for subservice in grouped_services[category][group_name]['subservices']:
@@ -75,10 +75,8 @@ def groupHtml(services, group_id):
         args = {'service_buttons': html_buttons,
                 'service_pages': html_pages}
         #
-        return urlopen('resources/html/services/group.html').read().encode('utf-8').format(**args)
+        return urlopen('resources/html/groups/group.html').read().encode('utf-8').format(**args)
         #
         #
     except:
-        pass
-    #
-    return False
+        return urlopen('resources/html/groups/group_error.html').read().encode('utf-8').format(group_id=group_id)
