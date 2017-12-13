@@ -51,11 +51,16 @@
 /* Sidebar buttons */
 
 .menu_img {
-    height:40px;
-    width:40px;
+    height: 40px;
+    width: 40px;
     left: 50%;
     top: 50%;
     margin: 0px;
+}
+
+.menu_btn {
+    cursor: pointer;
+    display: inherit;
 }
 
 .btn_menu_lhs {
@@ -65,7 +70,6 @@
     width: 40px;
     height: 40px;
     padding: 0;
-    display: inherit;
     vertical-align:middle;
     text-align:center;
 }
