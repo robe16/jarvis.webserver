@@ -1,11 +1,26 @@
 from urllib import urlopen
-from common_functions.urlencode import url_encode, url_decode
+from common_functions.urlencode import url_decode
+from resources.global_resources.variables import projectName
 from resources.global_resources.services import service_variables
-from resources.groups.groups_functions import get_group_category, get_group_image
+from resources.groups.groups_functions import get_group_category
 from discovery.group_services import group_services
 from services import serviceHtml
+from html.page_body import create_page
+
 
 def groupPage(services, group_id):
+    #
+    resources = '<script src="/resource/js/jarvis.service_page.js"></script>'
+    resources += '<link rel="stylesheet" href="/resource/css/jarvis.service_page.css">'
+    #
+    return create_page(services,
+                       groupPage(services, group_id),
+                       resources=resources,
+                       title='{projectName}: {name}'.format(projectName=projectName,
+                                                            name=url_decode(group_id)))
+
+
+def groupHtml(services, group_id):
     #
     grouped_services = group_services(services)
     #
@@ -63,4 +78,4 @@ def groupPage(services, group_id):
     except:
         pass
     #
-    return ''
+    return False
