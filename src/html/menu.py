@@ -47,22 +47,6 @@ def _html_menu_lhs(services):
     #
     ################
     #
-    for s in services.keys():
-        #
-        type = services[s]['service_type']
-        if type in service_variables:
-            img = service_variables[type]['type']
-        else:
-            img = 'logo_other.png'
-        #
-        args = {'id': services[s]['service_id'],
-                'class': '',
-                'href': '/service/page/{service_id}'.format(service_id=url_encode(services[s]['service_id'])),
-                'name': services[s]['name_long'],
-                'img': '/img/service/{img}'.format(img=img)}
-        #
-        html += urlopen('resources/html/common/menu_item.html').read().encode('utf-8').format(**args)
-    #
     return urlopen('resources/html/common/menu_lhs.html').read().encode('utf-8').format(menu=html)
 
 

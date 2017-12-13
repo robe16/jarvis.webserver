@@ -41,7 +41,7 @@ def groupHtml(services, group_id):
                 img = 'logo_other.png'
             #
             args = {'href': '#',
-                    'img': img,
+                    'img': '/img/service/{img}'.format(img=img),
                     'name': services[service]['name_long']}
             #
             html_buttons += urlopen('resources/html/groups/group_service_img.html').read().encode('utf-8').format(**args)
