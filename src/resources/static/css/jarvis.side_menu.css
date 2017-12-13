@@ -58,7 +58,7 @@
     margin: 0px;
 }
 
-.btn_sidebar_lhs {
+.btn_menu_lhs {
     background: #fff;
     float: left;
     margin: 10px 0px;
@@ -70,7 +70,7 @@
     text-align:center;
 }
 
-.btn_sidebar_rhs {
+.btn_menu_rhs {
     float: right;
     margin-top: 20px;
     display: inherit;
@@ -93,14 +93,9 @@
     margin: 10px 0px;
     border-top: 1px solid black;
 
-/* Shadow to spans and images */
+/* Shadows */
 
-span.box-shadow {
-    -webkit-box-shadow: 2px 2px 7px 0px rgba(50, 50, 50, 0.7);
-    -moz-box-shadow: 2px 2px 7px 0px rgba(50, 50, 50, 0.7);
-    box-shadow: 2px 2px 7px 0px rgba(50, 50, 50, 0.7);
-}
-img.box-shadow {
+.box-shadow {
     -webkit-box-shadow: 2px 2px 7px 0px rgba(50, 50, 50, 0.7);
     -moz-box-shadow: 2px 2px 7px 0px rgba(50, 50, 50, 0.7);
     box-shadow: 2px 2px 7px 0px rgba(50, 50, 50, 0.7);
