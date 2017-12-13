@@ -91,7 +91,7 @@ def _html_menu_lhs(services):
                         'name': g,
                         'img': '/img/group/{img}'.format(img=img)}
                 #
-                html += urlopen('resources/html/common/menu_item_group.html').read().encode('utf-8').format(**args)
+                html += urlopen('resources/html/common/menu_item.html').read().encode('utf-8').format(**args)
                 #
                 #
             except:
