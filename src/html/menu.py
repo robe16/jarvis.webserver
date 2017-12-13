@@ -42,11 +42,23 @@ def _html_menu_lhs(services):
                             'name': services[service]['name_long'],
                             'img': '/img/service/{img}'.format(img=img)}
                     #
-                    html_group += urlopen('resources/html/common/menu_sidebar_item.html').read().encode('utf-8').format(**args)
+                    html_group += urlopen('resources/html/common/menu_item_service.html').read().encode('utf-8').format(**args)
                 #
                 for subservice in grouped_services[c][g]['subservices']:
-                    # TODO - work out how to represent subservices!
-                    pass
+                    #
+                    type = services[subservice['service_id']]['service_type']
+                    if type in service_variables:
+                        img = service_variables[type]['type']
+                    else:
+                        img = 'logo_other.png'
+                    #
+                    args = {'id': subservice['service_id'],
+                            'href': '/service/page/{service_id}?group={group}'.format(service_id=subservice['service_id'],
+                                                                                      group=url_encode(g)),
+                            'name': services[subservice['service_id']]['name_long'],
+                            'img': '/img/service/{img}'.format(img=img)}
+                    #
+                    html_group += urlopen('resources/html/common/menu_item_service.html').read().encode('utf-8').format(**args)
                 #
                 img = get_group_image(g)
                 img = img if img else 'logo_other.png'
@@ -56,7 +68,7 @@ def _html_menu_lhs(services):
                         'group_img': '/img/group/{img}'.format(img=img),
                         'html_group_items': html_group}
                 #
-                html += urlopen('resources/html/common/menu_group_item.html').read().encode('utf-8').format(**args)
+                html += urlopen('resources/html/common/menu_item_group.html').read().encode('utf-8').format(**args)
                 #
                 #
             except:
@@ -75,7 +87,7 @@ def _html_menu_lhs(services):
         else:
             img = 'logo_other.png'
         #
-        html += urlopen('resources/html/common/menu_sidebar_item.html').read().encode('utf-8').\
+        html += urlopen('resources/html/common/menu_item_service.html').read().encode('utf-8').\
             format(href='/service/page/{service_id}'.format(service_id=url_encode(services[s]['service_id'])),
                    id='{info}'.format(info=services[s]['service_id']),
                    cls='',
