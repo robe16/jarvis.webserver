@@ -82,7 +82,7 @@
 
 /* Drop down menus */
 
-.dropdown-menu-left {
+/*.dropdown-menu-left {
     position: static;
     width: auto;
 }
@@ -105,7 +105,7 @@
     -moz-transition:350ms;
     -o-transition:350ms;
     transition:350ms;
-}
+}*/
 
 /* Alert (success/fail) icon */
 
@@ -126,7 +126,7 @@
 
 /* Shadows */
 
-.shadow {
+.btn_shadow {
     -webkit-box-shadow: 2px 2px 7px 0px rgba(50, 50, 50, 0.7);
     -moz-box-shadow: 2px 2px 7px 0px rgba(50, 50, 50, 0.7);
     box-shadow: 2px 2px 7px 0px rgba(50, 50, 50, 0.7);
