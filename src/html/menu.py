@@ -21,54 +21,75 @@ def _html_menu_lhs(services):
     #
     grouped_services = group_services(services)
     #
+    # for c in grouped_services.keys():
+    #     #
+    #     for g in grouped_services[c].keys():
+    #         #
+    #         try:
+    #             #
+    #             html_group = ''
+    #             #
+    #             for service in grouped_services[c][g]['services']:
+    #                 #
+    #                 type = services[service]['service_type']
+    #                 if type in service_variables:
+    #                     img = service_variables[type]['type']
+    #                 else:
+    #                     img = 'logo_other.png'
+    #                 #
+    #                 args = {'id': service,
+    #                         'class': 'menu_item_service',
+    #                         'href': '/service/page/{service_id}'.format(service_id=service),
+    #                         'name': services[service]['name_long'],
+    #                         'img': '/img/service/{img}'.format(img=img)}
+    #                 #
+    #                 html_group += urlopen('resources/html/common/menu_item.html').read().encode('utf-8').format(**args)
+    #             #
+    #             for subservice in grouped_services[c][g]['subservices']:
+    #                 #
+    #                 type = services[subservice['service_id']]['service_type']
+    #                 if type in service_variables:
+    #                     img = service_variables[type]['type']
+    #                 else:
+    #                     img = 'logo_other.png'
+    #                 #
+    #                 args = {'id': subservice['service_id'],
+    #                         'class': 'menu_item_service',
+    #                         'href': '/service/page/{service_id}?group={group}'.format(service_id=subservice['service_id'],
+    #                                                                                   group=url_encode(g)),
+    #                         'name': services[subservice['service_id']]['name_long'],
+    #                         'img': '/img/service/{img}'.format(img=img)}
+    #                 #
+    #                 html_group += urlopen('resources/html/common/menu_item.html').read().encode('utf-8').format(**args)
+    #             #
+    #             img = get_group_image(g)
+    #             img = img if img else 'logo_other.png'
+    #             #
+    #             args = {'group_id': '{info}'.format(info=url_encode(g)),
+    #                     'group_name': g,
+    #                     'group_img': '/img/group/{img}'.format(img=img),
+    #                     'html_group_items': html_group}
+    #             #
+    #             html += urlopen('resources/html/common/menu_item_group.html').read().encode('utf-8').format(**args)
+    #             #
+    #             #
+    #         except:
+    #             pass
+    #
     for c in grouped_services.keys():
         #
         for g in grouped_services[c].keys():
             #
             try:
                 #
-                html_group = ''
-                #
-                for service in grouped_services[c][g]['services']:
-                    #
-                    type = services[service]['service_type']
-                    if type in service_variables:
-                        img = service_variables[type]['type']
-                    else:
-                        img = 'logo_other.png'
-                    #
-                    args = {'id': service,
-                            'class': 'menu_item_service',
-                            'href': '/service/page/{service_id}'.format(service_id=service),
-                            'name': services[service]['name_long'],
-                            'img': '/img/service/{img}'.format(img=img)}
-                    #
-                    html_group += urlopen('resources/html/common/menu_item_service.html').read().encode('utf-8').format(**args)
-                #
-                for subservice in grouped_services[c][g]['subservices']:
-                    #
-                    type = services[subservice['service_id']]['service_type']
-                    if type in service_variables:
-                        img = service_variables[type]['type']
-                    else:
-                        img = 'logo_other.png'
-                    #
-                    args = {'id': subservice['service_id'],
-                            'class': 'menu_item_service',
-                            'href': '/service/page/{service_id}?group={group}'.format(service_id=subservice['service_id'],
-                                                                                      group=url_encode(g)),
-                            'name': services[subservice['service_id']]['name_long'],
-                            'img': '/img/service/{img}'.format(img=img)}
-                    #
-                    html_group += urlopen('resources/html/common/menu_item_service.html').read().encode('utf-8').format(**args)
-                #
                 img = get_group_image(g)
                 img = img if img else 'logo_other.png'
                 #
-                args = {'group_id': '{info}'.format(info=url_encode(g)),
-                        'group_name': g,
-                        'group_img': '/img/group/{img}'.format(img=img),
-                        'html_group_items': html_group}
+                args = {'id': g,
+                        'class': '',
+                        'href': '/group/page/{group_id}'.format(group_id=url_encode(g)),
+                        'name': g,
+                        'img': '/img/group/{img}'.format(img=img)}
                 #
                 html += urlopen('resources/html/common/menu_item_group.html').read().encode('utf-8').format(**args)
                 #
@@ -89,13 +110,13 @@ def _html_menu_lhs(services):
         else:
             img = 'logo_other.png'
         #
-        args = {'id': '{info}'.format(info=services[s]['service_id']),
+        args = {'id': services[s]['service_id'],
                 'class': '',
                 'href': '/service/page/{service_id}'.format(service_id=url_encode(services[s]['service_id'])),
                 'name': services[s]['name_long'],
                 'img': '/img/service/{img}'.format(img=img)}
         #
-        html += urlopen('resources/html/common/menu_item_service.html').read().encode('utf-8').format(**args)
+        html += urlopen('resources/html/common/menu_item.html').read().encode('utf-8').format(**args)
     #
     return urlopen('resources/html/common/menu_lhs.html').read().encode('utf-8').format(menu=html)
 
