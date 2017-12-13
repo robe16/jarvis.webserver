@@ -1,4 +1,4 @@
-from resources.groups.groups_functions import get_group_list, get_group_category_list
+from resources.groups.groups_functions import get_group_category_list
 
 
 def group_services(services):
