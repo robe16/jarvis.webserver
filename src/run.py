@@ -25,7 +25,8 @@ try:
     try:
         self_port = sys.argv[1]
     except Exception as e:
-        raise Exception('self_hostport not available - {e}'.format(e=e))
+        self_port = 8080
+        #raise Exception('self_hostport not available - {e}'.format(e=e))
 
     ################################
     # Initiate service broadcast
