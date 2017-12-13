@@ -82,6 +82,10 @@
 
 /* Drop down menus */
 
+.menu_group_items {
+    display: none;
+}
+
 /*.dropdown-menu-left {
     position: static;
     width: auto;
@@ -123,6 +127,7 @@
     height: 1px;
     margin: 10px 0px;
     border-top: 1px solid black;
+}
 
 /* Shadows */
 
