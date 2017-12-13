@@ -14,7 +14,7 @@ def groupPage(services, group_id):
     resources += '<link rel="stylesheet" href="/resource/css/jarvis.service_page.css">'
     #
     return create_page(services,
-                       groupPage(services, group_id),
+                       groupHtml(services, group_id),
                        resources=resources,
                        title='{projectName}: {name}'.format(projectName=projectName,
                                                             name=url_decode(group_id)))
