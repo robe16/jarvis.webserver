@@ -56,24 +56,10 @@ def groupHtml(services, group_id):
             #
         #
         for subservice in grouped_services[category][group_name]['subservices']:
-            #
-            # TODO
             pass
             #
-            # type = services[subservice['service_id']]['service_type']
-            # if type in service_variables:
-            #     img = service_variables[type]['type']
-            # else:
-            #     img = 'logo_other.png'
-            # #
-            # args = {'id': subservice['service_id'],
-            #         'class': 'menu_item_service',
-            #         'href': '/service/page/{service_id}?group={group}'.format(service_id=subservice['service_id'],
-            #                                                                   group=url_encode(g)),
-            #         'name': services[subservice['service_id']]['name_long'],
-            #         'img': '/img/service/{img}'.format(img=img)}
-            # #
-            # html_group += urlopen('resources/html/common/menu_item.html').read().encode('utf-8').format(**args)
+            # TODO
+            #
         #
         args = {'service_buttons': html_buttons,
                 'service_pages': html_pages}
