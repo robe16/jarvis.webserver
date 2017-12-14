@@ -15,8 +15,8 @@ def servicePage(services, service_id):
                        serviceHtml(services, service_id),
                        resources=resources,
                        title='{projectName}: {name}'.format(projectName=projectName,
-                                                            name=services[service_id]['name_long'],
-                                                            header=services[service_id]['name_long']))
+                                                            name=services[service_id]['name_long']),
+                       header=services[service_id]['name_long'])
 
 
 def serviceHtml(services, service_id):

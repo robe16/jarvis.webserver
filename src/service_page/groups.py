@@ -19,8 +19,8 @@ def groupPage(services, group_id):
                        groupHtml(services, group_id),
                        resources=resources,
                        title='{projectName}: {name}'.format(projectName=projectName,
-                                                            name=url_decode(group_id),
-                                                            header=url_decode(group_id)))
+                                                            name=url_decode(group_id)),
+                       header=url_decode(group_id))
 
 
 def groupHtml(services, group_id):
