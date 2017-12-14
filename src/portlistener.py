@@ -10,6 +10,7 @@ from html.home import create_home
 from html.service_status import create_servicestatus
 from log.log import log_inbound, log_internal
 from resources.global_resources.variables import *
+from parameters import bottle_resource_cache_life
 
 from service_commands.services import serviceCommand
 from service_images.services import serviceImage
@@ -155,6 +156,7 @@ def start_bottle(self_port, services):
             query = request.query
             #
             rsp = serviceImage(services, service_id, filename, query)
+            rsp.set_header("Cache-Control", "public, max-age={age}".format(age=bottle_resource_cache_life))
             #
             status = httpStatusSuccess if bool(rsp) else httpStatusFailure
             #
@@ -180,6 +182,7 @@ def start_bottle(self_port, services):
             #
             rsp = static_file(filename, root=os.path.join(os.path.dirname(__file__),
                                                           ('resources/static/{folder}'.format(folder=type))))
+            rsp.set_header("Cache-Control", "public, max-age={age}".format(age=bottle_resource_cache_life))
             #
             log_inbound(True, request['REMOTE_ADDR'], request.url, 'GET', status)
             #
@@ -204,6 +207,7 @@ def start_bottle(self_port, services):
             #
             rsp = static_file('favicon.ico',
                               root=os.path.join(os.path.dirname(__file__), 'resources/images/general'))
+            rsp.set_header("Cache-Control", "public, max-age={age}".format(age=bottle_resource_cache_life))
             #
             log_inbound(True, request['REMOTE_ADDR'], request.url, 'GET', status)
             #
@@ -228,6 +232,7 @@ def start_bottle(self_port, services):
             rsp = static_file(filename,
                               root=root,
                               mimetype='image/{mimetype}'.format(mimetype=mimetype))
+            rsp.set_header("Cache-Control", "public, max-age={age}".format(age=bottle_resource_cache_life))
             #
             log_inbound(True, request['REMOTE_ADDR'], request.url, 'GET', status)
             #
