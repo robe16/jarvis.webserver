@@ -11,7 +11,7 @@ from html.page_body import create_page
 def groupPage(services, group_id):
     #
     resources = '<script src="/resource/js/jarvis.service_page.js"></script>'
-    resources = '<script src="/resource/js/jarvis.service_group.js"></script>'
+    resources += '<script src="/resource/js/jarvis.service_group.js"></script>'
     resources += '<link rel="stylesheet" href="/resource/css/jarvis.service_page.css">'
     resources += '<link rel="stylesheet" href="/resource/css/jarvis.service_group.css">'
     #
@@ -19,7 +19,8 @@ def groupPage(services, group_id):
                        groupHtml(services, group_id),
                        resources=resources,
                        title='{projectName}: {name}'.format(projectName=projectName,
-                                                            name=url_decode(group_id)))
+                                                            name=url_decode(group_id),
+                                                            header=url_decode(group_id)))
 
 
 def groupHtml(services, group_id):
