@@ -18,6 +18,7 @@ def servicePage(services, service_id):
                                                             name=services[service_id]['name_long'],
                                                             header=services[service_id]['name_long']))
 
+
 def serviceHtml(services, service_id):
     #
     if service_id in services.keys():
