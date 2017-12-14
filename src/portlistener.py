@@ -155,14 +155,16 @@ def start_bottle(self_port, services):
             #
             query = request.query
             #
-            rsp = serviceImage(services, service_id, filename, query)
-            rsp.set_header("Cache-Control", "public, max-age={age}".format(age=bottle_resource_cache_life))
+            img = serviceImage(services, service_id, filename, query)
             #
-            status = httpStatusSuccess if bool(rsp) else httpStatusFailure
+            status = httpStatusSuccess if bool(img) else httpStatusFailure
+            #
+            rsp = HTTPResponse(body=img, status=status)
+            rsp.set_header("Cache-Control", "public, max-age={age}".format(age=bottle_resource_cache_life))
             #
             log_inbound(True, request['REMOTE_ADDR'], request.url, 'GET', status, desc=_convert_query_to_string(request.query))
             #
-            return HTTPResponse(body=rsp, status=status)
+            return rsp
             #
         except Exception as e:
             status = httpStatusServererror
