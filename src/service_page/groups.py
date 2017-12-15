@@ -43,7 +43,7 @@ def groupHtml(services, group_id):
             else:
                 img = 'logo_other.png'
             #
-            args = {'href': '#',
+            args = {'service_id': services[service]['service_id'],
                     'img': '/img/service/{img}'.format(img=img),
                     'name': services[service]['name_long']}
             #
