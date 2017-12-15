@@ -32,6 +32,8 @@ def groupHtml(services, group_id):
     #
     try:
         #
+        first_item = True
+        #
         html_buttons = ''
         html_pages = ''
         #
@@ -43,16 +45,24 @@ def groupHtml(services, group_id):
             else:
                 img = 'logo_other.png'
             #
+            if first_item:
+                class_buttons = ''
+                class_page = 'grp_body_show'
+                first_item = False
+            else:
+                class_buttons = 'grayscale'
+                class_page = 'grp_body_hide'
+            #
             args = {'service_id': services[service]['service_id'],
                     'img': '/img/service/{img}'.format(img=img),
                     'name': services[service]['name_long'],
-                    'class': ''}
+                    'class': class_buttons}
             #
             html_buttons += urlopen('resources/html/groups/group_service_img.html').read().encode('utf-8').format(**args)
             #
             args = {'service_id': services[service]['service_id'],
                     'service_body': serviceHtml(services, services[service]['service_id']),
-                    'class': ''}
+                    'class': class_page}
             #
             html_pages += urlopen('resources/html/groups/group_item.html').read().encode('utf-8').format(**args)
             #
