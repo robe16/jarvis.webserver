@@ -4,6 +4,7 @@
 }
 
 .group_service_img {
+    cursor: pointer;
     height: 60;
     width: 60;
     margin: 10px 10px 10px 0px;
@@ -20,7 +21,7 @@
     display: block;
 }
 .grp_body_hide {
-    display: block;
+    display: none;
 }
 
 
