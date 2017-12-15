@@ -40,7 +40,6 @@ def _html_apps(service):
                 #
             except Exception as e:
                 html += ''
-            #
         #
         html += '</tr></table></div>'
         return html
