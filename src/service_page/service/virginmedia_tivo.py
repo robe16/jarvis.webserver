@@ -40,7 +40,7 @@ def _current_chan(service):
                                           chan_current['channel']['quality'])}
     else:
         current_chan = {'name': '-',
-                        'logo': 'ic_blank.png'}
+                        'logo': '_blank.png'}
     #
     return current_chan
 
