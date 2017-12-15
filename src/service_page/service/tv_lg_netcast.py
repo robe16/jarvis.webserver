@@ -27,15 +27,15 @@ def _html_apps(service):
         for app in json_applist:
             try:
                 #
+                if count % 4 == 0:
+                    html += '</tr><tr style="height:35px; padding-bottom:2px; padding-top:2px">'
+                #
                 html += ('<td class="grid_item" style="width: 20%; cursor: pointer; vertical-align: top;" align="center" onclick="sendHttp(\'/service/command/{service_id}?command=executeApp&auid={auid}\', null, \'POST\', false, true)">' +
                          '<img src="/service/image/{service_id}/appIcon?auid={auid}" style="height:50px;"/>' +
                          '<p style="text-align:center; font-size: 13px;">{name}</p>' +
                          '</td>').format(service_id=service['service_id'],
                                          auid=json_applist[app]['auid'],
                                          name=json_applist[app]['name'])
-                #
-                if count % 4 == 0:
-                    html += '</tr><tr style="height:35px; padding-bottom:2px; padding-top:2px">'
                 count += 1
                 #
             except Exception as e:
