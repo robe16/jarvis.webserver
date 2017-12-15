@@ -45,7 +45,8 @@ def groupHtml(services, group_id):
             #
             args = {'service_id': services[service]['service_id'],
                     'img': '/img/service/{img}'.format(img=img),
-                    'name': services[service]['name_long']}
+                    'name': services[service]['name_long'],
+                    'class': ''}
             #
             html_buttons += urlopen('resources/html/groups/group_service_img.html').read().encode('utf-8').format(**args)
             #
