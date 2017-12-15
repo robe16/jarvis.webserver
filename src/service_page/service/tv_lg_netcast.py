@@ -23,11 +23,11 @@ def _html_apps(service):
         html = '<table style="width:100%">' +\
                '<tr style="height:80px; padding-bottom:2px; padding-top:2px">'
         #
-        count = 1
+        count = 0
         for app in json_applist:
             try:
                 #
-                if (count - 1) % 4 == 0:
+                if count % 4 == 0:
                     html += '</tr><tr style="height:35px; padding-bottom:2px; padding-top:2px">'
                 #
                 args = {'service_id': service['service_id'],
