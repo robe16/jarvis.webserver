@@ -41,7 +41,7 @@ def _html_apps(service):
             except Exception as e:
                 html += ''
         #
-        html += '</tr></table></div>'
+        html += '</tr></table>'
         return html
     except:
         return '<p style="text-align:center">App list could has not been retrieved from the device.</p>' +\
