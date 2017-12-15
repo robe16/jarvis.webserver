@@ -1,17 +1,23 @@
 function switchService(service_id) {
-    img_id = "grp_btn_" + service_id
-    div_id = "grp_body_" + service_id
+    // Buttons
     //
-    var all = document.getElementsByTagName("div");
+    img_id = "grp_btn_" + service_id
+    //
+    var all = document.getElementsByTagName("img");
     for (var i = 0; i < all.length; i++) {
-        // Buttons
         if (all[i].id==(img_id)) {
             document.getElementById(all[i].id).classList.remove("grayscale");
         }
         else if (all[i].id.startsWith('grp_btn_')) {
             document.getElementById(all[i].id).classList.add("grayscale");
         };
-        // Body
+    };
+    //
+    // Body
+    //
+    div_id = "grp_body_" + service_id
+    var all = document.getElementsByTagName("div");
+    for (var i = 0; i < all.length; i++) {
         if (all[i].id==(div_id)) {
             document.getElementById(all[i].id).classList.remove("grp_body_hide");
             document.getElementById(all[i].id).classList.add("grp_body_show");
