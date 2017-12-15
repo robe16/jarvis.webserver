@@ -27,7 +27,7 @@ def _html_apps(service):
         for app in json_applist:
             try:
                 #
-                if count % 4 == 0:
+                if not count == 0 and count % 4 == 0:
                     html += '</tr><tr style="height:35px; padding-bottom:2px; padding-top:2px">'
                 #
                 args = {'service_id': service['service_id'],
