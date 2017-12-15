@@ -42,7 +42,7 @@ def _html_apps(service):
                 html += ''
             #
         #
-        html += '</table></div>'
+        html += '</tr></table></div>'
         return html
     except:
         return '<p style="text-align:center">App list could has not been retrieved from the device.</p>' +\
