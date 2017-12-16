@@ -50,7 +50,7 @@ def groupHtml(services, group_id):
                 class_page = 'grp_body_show'
                 first_item = False
             else:
-                class_buttons = 'grayscale'
+                class_buttons = 'btn_shadow grayscale'
                 class_page = 'grp_body_hide'
             #
             args = {'service_id': services[service]['service_id'],
@@ -58,13 +58,13 @@ def groupHtml(services, group_id):
                     'name': services[service]['name_long'],
                     'class': class_buttons}
             #
-            html_buttons += urlopen('resources/html/groups/group_service_img.html').read().encode('utf-8').format(**args)
+            html_buttons += urlopen('resources/html/groups/group_item_btn.html').read().encode('utf-8').format(**args)
             #
             args = {'service_id': services[service]['service_id'],
                     'service_body': serviceHtml(services, services[service]['service_id']),
                     'class': class_page}
             #
-            html_pages += urlopen('resources/html/groups/group_item.html').read().encode('utf-8').format(**args)
+            html_pages += urlopen('resources/html/groups/group_item_body.html').read().encode('utf-8').format(**args)
             #
         #
         for subservice in grouped_services[category][group_name]['subservices']:

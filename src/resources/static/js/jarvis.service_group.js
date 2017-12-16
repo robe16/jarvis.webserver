@@ -7,9 +7,11 @@ function switchService(service_id) {
     for (var i = 0; i < all.length; i++) {
         if (all[i].id==(img_id)) {
             document.getElementById(all[i].id).classList.remove("grayscale");
+            document.getElementById(all[i].id).classList.remove("btn_shadow");
         }
         else if (all[i].id.startsWith('grp_btn_')) {
             document.getElementById(all[i].id).classList.add("grayscale");
+            document.getElementById(all[i].id).classList.add("btn_shadow");
         };
     };
     //
