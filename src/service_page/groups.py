@@ -78,7 +78,7 @@ def groupHtml(services, group_id):
         args = {'service_buttons': html_buttons,
                 'service_pages': html_pages}
         #
-        log_internal(False, logDesc_groupPage, desc=group_id)
+        log_internal(True, logDesc_groupPage, desc=group_id)
         #
         return urlopen('resources/html/groups/group.html').read().encode('utf-8').format(**args)
         #
