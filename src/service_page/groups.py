@@ -73,7 +73,6 @@ def groupHtml(services, group_id):
             pass
             #
             # TODO
-            #
         #
         args = {'service_buttons': html_buttons,
                 'service_pages': html_pages}
