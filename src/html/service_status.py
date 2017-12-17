@@ -1,11 +1,12 @@
-from urllib import urlopen
 import datetime
+from urllib import urlopen
+
 from html.page_body import create_page
-from resources.global_resources.services import service_variables
-from resources.groups.groups_functions import get_group_image
-from resources.global_resources.variables import projectName
-from resources.enGB.service_status import *
 from parameters import discovery_service_mia
+from resources.global_resources.services import service_variables
+from resources.global_resources.variables import projectName
+from resources.groups.groups_functions import get_group_image
+from resources.lang.enGB.service_status import *
 
 
 def create_servicestatus(services):

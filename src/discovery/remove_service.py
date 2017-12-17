@@ -1,5 +1,5 @@
 from log.log import log_internal
-from resources.enGB.logs import logDesc_services_RemoveService
+from resources.lang.enGB.logs import logDesc_services_RemoveService
 
 
 def remove_service(services, service_id):

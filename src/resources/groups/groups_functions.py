@@ -1,6 +1,6 @@
-from log.log import log_internal
 from groups import groups
-from resources.enGB.logs import logDesc_group_NotFound, logDesc_group_ImageNameNotFound
+from log.log import log_internal
+from resources.lang.enGB.logs import logDesc_group_NotFound, logDesc_group_ImageNameNotFound
 
 
 def get_group_list():

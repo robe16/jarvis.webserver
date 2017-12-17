@@ -5,18 +5,16 @@ from bottle import get, post, delete, static_file
 from bottle import request, run, HTTPResponse
 
 from discovery.remove_service import remove_service
-
 from html.home import create_home
 from html.service_status import create_servicestatus
 from log.log import log_inbound, log_internal
-from resources.global_resources.variables import *
-from resources.enGB.logs import logDescPortListener
 from parameters import bottle_resource_cache_life
-
+from resources.global_resources.variables import *
+from resources.lang.enGB.logs import logDescPortListener
 from service_commands.services import serviceCommand
 from service_images.services import serviceImage
-from service_page.services import servicePage
 from service_page.groups import groupPage
+from service_page.services import servicePage
 
 
 def start_bottle(self_port, services):
