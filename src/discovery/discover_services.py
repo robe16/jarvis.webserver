@@ -2,6 +2,7 @@ import datetime
 from socket import socket, AF_INET, SOCK_DGRAM
 from resources.global_resources.variables import service_uri_config
 from resources.global_resources.broadcast import jarvis_broadcastPort
+from resources.enGB.logs import logDesc_services_Discovery
 import requests
 from log.log import log_outbound, log_internal
 
@@ -59,4 +60,4 @@ def discover_services(services):
                                         'active': True,
                                         'timestamp': datetime.datetime.now()}
     except Exception as e:
-        log_internal(True, 'Discovery of services', desc='fail', exception=e)
+        log_internal(True, logDesc_services_Discovery, desc='fail', exception=e)

@@ -3,6 +3,7 @@ from multiprocessing import Process, Manager
 from discovery.update_services import update_services
 from portlistener import start_bottle
 from log.log import log_internal, set_logfile
+from resources.enGB.logs import logDescStartingService, logDescPortListener
 
 
 try:
@@ -14,7 +15,7 @@ try:
 
     ################################
 
-    log_internal(True, 'Starting micro service', desc='started')
+    log_internal(True, logDescStartingService, desc='started')
 
     services = Manager().dict()
 
@@ -37,13 +38,13 @@ try:
     ################################
     # Port_listener
 
-    log_internal(True, 'Port listener - {port}'.format(port=self_port), desc='starting')
+    log_internal(True, logDescPortListener.format(port=self_port), desc='starting')
 
     start_bottle(self_port, services)
 
     process_service_discovery.terminate()
 
-    log_internal(True, 'Port listener - {port}'.format(port=self_port), desc='stopped')
+    log_internal(True, logDescPortListener.format(port=self_port), desc='stopped')
 
 except Exception as e:
-    log_internal(True, 'Starting micro service', desc='fail', exception=e)
+    log_internal(True, logDescStartingService, desc='fail', exception=e)

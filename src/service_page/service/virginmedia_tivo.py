@@ -5,6 +5,7 @@ import requests
 from log.log import log_outbound, log_internal
 from resources.channels.channels_functions import get_image
 from resources.global_resources.variables import *
+from resources.enGB.logs import *
 
 
 def createhtml_channels(service):
@@ -119,7 +120,7 @@ def _html_recordings(json_recordings):
             #
         return html_recordings
     except Exception as e:
-        log_internal(True, 'Attempted to create recordings', desc='fail', exception=e)
+        log_internal(True, logDesc__vironmedia_tivo__CreateRecordings, desc='fail', exception=e)
         return '<p>Error</p>'
 
 

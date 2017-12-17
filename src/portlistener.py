@@ -10,6 +10,7 @@ from html.home import create_home
 from html.service_status import create_servicestatus
 from log.log import log_inbound, log_internal
 from resources.global_resources.variables import *
+from resources.enGB.logs import logDescPortListener
 from parameters import bottle_resource_cache_life
 
 from service_commands.services import serviceCommand
@@ -262,7 +263,7 @@ def start_bottle(self_port, services):
     ################################################################################################
 
     host='0.0.0.0'
-    log_internal(True, 'Port listener', desc='started')
+    log_internal(True, logDescPortListener.format(port=self_port), desc='started')
     run(host=host, port=self_port, debug=True)
 
 
