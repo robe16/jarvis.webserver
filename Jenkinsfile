@@ -7,6 +7,9 @@ String deployLogin
 String docker_img_name
 def docker_img
 
+githubUrl = "https://github.com/robe16/jarvis.webserver.git"
+appName = "jarvis.webserver"
+
 node {
 
     deleteDir()
@@ -30,9 +33,6 @@ node {
         string(name: 'folderLog',
                description: 'Location of log directory on host device',
                defaultValue: '*')
-        //
-        githubUrl = "https://github.com/robe16/jarvis.webserver.git"
-        appName = "jarvis.webserver"
         //
         build_args = ["--build-arg portApplication=${portApplication}"].join(" ")
         //
