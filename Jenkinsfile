@@ -2,8 +2,8 @@ echo "Running Build ID: ${env.BUILD_ID}"
 
 echo "Setting variables"
 
-var githubUrl
-var appName
+String githubUrl = "https://github.com/robe16/jarvis.webserver.git"
+String appName = "jarvis.webserver"
 String build_args
 String deployLogin
 String docker_img_name
