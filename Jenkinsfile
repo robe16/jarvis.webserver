@@ -2,8 +2,8 @@ echo "Running Build ID: ${env.BUILD_ID}"
 
 echo "Setting variables"
 
-string githubUrl
-String appName
+var githubUrl
+var appName
 String build_args
 String deployLogin
 String docker_img_name
