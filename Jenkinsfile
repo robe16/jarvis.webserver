@@ -1,7 +1,5 @@
 echo "Running Build ID: ${env.BUILD_ID}"
 
-echo "Setting variables"
-
 String githubUrl = "https://github.com/robe16/jarvis.webserver.git"
 String appName = "jarvis.webserver"
 String build_args
@@ -9,15 +7,12 @@ String deployLogin
 String docker_img_name
 def docker_img
 
-echo "Starting node"
-
 node {
 
     deleteDir()
 
     stage("parameters") {
         //
-        echo "Setting passed through variables"
         // Parameters passed through from the Jenkins Pipeline configuration
         //
         string(name: 'deploymentServer',
@@ -35,10 +30,6 @@ node {
         string(name: 'folderLog',
                description: 'Location of log directory on host device',
                defaultValue: '*')
-        //
-        echo "Setting file generated variables"
-        githubUrl = "https://github.com/robe16/jarvis.webserver.git"
-        appName = "jarvis.webserver"
         //
         build_args = ["--build-arg portApplication=${portApplication}"].join(" ")
         //
