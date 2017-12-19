@@ -1,4 +1,17 @@
-.subservices_label{
+.servicestatus_item {
+    padding: 10px;
+}
+
+.servicestatus_border {
+    border-color: #cccccc;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 25px;
+    margin: 0px;
+    padding: 10px;
+}
+
+.subservices_label {
     margin: 0;
 }
 
@@ -14,7 +27,7 @@
     padding: 0.5em;
     margin-bottom: 1em;
 }
-.servicestatus_group_logo{
+.servicestatus_group_logo {
     margin: auto;
     display: inline-block;
     max-width: 3em;
