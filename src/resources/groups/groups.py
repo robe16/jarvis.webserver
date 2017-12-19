@@ -1,5 +1,6 @@
 groups = {
     "rooms": {
+        "Home": {"image": "group_room_home.png"},
         "Cellar": {"image": "group_room_stairs-down.png"},
         "Wine Cellar": {"image": "group_room_wine-cellar.png"},
         "Gym": {"image": "group_room_gym.png"},
@@ -7,7 +8,7 @@ groups = {
         "Hall": {"image": "group_room_hallway.png"},
         "Lounge": {"image": "group_room_lounge.png"},
         "Kitchen": {"image": "group_room_kitchen.png"},
-        "landing": {"image": "group_room_stairs.png"},
+        "Landing": {"image": "group_room_stairs.png"},
         "Master Bedroom": {"image": "group_room_bedroom-master.png"},
         "Bedroom 2": {"image": "group_room_bedroom-2.png"},
         "Music Room": {"image": "group_room_music-room.png"},
@@ -25,6 +26,7 @@ groups = {
         "Home Cinema": {"image": "group_theme_home-cinema.png"},
         "Heating": {"image": "group_theme_heating.png"},
         "Sockets": {"image": "group_theme_sockets.png"},
-        "Lighing": {"image": "group_theme_lighting.png"}
+        "Lighing": {"image": "group_theme_lighting.png"},
+        "Smoke Detectors": {"image": "group_theme_smoke-detectors.png"}
     }
 }
