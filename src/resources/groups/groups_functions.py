@@ -56,13 +56,13 @@ def get_group_image(group_name):
             raise Exception
     except Exception as e:
         log_internal(False, logDesc_group_NotFound.format(group=group_name), desc='fail')
-        return False
+        return 'group_other.png'
     #
     try:
         return group_item['image']
     except Exception as e:
         log_internal(False, logDesc_group_ImageNameNotFound.format(group=group_name), desc='fail')
-        return False
+        return 'group_other.png'
 
 
 def get_group_rooms_details(group_name):
