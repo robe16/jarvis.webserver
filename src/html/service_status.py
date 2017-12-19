@@ -1,6 +1,7 @@
 import datetime
 from urllib import urlopen
 
+from common_functions.urlencode import url_encode
 from html.page_body import create_page
 from parameters import discovery_service_mia
 from resources.global_resources.services import service_variables
@@ -43,6 +44,7 @@ def create_servicestatus(services):
             html_groups = ''
             for g in services[s]['groups']:
                 g_args = {'group_name': g,
+                          'href': '/group/page/{group_id}'.format(group_id=url_encode(g)),
                           'img_filename': get_group_image(g)}
                 html_groups += urlopen('resources/html/service_status/service_group_img.html').read().encode('utf-8').format(**g_args)
         else:
