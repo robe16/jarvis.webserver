@@ -43,8 +43,8 @@ def create_servicestatus(services):
         if len(services[s]['groups']) > 0:
             html_groups = ''
             for g in services[s]['groups']:
-                g_args = {'group_name': g,
-                          'href': '/group/page/{group_id}'.format(group_id=url_encode(g)),
+                g_args = {'href': '/group/page/{group_id}'.format(group_id=url_encode(g)),
+                          'group_name': g,
                           'img_filename': get_group_image(g)}
                 html_groups += urlopen('resources/html/service_status/service_group_img.html').read().encode('utf-8').format(**g_args)
         else:
@@ -100,7 +100,8 @@ def _html_subservices(subservices):
             if len(sub['groups']) > 0:
                 html_groups = ''
                 for g in sub['groups']:
-                    g_args = {'group_name': g,
+                    g_args = {'href': '/group/page/{group_id}'.format(group_id=url_encode(g)),
+                              'group_name': g,
                               'img_filename': get_group_image(g)}
                     html_groups += urlopen('resources/html/service_status/service_group_img.html').read().encode('utf-8').format(**g_args)
             else:
