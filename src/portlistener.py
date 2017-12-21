@@ -1,5 +1,5 @@
 import os
-import thread
+import threading
 from bottle import HTTPError
 from bottle import get, post, delete, static_file
 from bottle import request, run, HTTPResponse
@@ -268,9 +268,17 @@ def start_bottle(services):
 
     host = 'localhost'
     ports = get_cfg_port_listener()
+    threads = []
     for port in ports:
         log_internal(True, logDescPortListener.format(port=port), desc='started')
-        thread.start_new_thread(bottle_run, (host, port,))
+        threads.append(threading.Thread(bottle_run, (host, port,)))
+
+    # Start all threads
+    for t in threads:
+        t.start()
+    # Use .join() for all threads to keep main process 'alive'
+    for t in threads:
+        t.join()
 
 
 def _convert_query_to_string(bottleDict):
