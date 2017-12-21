@@ -262,6 +262,7 @@ def start_bottle(port_threads, services):
     ################################################################################################
 
     def bottle_run(x_host, x_port):
+        log_internal(True, logDescPortListener.format(port=x_port), desc='started')
         run(host=x_host, port=x_port, debug=True)
 
     ################################################################################################
@@ -269,8 +270,8 @@ def start_bottle(port_threads, services):
     host = 'localhost'
     ports = get_cfg_port_listener()
     for port in ports:
-        log_internal(True, logDescPortListener.format(port=port), desc='started')
-        port_threads.append(threading.Thread(bottle_run, (host, port,)))
+        t = threading.Thread(target=bottle_run, args=(host, port,))
+        port_threads.append(t)
 
     # Start all threads
     for t in port_threads:
