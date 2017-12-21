@@ -6,6 +6,8 @@ from log.log import log_internal, set_logfile
 from portlistener import start_bottle
 from resources.lang.enGB.logs import logDescStartingService, logDescPortListener
 
+port_threads = []
+
 try:
 
     ################################
@@ -30,7 +32,7 @@ try:
 
     log_internal(True, logDescPortListener.format(port=get_cfg_port_listener()), desc='starting')
 
-    start_bottle(services)
+    start_bottle(port_threads, services)
 
     process_service_discovery.terminate()
 
@@ -38,3 +40,5 @@ try:
 
 except Exception as e:
     log_internal(True, logDescStartingService, desc='fail', exception=e)
+    for t in port_threads:
+        t._stop()

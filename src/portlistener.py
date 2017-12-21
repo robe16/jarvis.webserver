@@ -18,7 +18,7 @@ from service_page.groups import groupPage
 from service_page.services import servicePage
 
 
-def start_bottle(services):
+def start_bottle(port_threads, services):
 
     ################################################################################################
     # Enable cross domain scripting
@@ -268,16 +268,15 @@ def start_bottle(services):
 
     host = 'localhost'
     ports = get_cfg_port_listener()
-    threads = []
     for port in ports:
         log_internal(True, logDescPortListener.format(port=port), desc='started')
-        threads.append(threading.Thread(bottle_run, (host, port,)))
+        port_threads.append(threading.Thread(bottle_run, (host, port,)))
 
     # Start all threads
-    for t in threads:
+    for t in port_threads:
         t.start()
     # Use .join() for all threads to keep main process 'alive'
-    for t in threads:
+    for t in port_threads:
         t.join()
 
 
