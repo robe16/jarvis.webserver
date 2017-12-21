@@ -10,6 +10,10 @@ def get_config_json():
         return json.load(data_file)
 
 
+def get_cfg_serviceid():
+    return get_config_json()['service_id']
+
+
 def get_cfg_port_broadcast():
     return get_config_json()['port']['broadcast']
 

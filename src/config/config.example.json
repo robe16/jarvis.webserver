@@ -1,6 +1,7 @@
 {
-    "port": {
-        "broadcast": 4000,
-        "listener": [4001, 4002, 4003, 4004]
-    }
+  "service_id": "webserver",
+  "port": {
+    "broadcast": 4000,
+    "listener": [4001, 4002, 4003, 4004]
+  }
 }
