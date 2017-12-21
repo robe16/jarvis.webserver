@@ -1,8 +1,5 @@
 import json
 import os
-import ast
-import datetime
-from resources.global_resources.variables import oauthConfigTimeformat
 
 file_name = 'config.json'
 
