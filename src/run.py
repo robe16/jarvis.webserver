@@ -1,6 +1,6 @@
-import sys
 from multiprocessing import Process, Manager
 
+from config.config import get_cfg_port_listener
 from discovery.update_services import update_services
 from log.log import log_internal, set_logfile
 from portlistener import start_bottle
@@ -20,16 +20,6 @@ try:
     services = Manager().dict()
 
     ################################
-    # Receive sys arguments
-
-    # Argument 1: Port of self exposed on host
-    try:
-        self_port = sys.argv[1]
-    except Exception as e:
-        self_port = 8080
-        #raise Exception('self_hostport not available - {e}'.format(e=e))
-
-    ################################
     # Initiate service broadcast
 
     process_service_discovery = Process(target=update_services, args=(services, ))
@@ -38,13 +28,13 @@ try:
     ################################
     # Port_listener
 
-    log_internal(True, logDescPortListener.format(port=self_port), desc='starting')
+    log_internal(True, logDescPortListener.format(port=get_cfg_port_listener()), desc='starting')
 
-    start_bottle(self_port, services)
+    start_bottle(services)
 
     process_service_discovery.terminate()
 
-    log_internal(True, logDescPortListener.format(port=self_port), desc='stopped')
+    log_internal(True, logDescPortListener.format(port=get_cfg_port_listener()), desc='stopped')
 
 except Exception as e:
     log_internal(True, logDescStartingService, desc='fail', exception=e)

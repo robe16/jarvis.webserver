@@ -1,9 +1,10 @@
 import os
-
+import thread
 from bottle import HTTPError
 from bottle import get, post, delete, static_file
 from bottle import request, run, HTTPResponse
 
+from config.config import get_cfg_port_listener
 from discovery.remove_service import remove_service
 from html.home import create_home
 from html.service_status import create_servicestatus
@@ -17,7 +18,7 @@ from service_page.groups import groupPage
 from service_page.services import servicePage
 
 
-def start_bottle(self_port, services):
+def start_bottle(services):
 
     ################################################################################################
     # Enable cross domain scripting
@@ -260,9 +261,16 @@ def start_bottle(self_port, services):
 
     ################################################################################################
 
-    host='0.0.0.0'
-    log_internal(True, logDescPortListener.format(port=self_port), desc='started')
-    run(host=host, port=self_port, debug=True)
+    def bottle_run(x_host, x_port):
+        run(host=x_host, port=x_port, debug=True)
+
+    ################################################################################################
+
+    host = 'localhost'
+    ports = get_cfg_port_listener()
+    for port in ports:
+        log_internal(True, logDescPortListener.format(port=port), desc='started')
+        thread.start_new_thread(bottle_run, (host, port,))
 
 
 def _convert_query_to_string(bottleDict):
