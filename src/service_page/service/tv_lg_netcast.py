@@ -1,6 +1,7 @@
 import requests
 from urllib import urlopen
 from resources.global_resources.variables import *
+from resources.global_resources.logs import logPass, logFail
 from log.log import log_outbound
 
 
@@ -58,8 +59,14 @@ def _get_applist(service):
     r = requests.get(service_url, headers=headers)
     #
     if r.status_code == requests.codes.ok:
-        log_outbound(True, service['service_id'], service_uri_lgtvnetcast_apps_all, 'GET', r.status_code)
+        log_outbound(logPass,
+                     service['ip'], service['port'], 'GET', service_uri_lgtvnetcast_apps_all,
+                     '-', '-',
+                     r.status_code)
         return r.json()
     else:
-        log_outbound(False, service['service_id'], service_uri_lgtvnetcast_apps_all, 'GET', r.status_code)
+        log_outbound(logFail,
+                     service['ip'], service['port'], 'GET', service_uri_lgtvnetcast_apps_all,
+                     '-', '-',
+                     r.status_code)
         return False

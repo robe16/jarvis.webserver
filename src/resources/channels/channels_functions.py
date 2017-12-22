@@ -1,13 +1,15 @@
 from log.log import log_internal
 from channels import channels
+from resources.global_resources.logs import logFail, logException
 
 
 def get_image(channel_name, quality=''):
     #
     try:
         chan_item = channels[channel_name]
-    except:
-        raise Exception('Channel name \'{chan}\' not found in list of available resources'.format(chan=channel_name))
+    except Exception as e:
+        log_internal(logException, 'Channel name \'{chan}\' not found in list of available resources'.format(chan=channel_name), exception=e)
+        return False
     #
     if not quality == '':
         img = _get_image(chan_item, quality)
@@ -22,7 +24,7 @@ def get_image(channel_name, quality=''):
         if img:
             return img
         #
-        log_internal(False, 'Could not get image name for \'{chan}\''.format(chan=channel_name), desc='fail')
+        log_internal(logFail, 'Could not get image name for \'{chan}\''.format(chan=channel_name))
         return False
 
 

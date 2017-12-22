@@ -3,6 +3,7 @@ from common_functions.urlencode import url_decode
 from resources.lang.enGB.logs import *
 from resources.global_resources.variables import projectName
 from resources.global_resources.services import service_variables
+from resources.global_resources.logs import logPass, logException
 from resources.groups.groups_functions import get_group_category
 from discovery.group_services import group_services
 from services import serviceHtml
@@ -77,12 +78,12 @@ def groupHtml(services, group_id):
         args = {'service_buttons': html_buttons,
                 'service_pages': html_pages}
         #
-        log_internal(True, logDesc_groupPage, desc=group_id)
+        log_internal(logPass, logDesc_groupPage, description=group_id)
         #
         return urlopen('resources/html/groups/group.html').read().encode('utf-8').format(**args)
         #
     except Exception as e:
         #
-        log_internal(False, logDesc_groupPage, desc=group_id, exception=e)
+        log_internal(logException, logDesc_groupPage, description=group_id, exception=e)
         #
         return urlopen('resources/html/groups/group_error.html').read().encode('utf-8').format(group_id=group_id)

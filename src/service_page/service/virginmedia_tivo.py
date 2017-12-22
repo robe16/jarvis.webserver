@@ -1,8 +1,8 @@
 from urllib import urlopen
-
 import requests
 
 from log.log import log_outbound, log_internal
+from resources.global_resources.logs import logPass, logFail, logException
 from resources.channels.channels_functions import get_image
 from resources.global_resources.variables import *
 from resources.lang.enGB.logs import *
@@ -120,7 +120,7 @@ def _html_recordings(json_recordings):
             #
         return html_recordings
     except Exception as e:
-        log_internal(True, logDesc__vironmedia_tivo__CreateRecordings, desc='fail', exception=e)
+        log_internal(logException, logDesc__vironmedia_tivo__CreateRecordings, exception=e)
         return '<p>Error</p>'
 
 
@@ -133,7 +133,11 @@ def _get_recordings(service):
     headers = {service_header_clientid_label: serviceId}
     r = requests.get('{host}{uri}'.format(host=host, uri=uri), headers=headers)
     #
-    log_outbound(r.status_code == requests.codes.ok, service['service_id'], uri, 'GET', r.status_code)
+    logResult = logPass if (r.status_code == requests.codes.ok) else logFail
+    log_outbound(logResult,
+                 service['ip'], service['port'], 'GET', uri,
+                 '-', '-',
+                 r.status_code)
     #
     if r.status_code == requests.codes.ok:
         return r.json()
@@ -150,7 +154,11 @@ def _get_current_chan(service):
     headers = {service_header_clientid_label: serviceId}
     r = requests.get('{host}{uri}'.format(host=host, uri=uri), headers=headers)
     #
-    log_outbound(r.status_code == requests.codes.ok, service['service_id'], uri, 'GET', r.status_code)
+    logResult = logPass if (r.status_code == requests.codes.ok) else logFail
+    log_outbound(logResult,
+                 service['ip'], service['port'], 'GET', uri,
+                 '-', '-',
+                 r.status_code)
     #
     if r.status_code == requests.codes.ok:
         return r.json()
