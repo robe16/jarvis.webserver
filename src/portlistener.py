@@ -4,6 +4,7 @@ from bottle import HTTPError
 from bottle import get, post, delete, static_file
 from bottle import request, run, HTTPResponse
 
+from common_functions.query_to_string import convert_query_to_string
 from config.config import get_cfg_port_listener
 from discovery.remove_service import remove_service
 from html.home import create_home
@@ -48,7 +49,7 @@ def start_bottle(port_threads, services):
         except:
             server_ip = urlparts.hostname
         #
-        server_request_query = request.query_string if request.query_string else '-'
+        server_request_query = convert_query_to_string(request.query_string) if request.query_string else '-'
         server_request_body = request.body.read() if request.body.read()!='' else '-'
         #
         return {'client_ip': client_ip,
@@ -439,14 +440,3 @@ def start_bottle(port_threads, services):
     # Use .join() for all threads to keep main process 'alive'
     for t in port_threads:
         t.join()
-
-
-def _convert_query_to_string(bottleDict):
-    #
-    str = '{'
-    for k in bottleDict:
-        str += ', ' if not str == '{' else ''
-        str += '"{key}":"{value}"'.format(key=k, value=bottleDict[k])
-    str += '}'
-    #
-    return str
