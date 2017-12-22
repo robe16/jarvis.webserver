@@ -49,7 +49,7 @@ def start_bottle(port_threads, services):
         except:
             server_ip = urlparts.hostname
         #
-        server_request_query = convert_query_to_string(request.query_string) if request.query_string else '-'
+        server_request_query = convert_query_to_string(request.query) if request.query_string else '-'
         server_request_body = request.body.read() if request.body.read()!='' else '-'
         #
         return {'client_ip': client_ip,
