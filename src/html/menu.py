@@ -7,7 +7,7 @@ from resources.groups.groups_functions import get_group_image
 def html_menu(services):
     html = _html_menu_lhs(services)
     html += _html_menu_rhs()
-    html += open('/resources/html/common/menu_command_result.html', 'r').read()
+    html += open('resources/html/common/menu_command_result.html', 'r').read()
     return html
 
 
@@ -20,7 +20,7 @@ def _html_menu_lhs(services):
     grouped_services = group_services(services)
     #
     if len(grouped_services) == 0:
-        return open('/resources/html/common/menu_lhs.html', 'r').read().format(menu='')
+        return open('resources/html/common/menu_lhs.html', 'r').read().format(menu='')
     #
     for c in grouped_services.keys():
         #
@@ -37,7 +37,7 @@ def _html_menu_lhs(services):
                         'name': g,
                         'img': '/img/group/{img}'.format(img=img)}
                 #
-                html += open('/resources/html/common/menu_item.html', 'r').read().format(**args)
+                html += open('resources/html/common/menu_item.html', 'r').read().format(**args)
                 #
                 #
             except:
@@ -48,8 +48,8 @@ def _html_menu_lhs(services):
     #
     ################
     #
-    return open('/resources/html/common/menu_lhs.html', 'r').read().format(menu=html)
+    return open('resources/html/common/menu_lhs.html', 'r').read().format(menu=html)
 
 
 def _html_menu_rhs():
-    return open('/resources/html/common/menu_rhs.html', 'r').read().format(uri_servicestatus=uri_servicestatus)
+    return open('resources/html/common/menu_rhs.html', 'r').read().format(uri_servicestatus=uri_servicestatus)
