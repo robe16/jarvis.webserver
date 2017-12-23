@@ -14,7 +14,6 @@ COPY requirements.txt requirements.txt
 
 # Install app dependencies
 RUN pip3 install -r requirements.txt
-RUN pip3 install requests[security]
 
 # Run application
 CMD python3 run.py
