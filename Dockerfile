@@ -2,7 +2,7 @@ FROM resin/rpi-raspbian:latest
 MAINTAINER robe16
 
 # Update
-RUN apt-get update && apt-get install -y python python-pip
+RUN apt-get update && apt-get install -y python3 python-pip
 
 WORKDIR /jarvis/webserver
 
@@ -13,8 +13,8 @@ COPY src /jarvis/webserver
 COPY requirements.txt requirements.txt
 
 # Install app dependencies
-RUN pip install -r requirements.txt
-RUN pip install requests[security]
+RUN pip3 install -r requirements.txt
+RUN pip3 install requests[security]
 
 # Run application
-CMD python run.py
+CMD python3 run.py

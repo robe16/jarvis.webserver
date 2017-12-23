@@ -1,5 +1,5 @@
 from log.log import log_internal
-from channels import channels
+from resources.channels import channels
 from resources.global_resources.logs import logFail, logException
 
 

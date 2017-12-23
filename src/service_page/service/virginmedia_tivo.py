@@ -1,4 +1,4 @@
-from urllib import urlopen
+from urllib.request import urlopen
 import requests
 
 from log.log import log_outbound, log_internal

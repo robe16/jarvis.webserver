@@ -1,7 +1,6 @@
-from urllib import urlopen
+from urllib.request import urlopen
 from common_functions.urlencode import url_encode
 from resources.global_resources.variables import uri_servicestatus
-from resources.global_resources.services import service_variables
 from discovery.group_services import group_services
 from resources.groups.groups_functions import get_group_image
 

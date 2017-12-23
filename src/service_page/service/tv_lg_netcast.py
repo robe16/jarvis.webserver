@@ -1,5 +1,5 @@
 import requests
-from urllib import urlopen
+from urllib.request import urlopen
 from resources.global_resources.variables import *
 from resources.global_resources.logs import logPass, logFail
 from log.log import log_outbound

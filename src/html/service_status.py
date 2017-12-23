@@ -1,5 +1,5 @@
 import datetime
-from urllib import urlopen
+from urllib.request import urlopen
 
 from common_functions.urlencode import url_encode
 from html.page_body import create_page

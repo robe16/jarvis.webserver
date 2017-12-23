@@ -1,4 +1,4 @@
-from urllib import urlopen
+from urllib.request import urlopen
 
 
 def create_error(code):
