@@ -1,4 +1,4 @@
-from resources.groups import groups as groups
+from resources.groups.groups import groups as groups
 from log.log import log_internal
 from resources.lang.enGB.logs import logDesc_group_NotFound, logDesc_group_ImageNameNotFound
 from resources.global_resources.logs import logFail, logException
