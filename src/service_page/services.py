@@ -1,5 +1,3 @@
-from urllib.request import urlopen
-
 from resources.global_resources.variables import projectName
 from html.page_body import create_page
 from service_page.service.tv_lg_netcast import createPage_tv_lg_netcast
