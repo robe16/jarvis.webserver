@@ -7,6 +7,9 @@ from resources.channels.channels_functions import get_image
 from resources.global_resources.variables import *
 from resources.lang.enGB.logs import *
 
+from requests.packages.urllib3.exceptions import InsecureRequestWarning
+requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
+
 
 def createhtml_channels(service):
     #TODO

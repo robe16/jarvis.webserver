@@ -4,6 +4,9 @@ from resources.global_resources.variables import *
 from resources.global_resources.logs import logPass, logFail
 from log.log import log_outbound
 
+from requests.packages.urllib3.exceptions import InsecureRequestWarning
+requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
+
 
 def createPage_tv_lg_netcast(service):
     #

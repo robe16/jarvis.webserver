@@ -1,6 +1,5 @@
 import datetime
 from socket import socket, AF_INET, SOCK_DGRAM
-
 import requests
 
 from log.log import log_outbound, log_internal
@@ -8,6 +7,9 @@ from resources.global_resources.logs import logPass, logFail, logException
 from resources.global_resources.broadcast import jarvis_broadcastPort
 from resources.global_resources.variables import service_uri_config
 from resources.lang.enGB.logs import logDesc_services_Discovery
+
+from requests.packages.urllib3.exceptions import InsecureRequestWarning
+requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
 
 def discover_services(services):
