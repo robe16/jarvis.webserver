@@ -1,4 +1,3 @@
-from urllib.request import urlopen
 from common_functions.urlencode import url_encode
 from resources.global_resources.variables import uri_servicestatus
 from discovery.group_services import group_services
@@ -8,7 +7,7 @@ from resources.groups.groups_functions import get_group_image
 def html_menu(services):
     html = _html_menu_lhs(services)
     html += _html_menu_rhs()
-    html += urlopen('resources/html/common/menu_command_result.html').read().encode('utf-8')
+    html += open('resources/html/common/menu_command_result.html', 'r').read()
     return html
 
 
@@ -35,7 +34,7 @@ def _html_menu_lhs(services):
                         'name': g,
                         'img': '/img/group/{img}'.format(img=img)}
                 #
-                html += urlopen('resources/html/common/menu_item.html').read().encode('utf-8').format(**args)
+                html += open('resources/html/common/menu_item.html', 'r').read().format(**args)
                 #
                 #
             except:
@@ -46,8 +45,8 @@ def _html_menu_lhs(services):
     #
     ################
     #
-    return urlopen('resources/html/common/menu_lhs.html').read().encode('utf-8').format(menu=html)
+    return open('resources/html/common/menu_lhs.html', 'r').read().format(menu=html)
 
 
 def _html_menu_rhs():
-    return urlopen('resources/html/common/menu_rhs.html').read().encode('utf-8').format(uri_servicestatus=uri_servicestatus)
+    return open('resources/html/common/menu_rhs.html', 'r').read().format(uri_servicestatus=uri_servicestatus)
