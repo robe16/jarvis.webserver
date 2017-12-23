@@ -1,6 +1,3 @@
-from urllib.request import urlopen
-
-
 def create_error(code):
     if code == 404:
         args = {'code': '404',
@@ -15,9 +12,9 @@ def create_error(code):
                 'desc': 'Unknown',
                 'mesg': 'An error has been encountered, please try again!!'}
     #
-    body = urlopen('resources/html/error/error.html').read().encode('utf-8').format(**args)
+    body = open('resources/html/error/error.html', 'r').read().format(**args)
     #
-    return urlopen('resources/html/common/header.html').read().encode('utf-8').format(title='Error {code}'.format(code=str(code))) + \
-           urlopen('resources/html/common/menu_lhs.html').read().encode('utf-8').format(menu='') +\
-           urlopen('resources/html/common/body.html').read().encode('utf-8').format(header='', body=body) +\
-           urlopen('resources/html/common/footer.html').read().encode('utf-8')
+    return open('resources/html/common/header.html', 'r').read().format(title='Error {code}'.format(code=str(code))) + \
+           open('resources/html/common/menu_lhs.html', 'r').read().format(menu='') + \
+           open('resources/html/common/body.html', 'r').read().format(header='', body=body) + \
+           open('resources/html/common/footer.html', 'r').read()

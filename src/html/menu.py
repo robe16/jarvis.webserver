@@ -19,6 +19,9 @@ def _html_menu_lhs(services):
     #
     grouped_services = group_services(services)
     #
+    if not bool(grouped_services):
+        return open('resources/html/common/menu_lhs.html', 'r').read().format(menu='')
+    #
     for c in grouped_services.keys():
         #
         for g in grouped_services[c].keys():
