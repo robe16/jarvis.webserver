@@ -3,8 +3,7 @@ MAINTAINER robe16
 
 # Update
 RUN apt-get update \
-    && apt-get install -y python3 python-pip \
-    && apt-get install -y libxml2-dev libxslt-dev python-dev zlib1g-dev
+    && apt-get install -y python3 python3-pip
 
 WORKDIR /jarvis/webserver
 
