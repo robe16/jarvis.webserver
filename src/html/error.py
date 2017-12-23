@@ -1,4 +1,4 @@
-import os
+from urllib.request import urlopen
 
 def create_error(code):
     if code == 404:
@@ -14,9 +14,9 @@ def create_error(code):
                 'desc': 'Unknown',
                 'mesg': 'An error has been encountered, please try again!!'}
     #
-    body = open(os.path.join(os.path.dirname(__file__), '../resources/html/error/error.html'), 'r').read().format(**args)
+    body = urlopen('resources/html/error/error.html').read().encode('UTF-8').format(**args)
     #
-    return open(os.path.join(os.path.dirname(__file__), '../resources/html/common/header.html'), 'r').read().format(title='Error {code}'.format(code=str(code))) + \
-           open(os.path.join(os.path.dirname(__file__), '../resources/html/common/menu_lhs.html'), 'r').read().format(menu='') + \
-           open(os.path.join(os.path.dirname(__file__), '../resources/html/common/body.html'), 'r').read().format(header='', body=body) + \
-           open(os.path.join(os.path.dirname(__file__), '../resources/html/common/footer.html'), 'r').read()
+    return urlopen('resources/html/common/header.html').read().encode('UTF-8').format(title='Error {code}'.format(code=str(code))) + \
+           urlopen('resources/html/common/menu_lhs.html').read().encode('UTF-8').format(menu='') + \
+           urlopen('resources/html/common/body.html').read().encode('UTF-8').format(header='', body=body) + \
+           urlopen('resources/html/common/footer.html').read().encode('UTF-8')
