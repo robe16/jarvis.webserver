@@ -9,11 +9,10 @@ from resources.global_resources.variables import service_uri_config
 from resources.lang.enGB.logs import logDesc_services_Discovery
 
 
-requests.packages.urllib3.disable_warnings()
-
 def discover_services(services):
     while True:
         try:
+            #
             s = socket(AF_INET, SOCK_DGRAM)
             s.bind(('0.0.0.0', jarvis_broadcastPort))
             #:
