@@ -1,3 +1,4 @@
+import os
 import requests
 from resources.global_resources.variables import *
 from resources.global_resources.logs import logPass, logFail
@@ -9,7 +10,7 @@ def createPage_tv_lg_netcast(service):
     args = {'service_id': service['service_id'],
             'apps': _html_apps(service)}
     #
-    page_body = open('resources/html/services/tv_lg_netcast/tv_lg_netcast.html').read().format(**args)
+    page_body = open(os.path.join(os.path.dirname(__file__), '../resources/html/services/tv_lg_netcast/tv_lg_netcast.html'), 'r').read().format(**args)
     #
     return page_body
 
@@ -34,7 +35,7 @@ def _html_apps(service):
                         'auid': json_applist[app]['auid'],
                         'name': json_applist[app]['name']}
                 #
-                html += open('resources/html/services/tv_lg_netcast/app_button.html').read().format(**args)
+                html += open(os.path.join(os.path.dirname(__file__), '../resources/html/services/tv_lg_netcast/app_button.html'), 'r').read().format(**args)
                 #
                 count += 1
                 #

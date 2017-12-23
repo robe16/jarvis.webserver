@@ -1,3 +1,4 @@
+import os
 from resources.global_resources.variables import projectName
 from html.page_body import create_page
 from service_page.service.tv_lg_netcast import createPage_tv_lg_netcast
@@ -30,11 +31,11 @@ def serviceHtml(services, service_id):
             elif service_type == 'virginmedia_tivo':
                 page_body = createPage_virginmedia_tivo(services[service_id])
             else:
-                page_body = open('resources/html/services/_unknown.html').read().format(service_id=service_id)
+                page_body = open(os.path.join(os.path.dirname(__file__), '../resources/html/services/_unknown.html'), 'r').read().format(service_id=service_id)
 
         else:
-            page_body = open('resources/html/services/_offline.html').read().format(service_id=service_id)
+            page_body = open(os.path.join(os.path.dirname(__file__), '../resources/html/services/_offline.html'), 'r').read().format(service_id=service_id)
     else:
-        page_body = open('resources/html/services/_null.html').read().format(service_id=service_id)
+        page_body = open(os.path.join(os.path.dirname(__file__), '../resources/html/services/_null.html'), 'r').read().format(service_id=service_id)
     #
     return page_body

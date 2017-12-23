@@ -1,3 +1,5 @@
+import os
+
 def create_error(code):
     if code == 404:
         args = {'code': '404',
@@ -12,9 +14,9 @@ def create_error(code):
                 'desc': 'Unknown',
                 'mesg': 'An error has been encountered, please try again!!'}
     #
-    body = open('resources/html/error/error.html', 'r').read().format(**args)
+    body = open(os.path.join(os.path.dirname(__file__), '../resources/html/error/error.html'), 'r').read().format(**args)
     #
-    return open('resources/html/common/header.html', 'r').read().format(title='Error {code}'.format(code=str(code))) + \
-           open('resources/html/common/menu_lhs.html', 'r').read().format(menu='') + \
-           open('resources/html/common/body.html', 'r').read().format(header='', body=body) + \
-           open('resources/html/common/footer.html', 'r').read()
+    return open(os.path.join(os.path.dirname(__file__), '../resources/html/common/header.html'), 'r').read().format(title='Error {code}'.format(code=str(code))) + \
+           open(os.path.join(os.path.dirname(__file__), '../resources/html/common/menu_lhs.html'), 'r').read().format(menu='') + \
+           open(os.path.join(os.path.dirname(__file__), '../resources/html/common/body.html'), 'r').read().format(header='', body=body) + \
+           open(os.path.join(os.path.dirname(__file__), '../resources/html/common/footer.html'), 'r').read()

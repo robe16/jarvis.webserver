@@ -1,4 +1,4 @@
-from urllib.request import urlopen
+import os
 from common_functions.urlencode import url_decode
 from resources.lang.enGB.logs import *
 from resources.global_resources.variables import projectName
@@ -61,13 +61,13 @@ def groupHtml(services, group_id):
                     'name': services[service]['name_long'],
                     'class': class_buttons}
             #
-            html_buttons += urlopen('resources/html/groups/group_item_btn.html').read().encode('utf-8').format(**args)
+            html_buttons += open(os.path.join(os.path.dirname(__file__), '../resources/html/groups/group_item_btn.html'), 'r').read().format(**args)
             #
             args = {'service_id': services[service]['service_id'],
                     'service_body': serviceHtml(services, services[service]['service_id']),
                     'class': class_page}
             #
-            html_pages += urlopen('resources/html/groups/group_item_body.html').read().encode('utf-8').format(**args)
+            html_pages += open(os.path.join(os.path.dirname(__file__), '../resources/html/groups/group_item_body.html'), 'r').read().format(**args)
             #
         #
         for subservice in grouped_services[category][group_name]['subservices']:
@@ -80,10 +80,10 @@ def groupHtml(services, group_id):
         #
         log_internal(logPass, logDesc_groupPage, description=group_id)
         #
-        return urlopen('resources/html/groups/group.html').read().encode('utf-8').format(**args)
+        return open(os.path.join(os.path.dirname(__file__), '../resources/html/groups/group.html'), 'r').read().format(**args)
         #
     except Exception as e:
         #
         log_internal(logException, logDesc_groupPage, description=group_id, exception=e)
         #
-        return urlopen('resources/html/groups/group_error.html').read().encode('utf-8').format(group_id=group_id)
+        return open(os.path.join(os.path.dirname(__file__), '../resources/html/groups/group_error.html'), 'r').read().format(group_id=group_id)
