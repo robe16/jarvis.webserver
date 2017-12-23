@@ -14,6 +14,7 @@ COPY requirements.txt requirements.txt
 
 # Install app dependencies
 RUN pip install -r requirements.txt
+RUN pip install requests[security]
 
 # Run application
 CMD python run.py
