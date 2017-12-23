@@ -1,5 +1,4 @@
 import requests
-from urllib.request import urlopen
 from resources.global_resources.variables import *
 from resources.global_resources.logs import logPass, logFail
 from log.log import log_outbound
@@ -10,7 +9,7 @@ def createPage_tv_lg_netcast(service):
     args = {'service_id': service['service_id'],
             'apps': _html_apps(service)}
     #
-    page_body = urlopen('resources/html/services/tv_lg_netcast/tv_lg_netcast.html').read().encode('utf-8').format(**args)
+    page_body = open('resources/html/services/tv_lg_netcast/tv_lg_netcast.html').read().format(**args)
     #
     return page_body
 
@@ -35,7 +34,7 @@ def _html_apps(service):
                         'auid': json_applist[app]['auid'],
                         'name': json_applist[app]['name']}
                 #
-                html += urlopen('resources/html/services/tv_lg_netcast/app_button.html').read().encode('utf-8').format(**args)
+                html += open('resources/html/services/tv_lg_netcast/app_button.html').read().format(**args)
                 #
                 count += 1
                 #

@@ -1,12 +1,13 @@
 import os
 import threading
-from bottle import HTTPError
+from bottle import HTTPError, error
 from bottle import get, post, delete, static_file
 from bottle import request, run, HTTPResponse
 
 from common_functions.query_to_string import convert_query_to_string
 from config.config import get_cfg_port_listener
 from discovery.remove_service import remove_service
+from html.error import create_error
 from html.home import create_home
 from html.service_status import create_servicestatus
 from log.log import log_inbound, log_internal
@@ -410,14 +411,14 @@ def start_bottle(port_threads, services):
     # Error pages/responses
     ################################################################################################
 
-    # @error(404)
-    # def error404(error):
-    #     return HTTPResponse(body=create_error(404), status=404)
+    @error(404)
+    def error404(error):
+        return HTTPResponse(body=create_error(404), status=404)
 
 
-    # @error(500)
-    # def error500(error):
-    #     return HTTPResponse(body=create_error(500), status=500)
+    @error(500)
+    def error500(error):
+        return HTTPResponse(body=create_error(500), status=500)
 
 
     ################################################################################################

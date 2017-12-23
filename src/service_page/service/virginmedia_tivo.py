@@ -1,4 +1,3 @@
-from urllib.request import urlopen
 import requests
 
 from log.log import log_outbound, log_internal
@@ -26,7 +25,7 @@ def createPage_virginmedia_tivo(service):
             'now_viewing': current_chan['name'],
             'html_channels': html_channels}
     #
-    page_body = urlopen('resources/html/services/virginmedia_tivo/virginmedia_tivo.html').read().encode('utf-8').format(**args)
+    page_body = open('resources/html/services/virginmedia_tivo/virginmedia_tivo.html').read().format(**args)
     #
     return page_body
 
