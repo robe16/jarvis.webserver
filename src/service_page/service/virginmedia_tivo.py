@@ -15,15 +15,27 @@ def createhtml_channels(service):
 
 def createPage_virginmedia_tivo(service):
     #
+    with open(os.path.join(os.path.dirname(__file__), '../../resources/html/services/virginmedia_tivo/controls.html'), 'r') as f:
+        html_controls = f.read().format(service_id=service['service_id'])
+    #
     recordings = _get_recordings(service)
+    with open(os.path.join(os.path.dirname(__file__), '../../resources/html/services/virginmedia_tivo/recordings.html'), 'r') as f:
+        args = {'html_recordings': _html_recordings(recordings),
+                'timestamp_recordings': recordings['timestamp']}
+        html_recordings = f.read().format(**args)
+    #
     current_chan = _current_chan(service)
     html_channels = createhtml_channels(service)
+    with open(os.path.join(os.path.dirname(__file__), '../../resources/html/services/virginmedia_tivo/channels.html'), 'r') as f:
+        args = {'now_viewing_logo': current_chan['logo'],
+                'now_viewing': current_chan['name'],
+                'html_channels': html_channels}
+        html_channels = f.read().format(**args)
+
     #
     args = {'service_id': service['service_id'],
-            'html_recordings': _html_recordings(recordings),
-            'timestamp_recordings': recordings['timestamp'],
-            'now_viewing_logo': current_chan['logo'],
-            'now_viewing': current_chan['name'],
+            'html_controls': html_controls,
+            'html_recordings': html_recordings,
             'html_channels': html_channels}
     #
     with open(os.path.join(os.path.dirname(__file__), '../../resources/html/services/virginmedia_tivo/virginmedia_tivo.html'), 'r') as f:
