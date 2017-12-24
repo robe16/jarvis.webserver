@@ -1,6 +1,8 @@
 logDescStartingService = 'Starting micro service'
 logDescPortListener = 'Port listener - {port}'
 
+logDesc_htmlMenu = 'Creating HTML menu code'
+
 logDesc_services_Discovery = 'Discovery of services'
 logDesc_services_RemoveService = 'Removal of service \'{service}\' from discovered service dictionary'
 

@@ -21,14 +21,14 @@ def get_group_category_list(cat):
 
 def get_group_rooms_list():
     l = []
-    for g in groups['rooms']:
+    for g, v in groups['rooms'].items():
         l.append(g)
     return l
 
 
 def get_group_themes_list():
     l = []
-    for g in groups['themes']:
+    for g, v in groups['themes'].items():
         l.append(g)
     return l
 

@@ -31,11 +31,14 @@ def serviceHtml(services, service_id):
             elif service_type == 'virginmedia_tivo':
                 page_body = createPage_virginmedia_tivo(services[service_id])
             else:
-                page_body = open(os.path.join(os.path.dirname(__file__), '../resources/html/services/_unknown.html'), 'r').read().format(service_id=service_id)
+                with open(os.path.join(os.path.dirname(__file__), '../resources/html/services/_unknown.html'), 'r') as f:
+                    page_body = f.read().format(service_id=service_id)
 
         else:
-            page_body = open(os.path.join(os.path.dirname(__file__), '../resources/html/services/_offline.html'), 'r').read().format(service_id=service_id)
+            with open(os.path.join(os.path.dirname(__file__), '../resources/html/services/_offline.html'), 'r') as f:
+                page_body = f.read().format(service_id=service_id)
     else:
-        page_body = open(os.path.join(os.path.dirname(__file__), '../resources/html/services/_null.html'), 'r').read().format(service_id=service_id)
+        with open(os.path.join(os.path.dirname(__file__), '../resources/html/services/_null.html'), 'r') as f:
+            page_body = f.read().format(service_id=service_id)
     #
     return page_body

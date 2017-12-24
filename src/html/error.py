@@ -1,4 +1,4 @@
-from urllib.request import urlopen
+import os
 
 def create_error(code):
     if code == 404:
@@ -14,9 +14,21 @@ def create_error(code):
                 'desc': 'Unknown',
                 'mesg': 'An error has been encountered, please try again!!'}
     #
-    body = urlopen('resources/html/error/error.html').read().encode('UTF-8').format(**args)
+    with open(os.path.join(os.path.dirname(__file__), '../resources/html/error/error.html'), 'r') as f:
+        body = f.read().format(**args)
+    with open(os.path.join(os.path.dirname(__file__), '../resources/html/common/body.html'), 'r') as f:
+        body = f.read().format(resources='', header='', body=body)
     #
-    return urlopen('resources/html/common/header.html').read().encode('UTF-8').format(title='Error {code}'.format(code=str(code))) + \
-           urlopen('resources/html/common/menu_lhs.html').read().encode('UTF-8').format(menu='') + \
-           urlopen('resources/html/common/body.html').read().encode('UTF-8').format(header='', body=body) + \
-           urlopen('resources/html/common/footer.html').read().encode('UTF-8')
+    with open(os.path.join(os.path.dirname(__file__), '../resources/html/common/header.html'), 'r') as f:
+        header = f.read().format(title='Error {code}'.format(code=str(code)))
+    #
+    with open(os.path.join(os.path.dirname(__file__), '../resources/html/common/menu_lhs.html'), 'r') as f:
+        menu = f.read().format(menu='')
+    #
+    with open(os.path.join(os.path.dirname(__file__), '../resources/html/common/footer.html'), 'r') as f:
+        footer = f.read()
+    #
+    return '{header}{menu}{body}{footer}'.format(header=header,
+                                                 menu=menu,
+                                                 body=body,
+                                                 footer=footer)

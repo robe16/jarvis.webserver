@@ -40,50 +40,56 @@ def groupHtml(services, group_id):
         html_buttons = ''
         html_pages = ''
         #
-        for service in grouped_services[category][group_name]['services']:
+        if bool(grouped_services):
             #
-            type = services[service]['service_type']
-            if type in service_variables:
-                img = service_variables[type]['type']
-            else:
-                img = 'logo_other.png'
+            for service in grouped_services[category][group_name]['services']:
+                #
+                type = services[service]['service_type']
+                if type in service_variables:
+                    img = service_variables[type]['type']
+                else:
+                    img = 'logo_other.png'
+                #
+                if first_item:
+                    class_buttons = ''
+                    class_page = 'grp_body_show'
+                    first_item = False
+                else:
+                    class_buttons = 'btn_shadow grayscale'
+                    class_page = 'grp_body_hide'
+                #
+                args = {'service_id': services[service]['service_id'],
+                        'img': '/img/service/{img}'.format(img=img),
+                        'name': services[service]['name_long'],
+                        'class': class_buttons}
+                #
+                with open(os.path.join(os.path.dirname(__file__), '../resources/html/groups/group_item_btn.html'), 'r') as f:
+                    html_buttons += f.read().format(**args)
+                #
+                args = {'service_id': services[service]['service_id'],
+                        'service_body': serviceHtml(services, services[service]['service_id']),
+                        'class': class_page}
+                #
+                with open(os.path.join(os.path.dirname(__file__), '../resources/html/groups/group_item_body.html'), 'r') as f:
+                    html_pages += f.read().format(**args)
+                #
             #
-            if first_item:
-                class_buttons = ''
-                class_page = 'grp_body_show'
-                first_item = False
-            else:
-                class_buttons = 'btn_shadow grayscale'
-                class_page = 'grp_body_hide'
-            #
-            args = {'service_id': services[service]['service_id'],
-                    'img': '/img/service/{img}'.format(img=img),
-                    'name': services[service]['name_long'],
-                    'class': class_buttons}
-            #
-            html_buttons += open(os.path.join(os.path.dirname(__file__), '../resources/html/groups/group_item_btn.html'), 'r').read().format(**args)
-            #
-            args = {'service_id': services[service]['service_id'],
-                    'service_body': serviceHtml(services, services[service]['service_id']),
-                    'class': class_page}
-            #
-            html_pages += open(os.path.join(os.path.dirname(__file__), '../resources/html/groups/group_item_body.html'), 'r').read().format(**args)
-            #
-        #
-        for subservice in grouped_services[category][group_name]['subservices']:
-            pass
-            #
-            # TODO
+            for subservice in grouped_services[category][group_name]['subservices']:
+                pass
+                #
+                # TODO
         #
         args = {'service_buttons': html_buttons,
                 'service_pages': html_pages}
         #
         log_internal(logPass, logDesc_groupPage, description=group_id)
         #
-        return open(os.path.join(os.path.dirname(__file__), '../resources/html/groups/group.html'), 'r').read().format(**args)
+        with open(os.path.join(os.path.dirname(__file__), '../resources/html/groups/group.html'), 'r') as f:
+            return f.read().format(**args)
         #
     except Exception as e:
         #
         log_internal(logException, logDesc_groupPage, description=group_id, exception=e)
         #
-        return open(os.path.join(os.path.dirname(__file__), '../resources/html/groups/group_error.html'), 'r').read().format(group_id=group_id)
+        with open(os.path.join(os.path.dirname(__file__), '../resources/html/groups/group_error.html'), 'r') as f:
+            return f.read().format(group_id=group_id)

@@ -8,7 +8,8 @@ def create_home(services):
     resources = '<script src="/resource/js/jarvis.clock.js"></script>'
     resources += '<link rel="stylesheet" href="/resource/css/jarvis.clock.css">'
     #
-    page_body = open(os.path.join(os.path.dirname(__file__), '../resources/html/home/home.html'), 'r').read()
+    with open(os.path.join(os.path.dirname(__file__), '../resources/html/home/home.html'), 'r') as f:
+        page_body = f.read()
     #
     return create_page(services,
                        page_body,

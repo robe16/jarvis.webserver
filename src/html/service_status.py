@@ -18,71 +18,81 @@ def create_servicestatus(services):
     html_current = ''
     html_mia = ''
     #
-    for s in services.keys():
-        #
-        type = services[s]['service_type']
-        #
-        if type in service_variables:
+    if bool(services):
+        for s in services.keys():
             #
-            if service_variables[type]['type']:
-                img_type = service_variables[type]['type']
+            type = services[s]['service_type']
+            #
+            if type in service_variables:
+                #
+                if service_variables[type]['type']:
+                    img_type = service_variables[type]['type']
+                else:
+                    img_type = 'logo_other.png'
+                #
+                if service_variables[type]['logo']:
+                    img_logo = service_variables[type]['logo']
+                else:
+                    img_logo = 'logo_other.png'
+                #
             else:
                 img_type = 'logo_other.png'
-            #
-            if service_variables[type]['logo']:
-                img_logo = service_variables[type]['logo']
-            else:
                 img_logo = 'logo_other.png'
             #
-        else:
-            img_type = 'logo_other.png'
-            img_logo = 'logo_other.png'
-        #
-        status = 'Online' if services[s]['active'] else 'Offline'
-        #
-        if len(services[s]['groups']) > 0:
-            html_groups = ''
-            for g in services[s]['groups']:
-                g_args = {'href': '/group/page/{group_id}'.format(group_id=url_encode(g)),
-                          'group_name': g,
-                          'img_filename': get_group_image(g)}
-                html_groups += open(os.path.join(os.path.dirname(__file__), '../resources/html/service_status/service_group_img.html'), 'r').read().format(**g_args)
-        else:
-            html_groups = '<p>n/a</p>'
-        #
-        args = {'service_id': services[s]['service_id'],
-                'service_type': services[s]['service_type'],
-                'name_long': services[s]['name_long'],
-                'name_short': services[s]['name_short'],
-                'groups': html_groups,
-                'subservices': _html_subservices(services[s]['subservices']),
-                'status': status,
-                'img_type': '/img/service/{img_type}'.format(img_type=img_type),
-                'img_logo': '/img/service/{img_logo}'.format(img_logo=img_logo)}
-        #
-        if services[s]['timestamp'] < (datetime.datetime.now() + datetime.timedelta(seconds=discovery_service_mia)):
-            html_current += open(os.path.join(os.path.dirname(__file__), '../resources/html/service_status/service.html'), 'r').read().format(**args)
-        else:
-            html_mia += open(os.path.join(os.path.dirname(__file__), '../resources/html/service_status/service.html'), 'r').read().format(**args)
+            status = 'Online' if services[s]['active'] else 'Offline'
+            #
+            if len(services[s]['groups']) > 0:
+                html_groups = ''
+                for g in services[s]['groups']:
+                    g_args = {'href': '/group/page/{group_id}'.format(group_id=url_encode(g)),
+                              'group_name': g,
+                              'img_filename': get_group_image(g)}
+                    with open(os.path.join(os.path.dirname(__file__), '../resources/html/service_status/service_group_img.html'), 'r') as f:
+                        html_groups += f.read().format(**g_args)
+            else:
+                html_groups = '<p>n/a</p>'
+            #
+            args = {'service_id': services[s]['service_id'],
+                    'service_type': services[s]['service_type'],
+                    'name_long': services[s]['name_long'],
+                    'name_short': services[s]['name_short'],
+                    'groups': html_groups,
+                    'subservices': _html_subservices(services[s]['subservices']),
+                    'status': status,
+                    'img_type': '/img/service/{img_type}'.format(img_type=img_type),
+                    'img_logo': '/img/service/{img_logo}'.format(img_logo=img_logo)}
+            #
+            if services[s]['timestamp'] < (datetime.datetime.now() + datetime.timedelta(seconds=discovery_service_mia)):
+                with open(os.path.join(os.path.dirname(__file__), '../resources/html/service_status/service.html'), 'r') as f:
+                    html_current += f.read().format(**args)
+            else:
+                with open(os.path.join(os.path.dirname(__file__), '../resources/html/service_status/service.html'), 'r') as f:
+                    html_mia += f.read().format(**args)
     #
     # Current
-    page_body = open(os.path.join(os.path.dirname(__file__), '../resources/html/service_status/service_header.html'), 'r').read().format(header=service_status_active_header,
-                                                                                                                                         note=service_status_active_note)
+    with open(os.path.join(os.path.dirname(__file__), '../resources/html/service_status/service_header.html'), 'r') as f:
+        page_body = f.read().format(header=service_status_active_header,
+                                    note=service_status_active_note)
+    #
     if html_current == '':
-        page_body += open(os.path.join(os.path.dirname(__file__), '../resources/html/service_status/service_null.html'), 'r').read().format(message=service_status_active_none_msg)
+        with open(os.path.join(os.path.dirname(__file__), '../resources/html/service_status/service_null.html'), 'r') as f:
+            page_body += f.read().format(message=service_status_active_none_msg)
     else:
         page_body += '<div class="row">{body}</div>'.format(body=html_current)
     #
     page_body += '<hr>'
     #
     # MIA
-    page_body += open(os.path.join(os.path.dirname(__file__), '../resources/html/service_status/service_header.html'), 'r').read().format(header=service_status_mia_header,
-                                                                                                                                          note=service_status_mia_note)
+    with open(os.path.join(os.path.dirname(__file__), '../resources/html/service_status/service_header.html'), 'r') as f:
+        page_body += f.read().format(header=service_status_mia_header,
+                                     note=service_status_mia_note)
+    #
     if html_mia == '':
-        page_body += open(os.path.join(os.path.dirname(__file__), '../resources/html/service_status/service_null.html'), 'r').read().format(message=service_status_mia_none_msg)
+        with open(os.path.join(os.path.dirname(__file__), '../resources/html/service_status/service_null.html'), 'r') as f:
+            page_body += f.read().format(message=service_status_mia_none_msg)
     else:
         page_body += '<div class="row">{body}</div>'.format(body=html_mia)
-    #
+        #
     return create_page(services,
                        page_body,
                        resources=resources,
@@ -103,7 +113,8 @@ def _html_subservices(subservices):
                     g_args = {'href': '/group/page/{group_id}'.format(group_id=url_encode(g)),
                               'group_name': g,
                               'img_filename': get_group_image(g)}
-                    html_groups += open(os.path.join(os.path.dirname(__file__), '../resources/html/service_status/service_group_img.html'), 'r').read().format(**g_args)
+                    with open(os.path.join(os.path.dirname(__file__), '../resources/html/service_status/service_group_img.html'), 'r') as f:
+                        html_groups += f.read().format(**g_args)
             else:
                 html_groups = '<p>n/a</p>'
             #
@@ -111,7 +122,8 @@ def _html_subservices(subservices):
                     'subservice_type': sub['type'],
                     'subservice_groups': html_groups}
             #
-            html_subservices += open(os.path.join(os.path.dirname(__file__), '../resources/html/service_status/subservice_item.html'), 'r').read().format(**args)
+            with open(os.path.join(os.path.dirname(__file__), '../resources/html/service_status/subservice_item.html'), 'r') as f:
+                html_subservices += f.read().format(**args)
         #
     else:
         html_subservices = '<div class="row"><p>n/a</p></div>'
