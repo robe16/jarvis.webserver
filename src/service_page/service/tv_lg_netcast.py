@@ -7,8 +7,12 @@ from log.log import log_outbound
 
 def createPage_tv_lg_netcast(service):
     #
+    with open(os.path.join(os.path.dirname(__file__), '../../resources/html/services/tv_lg_netcast/controls.html'), 'r') as f:
+        html_controls = f.read().format(service_id=service['service_id'])
+    #
     args = {'service_id': service['service_id'],
-            'apps': _html_apps(service)}
+            'html_controls': html_controls,
+            'html_apps': _html_apps(service)}
     #
     with open(os.path.join(os.path.dirname(__file__), '../../resources/html/services/tv_lg_netcast/tv_lg_netcast.html'), 'r') as f:
         page_body = f.read().format(**args)
@@ -45,6 +49,8 @@ def _html_apps(service):
                 html += ''
         #
         html += '</tr></table>'
+        with open(os.path.join(os.path.dirname(__file__), '../../resources/html/services/tv_lg_netcast/apps.html'), 'r') as f:
+            html = f.read().format(apps=html)
         return html
     except:
         return '<p style="text-align:center">App list could has not been retrieved from the device.</p>' +\
