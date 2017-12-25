@@ -8,6 +8,7 @@ from service_page.service.virginmedia_tivo import createPage_virginmedia_tivo
 def servicePage(services, service_id):
     #
     resources = '<script src="/resource/js/jarvis.service_page.js"></script>'
+    resources += '<script src="/resource/js/jarvis.service_functions.js"></script>'
     resources += '<link rel="stylesheet" href="/resource/css/jarvis.service_page.css">'
     #
     return create_page(services,

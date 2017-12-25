@@ -14,6 +14,7 @@ from log.log import log_internal
 def groupPage(services, group_id):
     #
     resources = '<script src="/resource/js/jarvis.service_page.js"></script>'
+    resources += '<script src="/resource/js/jarvis.service_functions.js"></script>'
     resources += '<script src="/resource/js/jarvis.service_group.js"></script>'
     resources += '<link rel="stylesheet" href="/resource/css/jarvis.service_page.css">'
     resources += '<link rel="stylesheet" href="/resource/css/jarvis.service_group.css">'

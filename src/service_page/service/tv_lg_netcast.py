@@ -7,17 +7,52 @@ from log.log import log_outbound
 
 def createPage_tv_lg_netcast(service):
     #
-    with open(os.path.join(os.path.dirname(__file__), '../../resources/html/services/tv_lg_netcast/controls.html'), 'r') as f:
-        html_controls = f.read().format(service_id=service['service_id'])
+    html_buttons = ''
+    html_body = ''
     #
-    args = {'service_id': service['service_id'],
-            'html_controls': html_controls,
-            'html_apps': _html_apps(service)}
+    # Controls
+    with open(os.path.join(os.path.dirname(__file__), '../../resources/html/services/service_function_btn.html'), 'r') as f:
+        html_buttons += f.read().format(width='6',
+                                        service_id=service['service_id'],
+                                        function_id='remote',
+                                        function_name='Remote',
+                                        btn_class='service_function_btn_active')
     #
-    with open(os.path.join(os.path.dirname(__file__), '../../resources/html/services/tv_lg_netcast/tv_lg_netcast.html'), 'r') as f:
+    with open(os.path.join(os.path.dirname(__file__), '../../resources/html/services/service_function_body.html'), 'r') as f:
+        html_body += f.read().format(service_id=service['service_id'],
+                                     function_id='remote',
+                                     function_body=_html_controls(service),
+                                     body_class='service_function_body_active')
+    #
+    # Apps
+    with open(os.path.join(os.path.dirname(__file__), '../../resources/html/services/service_function_btn.html'), 'r') as f:
+        html_buttons += f.read().format(width='6',
+                                        service_id=service['service_id'],
+                                        function_id='apps',
+                                        function_name='Apps',
+                                        btn_class='')
+    #
+    with open(os.path.join(os.path.dirname(__file__), '../../resources/html/services/service_function_body.html'), 'r') as f:
+        html_body += f.read().format(service_id=service['service_id'],
+                                     function_id='apps',
+                                     function_body=_html_apps(service),
+                                     body_class='')
+    #
+    args = {'html_buttons': html_buttons,
+            'html_body': html_body}
+    #
+    with open(os.path.join(os.path.dirname(__file__), '../../resources/html/services/service_function_container.html'), 'r') as f:
         page_body = f.read().format(**args)
     #
     return page_body
+
+
+def _html_controls(service):
+    #
+    with open(os.path.join(os.path.dirname(__file__), '../../resources/html/services/tv_lg_netcast/controls.html'), 'r') as f:
+        html_controls = f.read().format(service_id=service['service_id'])
+    #
+    return html_controls
 
 
 def _html_apps(service):
@@ -26,15 +61,10 @@ def _html_apps(service):
         #
         json_applist = _get_applist(service)
         #
-        html = '<table style="width:100%">' +\
-               '<tr style="height:80px; padding-bottom:2px; padding-top:2px">'
+        html = ''
         #
-        count = 0
         for app in json_applist:
             try:
-                #
-                if not count == 0 and count % 4 == 0:
-                    html += '</tr><tr style="height:35px; padding-bottom:2px; padding-top:2px">'
                 #
                 args = {'service_id': service['service_id'],
                         'auid': json_applist[app]['auid'],
@@ -43,15 +73,41 @@ def _html_apps(service):
                 with open(os.path.join(os.path.dirname(__file__), '../../resources/html/services/tv_lg_netcast/app_button.html'), 'r') as f:
                     html += f.read().format(**args)
                 #
-                count += 1
-                #
             except Exception as e:
                 html += ''
-        #
-        html += '</tr></table>'
-        with open(os.path.join(os.path.dirname(__file__), '../../resources/html/services/tv_lg_netcast/apps.html'), 'r') as f:
-            html = f.read().format(apps=html)
+            #
         return html
+        #
+        #
+        #
+        # json_applist = _get_applist(service)
+        # #
+        # html = '<table style="width:100%">' +\
+        #        '<tr style="height:80px; padding-bottom:2px; padding-top:2px">'
+        # #
+        # count = 0
+        # for app in json_applist:
+        #     try:
+        #         #
+        #         if not count == 0 and count % 4 == 0:
+        #             html += '</tr><tr style="height:35px; padding-bottom:2px; padding-top:2px">'
+        #         #
+        #         args = {'service_id': service['service_id'],
+        #                 'auid': json_applist[app]['auid'],
+        #                 'name': json_applist[app]['name']}
+        #         #
+        #         with open(os.path.join(os.path.dirname(__file__), '../../resources/html/services/tv_lg_netcast/app_button.html'), 'r') as f:
+        #             html += f.read().format(**args)
+        #         #
+        #         count += 1
+        #         #
+        #     except Exception as e:
+        #         html += ''
+        # #
+        # html += '</tr></table>'
+        # with open(os.path.join(os.path.dirname(__file__), '../../resources/html/services/tv_lg_netcast/apps.html'), 'r') as f:
+        #     html = f.read().format(apps=html)
+        # return html
     except:
         return '<p style="text-align:center">App list could has not been retrieved from the device.</p>' +\
                '<p style="text-align:center">Please check the TV is turned on and then try again.</p>'

@@ -29,7 +29,6 @@
     }
 }
 
-
 .btn-remote {
     z-index: 2;
     -webkit-box-shadow: 2px 2px 7px 0px rgba(50, 50, 50, 0.7);
@@ -52,4 +51,39 @@
 
 .btn_pointer {
     cursor: pointer;
+}
+
+.service_function_btn:hover {
+    background-color: #d9d9d9;
+}
+.service_function_btn {
+    color: grey;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: thin;
+    font-size: 18px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    line-height: 1.1;
+}
+.service_function_btn_active {
+    color: black;
+    font-weight: bold;
+    background-color: #EEEEEE;
+}
+
+.service_function_body {
+    display: none;
+}
+.service_function_body_active {
+    display: block;
+}
+
+.app_btn {
+    padding-left: 0px;
+    padding-right: 0px;
+    height: 80px;
+}
+.app_btn:hover {
+    background-color: #d9d9d9;
 }
