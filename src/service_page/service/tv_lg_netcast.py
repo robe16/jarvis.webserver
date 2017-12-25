@@ -77,37 +77,6 @@ def _html_apps(service):
                 html += ''
             #
         return html
-        #
-        #
-        #
-        # json_applist = _get_applist(service)
-        # #
-        # html = '<table style="width:100%">' +\
-        #        '<tr style="height:80px; padding-bottom:2px; padding-top:2px">'
-        # #
-        # count = 0
-        # for app in json_applist:
-        #     try:
-        #         #
-        #         if not count == 0 and count % 4 == 0:
-        #             html += '</tr><tr style="height:35px; padding-bottom:2px; padding-top:2px">'
-        #         #
-        #         args = {'service_id': service['service_id'],
-        #                 'auid': json_applist[app]['auid'],
-        #                 'name': json_applist[app]['name']}
-        #         #
-        #         with open(os.path.join(os.path.dirname(__file__), '../../resources/html/services/tv_lg_netcast/app_button.html'), 'r') as f:
-        #             html += f.read().format(**args)
-        #         #
-        #         count += 1
-        #         #
-        #     except Exception as e:
-        #         html += ''
-        # #
-        # html += '</tr></table>'
-        # with open(os.path.join(os.path.dirname(__file__), '../../resources/html/services/tv_lg_netcast/apps.html'), 'r') as f:
-        #     html = f.read().format(apps=html)
-        # return html
     except:
         return '<p style="text-align:center">App list could has not been retrieved from the device.</p>' +\
                '<p style="text-align:center">Please check the TV is turned on and then try again.</p>'
