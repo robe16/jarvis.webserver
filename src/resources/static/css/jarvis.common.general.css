@@ -8,13 +8,8 @@ body {
 .row-header {margin-bottom: 10px;}
 
 
-
-/* TV guide table border */
-
-.tbl_border {
-    border-left: 1px solid #ddd;
-    border-right: 1px solid #ddd;
-}
-.tbl_border_last {
-    border-bottom: 1px solid #ddd;
-}
+@media (max-width: 576px) {} /*xs*/
+@media (max-width: 768px) {} /*sm*/
+@media (max-width: 992px) {} /*md*/
+@media (max-width: 1200px) {} /*lg*/
+/*xl*/
