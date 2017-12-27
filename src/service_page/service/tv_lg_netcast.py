@@ -38,6 +38,20 @@ def createPage_tv_lg_netcast(service):
                                      function_body=_html_apps(service),
                                      body_class='')
     #
+    # Trackpad
+    with open(os.path.join(os.path.dirname(__file__), '../../resources/html/services/service_function_btn.html'), 'r') as f:
+        html_buttons += f.read().format(width='6',
+                                        service_id=service['service_id'],
+                                        function_id='trackpad',
+                                        function_name='Trackpad',
+                                        btn_class='')
+    #
+    with open(os.path.join(os.path.dirname(__file__), '../../resources/html/services/service_function_body.html'), 'r') as f:
+        html_body += f.read().format(service_id=service['service_id'],
+                                     function_id='trackpad',
+                                     function_body=_html_trackpad(service),
+                                     body_class='')
+    #
     args = {'html_buttons': html_buttons,
             'html_body': html_body}
     #
@@ -103,3 +117,6 @@ def _get_applist(service):
                      '-', '-',
                      r.status_code)
         return False
+
+def _html_trackpad(service):
+    return
