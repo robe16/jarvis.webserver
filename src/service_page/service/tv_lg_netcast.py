@@ -12,7 +12,7 @@ def createPage_tv_lg_netcast(service):
     #
     # Controls
     with open(os.path.join(os.path.dirname(__file__), '../../resources/html/services/service_function_btn.html'), 'r') as f:
-        html_buttons += f.read().format(width='6',
+        html_buttons += f.read().format(width='4',
                                         service_id=service['service_id'],
                                         function_id='remote',
                                         function_name='Remote',
@@ -26,7 +26,7 @@ def createPage_tv_lg_netcast(service):
     #
     # Apps
     with open(os.path.join(os.path.dirname(__file__), '../../resources/html/services/service_function_btn.html'), 'r') as f:
-        html_buttons += f.read().format(width='6',
+        html_buttons += f.read().format(width='4',
                                         service_id=service['service_id'],
                                         function_id='apps',
                                         function_name='Apps',
@@ -40,7 +40,7 @@ def createPage_tv_lg_netcast(service):
     #
     # Trackpad
     with open(os.path.join(os.path.dirname(__file__), '../../resources/html/services/service_function_btn.html'), 'r') as f:
-        html_buttons += f.read().format(width='6',
+        html_buttons += f.read().format(width='4',
                                         service_id=service['service_id'],
                                         function_id='trackpad',
                                         function_name='Trackpad',
