@@ -7,12 +7,14 @@ from log.log import log_outbound
 
 def createPage_tv_lg_netcast(service):
     #
+    resources = '<script src="/resource/js/jarvis.tv_lg_netcast.js"></script>'
+    #
     html_buttons = ''
     html_body = ''
     #
     # Controls
     with open(os.path.join(os.path.dirname(__file__), '../../resources/html/services/service_function_btn.html'), 'r') as f:
-        html_buttons += f.read().format(width='4',
+        html_buttons += f.read().format(width='3',
                                         service_id=service['service_id'],
                                         function_id='remote',
                                         function_name='Remote',
@@ -26,7 +28,7 @@ def createPage_tv_lg_netcast(service):
     #
     # Apps
     with open(os.path.join(os.path.dirname(__file__), '../../resources/html/services/service_function_btn.html'), 'r') as f:
-        html_buttons += f.read().format(width='4',
+        html_buttons += f.read().format(width='3',
                                         service_id=service['service_id'],
                                         function_id='apps',
                                         function_name='Apps',
@@ -40,7 +42,7 @@ def createPage_tv_lg_netcast(service):
     #
     # Trackpad
     with open(os.path.join(os.path.dirname(__file__), '../../resources/html/services/service_function_btn.html'), 'r') as f:
-        html_buttons += f.read().format(width='4',
+        html_buttons += f.read().format(width='3',
                                         service_id=service['service_id'],
                                         function_id='trackpad',
                                         function_name='Trackpad',
@@ -52,7 +54,22 @@ def createPage_tv_lg_netcast(service):
                                      function_body=_html_trackpad(service),
                                      body_class='')
     #
-    args = {'html_buttons': html_buttons,
+    # Screenshot
+    with open(os.path.join(os.path.dirname(__file__), '../../resources/html/services/service_function_btn.html'), 'r') as f:
+        html_buttons += f.read().format(width='3',
+                                        service_id=service['service_id'],
+                                        function_id='screenshot',
+                                        function_name='Screenshot',
+                                        btn_class='')
+    #
+    with open(os.path.join(os.path.dirname(__file__), '../../resources/html/services/service_function_body.html'), 'r') as f:
+        html_body += f.read().format(service_id=service['service_id'],
+                                     function_id='screenshot',
+                                     function_body=_html_screenshot(service),
+                                     body_class='')
+    #
+    args = {'resources': resources,
+            'html_buttons': html_buttons,
             'html_body': html_body}
     #
     with open(os.path.join(os.path.dirname(__file__), '../../resources/html/services/service_function_container.html'), 'r') as f:
@@ -118,5 +135,18 @@ def _get_applist(service):
                      r.status_code)
         return False
 
+
+def _html_screenshot(service):
+    #
+    with open(os.path.join(os.path.dirname(__file__), '../../resources/html/services/tv_lg_netcast/screenshot.html'), 'r') as f:
+        html_screenshot = f.read().format(service_id=service['service_id'])
+    #
+    return html_screenshot
+
+
 def _html_trackpad(service):
-    return
+    #
+    with open(os.path.join(os.path.dirname(__file__), '../../resources/html/services/tv_lg_netcast/trackpad.html'), 'r') as f:
+        html_trackpad = f.read().format(service_id=service['service_id'])
+    #
+    return html_trackpad

@@ -15,6 +15,8 @@ def createhtml_channels(service):
 
 def createPage_virginmedia_tivo(service):
     #
+    resources = ''
+    #
     html_buttons = ''
     html_body = ''
     #
@@ -60,7 +62,8 @@ def createPage_virginmedia_tivo(service):
                                      function_body=_html_channels(service),
                                      body_class='')
     #
-    args = {'html_buttons': html_buttons,
+    args = {'resources': resources,
+            'html_buttons': html_buttons,
             'html_body': html_body}
     #
     with open(os.path.join(os.path.dirname(__file__), '../../resources/html/services/service_function_container.html'), 'r') as f:
