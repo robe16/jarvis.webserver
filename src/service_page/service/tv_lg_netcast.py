@@ -7,7 +7,8 @@ from log.log import log_outbound
 
 def createPage_tv_lg_netcast(service):
     #
-    resources = '<script src="/resource/js/jarvis.tv_lg_netcast.js"></script>'
+    resources = '<script src="/resource/js/jarvis.service_page.tv_lg_netcast.js"></script>'
+    resources += '<link rel="stylesheet" href="/resource/css/jarvis.service_page.tv_lg_netcast.css">'
     #
     html_buttons = ''
     html_body = ''
