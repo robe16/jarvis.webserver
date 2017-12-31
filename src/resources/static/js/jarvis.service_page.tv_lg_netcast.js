@@ -59,6 +59,8 @@ function tvlgnetcast_touchMove(service_id) {
             last_x = current_x;
             last_y = current_y;
             //
+            wait(500); //0.5sec
+            //
         }
     }
     catch(err) {
