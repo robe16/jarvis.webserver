@@ -81,7 +81,8 @@ def createPage_tv_lg_netcast(service):
 def _html_controls(service):
     #
     with open(os.path.join(os.path.dirname(__file__), '../../resources/html/services/tv_lg_netcast/controls.html'), 'r') as f:
-        html_controls = f.read().format(service_id=service['service_id'])
+        html_controls = f.read().format(service_id=service['service_id'],
+                                        threeD=_get_3d(service))
     #
     return html_controls
 
@@ -131,6 +132,29 @@ def _get_applist(service):
     else:
         log_outbound(logFail,
                      service['ip'], service['port'], 'GET', service_uri_lgtvnetcast_apps_all,
+                     '-', '-',
+                     r.status_code)
+        return False
+
+
+def _get_3d(service):
+    #
+    service_url = 'http://{ip}:{port}{uri}'.format(ip=service['ip'],
+                                                   port=service['port'],
+                                                   uri=service_uri_lgtvnetcast_3d)
+    #
+    headers = {service_header_clientid_label: serviceId}
+    r = requests.get(service_url, headers=headers)
+    #
+    if r.status_code == requests.codes.ok:
+        log_outbound(logPass,
+                     service['ip'], service['port'], 'GET', service_uri_lgtvnetcast_3d,
+                     '-', '-',
+                     r.status_code)
+        return r.json()
+    else:
+        log_outbound(logFail,
+                     service['ip'], service['port'], 'GET', service_uri_lgtvnetcast_3d,
                      '-', '-',
                      r.status_code)
         return False
