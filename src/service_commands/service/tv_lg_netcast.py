@@ -12,6 +12,16 @@ def sendCmd_tv_lg_netcast(service, command):
     elif command['command'] == 'executeApp':
         cmd = {'executeApp': command['auid']}
         service_uri = service_uri_lgtvnetcast_command_executeApp
+    elif command['command'] == 'touchMove':
+        cmd = {'touchMoveX': command['touchMoveX'],
+               'touchMoveY': command['touchMoveY']}
+        service_uri = service_uri_lgtvnetcast_command_touchMove
+    elif command['command'] == 'touchClick':
+        cmd = {}
+        service_uri = service_uri_lgtvnetcast_command_touchClick
+    elif command['command'] == 'touchWheel':
+        cmd = {'touchWheelDirection': command['touchWheelDirection']}
+        service_uri = service_uri_lgtvnetcast_command_touchWheel
     else:
         return False
     #
