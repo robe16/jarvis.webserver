@@ -151,7 +151,7 @@ def _get_3d(service):
                      service['ip'], service['port'], 'GET', service_uri_lgtvnetcast_3d,
                      '-', '-',
                      r.status_code)
-        return r.json()
+        return r.json()['is3D']
     else:
         log_outbound(logFail,
                      service['ip'], service['port'], 'GET', service_uri_lgtvnetcast_3d,
