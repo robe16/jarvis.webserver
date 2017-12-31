@@ -56,7 +56,7 @@
 }
 
 
-.servicestatus_spacer {margin-bottom: 40px;}
+.servicestatus_spacer {margin-bottom: 0.5em;}
 .servicestatus_label {margin-top: 0px;}
 .servicestatus_Online {color: #4CAF50; font-weight: bold;}
 .servicestatus_Offline {color: #D50000; font-weight: bold;}
