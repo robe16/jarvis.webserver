@@ -5,7 +5,7 @@ function tvlgnetcast_updateScreenshot(service_id) {
 
 var tvlgnetcast_touch_flag = {};
 
-function tvlgnetcast_touch_mouseMove(service_id) {
+function tvlgnetcast_touch_mouseDown(service_id) {
     //
     tvlgnetcast_touch_flag[service_id] = true;
     //

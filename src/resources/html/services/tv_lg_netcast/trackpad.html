@@ -2,7 +2,8 @@
     <div class="row">
         <div id="trackpad-{service_id}"
              class="col-xs-12 col-sm-10 col-sm-offset-1 tvlgnetcast_trackpad"
-             onmousemove="tvlgnetcast_touch_mouseMove('{service_id}')">
+             onmousedown="tvlgnetcast_touch_mouseDown('{service_id}')"
+             onmouseup="tvlgnetcast_touch_mouseUp('{service_id}')">
             <!-- empty div - no contents required -->
             <!-- onclick="sendCommand('{service_id}', {{command: 'touchClick'}})" -->
         </div>
