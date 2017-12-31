@@ -43,4 +43,41 @@ function tvlgnetcast_touchpad(service_id) {
     }, false)
     //
     //
+    var mouseDownFlag = false;
+    //
+    trackpad_obj.addEventListener('onmousedown', function(e) {
+        //
+        mouseDownFlag = true;
+        //
+        last_x = parseInt(trackpad_obj.clientX);
+        last_y = parseInt(trackpad_obj.clientY);
+        //
+        wait(500); //0.5sec
+        //
+        while (mouseDownFlag) {
+            //
+            var current_x = parseInt(trackpad_obj.clientX);
+            var current_y = parseInt(trackpad_obj.clientY);
+            //
+            var deltaX = last_x - current_x;
+            var deltaY = last_y - current_y;
+            //
+            sendCommand(service_id, {command: 'touchMove', touchMoveX: deltaX, touchMoveY: deltaY});
+            //
+            last_x = current_x;
+            last_y = current_y;
+            //
+            wait(500); //0.5sec
+            //
+        }
+        //
+    }, false)
+    //
+    trackpad_obj.addEventListener('onmouseup', function(e) {
+        //
+        mouseDownFlag = false;
+        //
+    }, false)
+    //
+    //
 }
