@@ -7,6 +7,13 @@ body {
 
 .row-header {margin-bottom: 10px;}
 
+.refresh_btn {
+    height: 2em;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
 
 @media (max-width: 576px) {} /*xs*/
 @media (max-width: 768px) {} /*sm*/
