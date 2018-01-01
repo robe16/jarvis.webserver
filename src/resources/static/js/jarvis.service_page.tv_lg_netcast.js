@@ -70,8 +70,8 @@ function tvlgnetcast_touchpad(service_id) {
             var current_x = parseInt(e.clientX);
             var current_y = parseInt(e.clientY);
             //
-            var deltaX = last_x - current_x;
-            var deltaY = last_y - current_y;
+            var deltaX = current_x - last_x;
+            var deltaY = current_y - last_y;
             //
             sendCommand(service_id, {command: 'touchMove', touchMoveX: deltaX, touchMoveY: deltaY});
             //
