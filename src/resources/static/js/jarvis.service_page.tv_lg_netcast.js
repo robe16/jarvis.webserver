@@ -81,7 +81,8 @@ function tvlgnetcast_touchpad(service_id) {
     //
     trackpad_obj.addEventListener('mouseup', function(e) {
         //
-        setTimeout(allow_click, 10);
+        setTimeout(allow_click, 10);     // 0.01 seconds
+        setTimeout(cursor_hide, 10000);  // 10 seconds
         //
     }, false)
     //
@@ -99,7 +100,7 @@ function tvlgnetcast_touchpad(service_id) {
     }
     //
     function cursor_hide() {
-        if (!mouseDownFlag) {
+        if (!mouseMoveFlag) {
             sendCommand(service_id, {command: 'cursorVisbility', visibility: false});
         }
     }
