@@ -12,7 +12,7 @@ function tvlgnetcast_touchpad(service_id) {
     var last_x;
     var last_y;
     //
-    var waitTime = 500; // 0.5sec
+    var waitTime = 100; // 0.1sec
     //
     // http://www.javascriptkit.com/javatutors/touchevents.shtml
     //
