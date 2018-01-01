@@ -94,7 +94,7 @@ function tvlgnetcast_touchpad(service_id) {
     //
     function cursor_hide() {
         //
-        if (mouseDownFlag) {
+        if (!mouseDownFlag) {
             sendCommand(service_id, {command: 'cursorVisbility', visibility: false});
         }
         //
