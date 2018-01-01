@@ -12,6 +12,9 @@ function tvlgnetcast_touchpad(service_id) {
     var last_x;
     var last_y;
     //
+    var mouseMoveFlag = false;
+    var mouseAllowClick = true;
+    //
     var waitTime = 100; // 0.1sec
     //
     //
@@ -55,11 +58,10 @@ function tvlgnetcast_touchpad(service_id) {
     // TODO - touch version of 'click'
     //
     //
-    //
-    var mouseMoveFlag = false;
-    var mouseClickReady = true;
-    //
     trackpad_obj.addEventListener('mousedown', function(e) {
+        //
+        mouseMoveFlag = true;
+        mouseAllowClick = false;
         //
         sendCommand(service_id, {command: 'cursorVisbility', visibility: true});
         //
@@ -69,8 +71,6 @@ function tvlgnetcast_touchpad(service_id) {
     }, false)
     //
     trackpad_obj.addEventListener('mousemove', function(e) {
-        //
-        mouseMoveFlag = true;
         //
         wait(waitTime);
         //
@@ -91,6 +91,8 @@ function tvlgnetcast_touchpad(service_id) {
     //
     trackpad_obj.addEventListener('mouseup', function(e) {
         //
+        mouseMoveFlag = false;
+        //
         setTimeout(allow_click, 10);     // 0.01 seconds
         setTimeout(cursor_hide, 10000);  // 10 seconds
         //
@@ -98,7 +100,7 @@ function tvlgnetcast_touchpad(service_id) {
     //
     trackpad_obj.addEventListener('click', function(e) {
         //
-        if (!mouseMoveFlag) {
+        if (mouseAllowClick) {
             sendCommand(service_id, {command: 'touchClick'});
         }
         //
@@ -108,7 +110,7 @@ function tvlgnetcast_touchpad(service_id) {
     //
     //
     function allow_click() {
-        mouseMoveFlag = false;
+        mouseAllowClick = true;
     }
     //
     function cursor_hide() {
