@@ -55,12 +55,12 @@ function tvlgnetcast_touchpad(service_id) {
     //
     trackpad_obj.addEventListener('mousemove', function(e) {
         //
-        last_x = parseInt(trackpad_obj.clientX);
-        last_y = parseInt(trackpad_obj.clientY);
-        //
-        wait(waitTime);
-        //
         if (mouseDownFlag) {
+            //
+            last_x = parseInt(trackpad_obj.clientX);
+            last_y = parseInt(trackpad_obj.clientY);
+            //
+            wait(waitTime);
             //
             var current_x = parseInt(trackpad_obj.clientX);
             var current_y = parseInt(trackpad_obj.clientY);
