@@ -44,18 +44,15 @@ function tvlgnetcast_touchpad(service_id) {
         //
     }, false)
     //
-    trackpad_obj.addEventListener('touchend', function(e) {
-        //
-    }, false)
+    trackpad_obj.addEventListener('touchend', function(e) {}, false)
     //
     //
-    var mouseDownFlag = false;
+    var mouseMoveFlag = false;
+    var mouseClickReady = true;
     //
     trackpad_obj.addEventListener('mousedown', function(e) {
         //
         sendCommand(service_id, {command: 'cursorVisbility', visibility: true});
-        mouseDownFlag = true;
-        //
         last_x = parseInt(e.clientX);
         last_y = parseInt(e.clientY);
         //
@@ -63,41 +60,48 @@ function tvlgnetcast_touchpad(service_id) {
     //
     trackpad_obj.addEventListener('mousemove', function(e) {
         //
-        if (mouseDownFlag) {
-            //
-            wait(waitTime);
-            //
-            var current_x = parseInt(e.clientX);
-            var current_y = parseInt(e.clientY);
-            //
-            var deltaX = current_x - last_x;
-            var deltaY = current_y - last_y;
-            //
-            sendCommand(service_id, {command: 'touchMove', touchMoveX: deltaX, touchMoveY: deltaY});
-            //
-            last_x = current_x;
-            last_y = current_y;
-            //
-            wait(waitTime);
-            //
-        }
+        mouseMoveFlag = true;
+        //
+        wait(waitTime);
+        //
+        var current_x = parseInt(e.clientX);
+        var current_y = parseInt(e.clientY);
+        //
+        var deltaX = current_x - last_x;
+        var deltaY = current_y - last_y;
+        //
+        sendCommand(service_id, {command: 'touchMove', touchMoveX: deltaX, touchMoveY: deltaY});
+        //
+        last_x = current_x;
+        last_y = current_y;
+        //
+        wait(waitTime);
         //
     }, false)
     //
     trackpad_obj.addEventListener('mouseup', function(e) {
         //
-        mouseDownFlag = false;
-        setTimeout(cursor_hide, 5000); //5 seconds
+        setTimeout(allow_click, 10);
+        //
+    }, false)
+    //
+    trackpad_obj.addEventListener('click', function(e) {
+        //
+        if (!mouseMoveFlag) {
+            sendCommand(service_id, {command: 'touchClick'});
+        }
         //
     }, false)
     //
     //
+    function allow_click() {
+        mouseMoveFlag = false;
+    }
+    //
     function cursor_hide() {
-        //
         if (!mouseDownFlag) {
             sendCommand(service_id, {command: 'cursorVisbility', visibility: false});
         }
-        //
     }
     //
     //
