@@ -87,7 +87,7 @@ function tvlgnetcast_touchpad(service_id) {
     trackpad_obj.addEventListener('mouseup', function(e) {
         //
         mouseDownFlag = false;
-        setTimeout(cursor_hide, 2000);
+        setTimeout(cursor_hide, 5000); //5 seconds
         //
     }, false)
     //
