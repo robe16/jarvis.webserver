@@ -56,14 +56,14 @@ function tvlgnetcast_touchpad(service_id) {
         sendCommand(service_id, {command: 'cursorVisbility', visibility: true});
         mouseDownFlag = true;
         //
+        last_x = parseInt(e.clientX);
+        last_y = parseInt(e.clientY);
+        //
     }, false)
     //
     trackpad_obj.addEventListener('mousemove', function(e) {
         //
         if (mouseDownFlag) {
-            //
-            last_x = parseInt(e.clientX);
-            last_y = parseInt(e.clientY);
             //
             wait(waitTime);
             //
