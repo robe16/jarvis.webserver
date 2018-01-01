@@ -87,12 +87,12 @@ function tvlgnetcast_touchpad(service_id) {
     trackpad_obj.addEventListener('mouseup', function(e) {
         //
         mouseDownFlag = false;
-        setTimeout(cursorVisbility, 2000);
+        setTimeout(cursor_hide, 2000);
         //
     }, false)
     //
     //
-    function cursorVisbility() {
+    function cursor_hide() {
         //
         if (mouseDownFlag) {
             sendCommand(service_id, {command: 'cursorVisbility', visibility: false});
