@@ -45,7 +45,7 @@ function tvlgnetcast_touchpad(service_id) {
     //
     var mouseDownFlag = false;
     //
-    trackpad_obj.addEventListener('onmousedown', function(e) {
+    trackpad_obj.addEventListener('mousedown', function(e) {
         //
         mouseDownFlag = true;
         //
@@ -73,7 +73,7 @@ function tvlgnetcast_touchpad(service_id) {
         //
     }, false)
     //
-    trackpad_obj.addEventListener('onmouseup', function(e) {
+    trackpad_obj.addEventListener('mouseup', function(e) {
         //
         mouseDownFlag = false;
         //
