@@ -31,20 +31,24 @@ function tvlgnetcast_touchpad(service_id) {
     //
     trackpad_obj.addEventListener('touchmove', function(e) {
         //
-        var touchobj = e.changedTouches[0]
-        //
-        var current_x = parseInt(touchobj.clientX);
-        var current_y = parseInt(touchobj.clientY);
-        //
-        var deltaX = current_x - last_x;
-        var deltaY = current_y - last_y;
-        //
-        sendCommand(service_id, {command: 'touchMove', touchMoveX: deltaX, touchMoveY: deltaY});
-        //
-        last_x = current_x;
-        last_y = current_y;
-        //
-        wait(waitTime);
+        if (mouseMoveFlag) {
+            //
+            var touchobj = e.changedTouches[0]
+            //
+            var current_x = parseInt(touchobj.clientX);
+            var current_y = parseInt(touchobj.clientY);
+            //
+            var deltaX = current_x - last_x;
+            var deltaY = current_y - last_y;
+            //
+            sendCommand(service_id, {command: 'touchMove', touchMoveX: deltaX, touchMoveY: deltaY});
+            //
+            last_x = current_x;
+            last_y = current_y;
+            //
+            wait(waitTime);
+            //
+        }
         //
     }, false)
     //
@@ -72,20 +76,22 @@ function tvlgnetcast_touchpad(service_id) {
     //
     trackpad_obj.addEventListener('mousemove', function(e) {
         //
-        wait(waitTime);
-        //
-        var current_x = parseInt(e.clientX);
-        var current_y = parseInt(e.clientY);
-        //
-        var deltaX = current_x - last_x;
-        var deltaY = current_y - last_y;
-        //
-        sendCommand(service_id, {command: 'touchMove', touchMoveX: deltaX, touchMoveY: deltaY});
-        //
-        last_x = current_x;
-        last_y = current_y;
-        //
-        wait(waitTime);
+        if (mouseMoveFlag) {
+            //
+            var current_x = parseInt(e.clientX);
+            var current_y = parseInt(e.clientY);
+            //
+            var deltaX = current_x - last_x;
+            var deltaY = current_y - last_y;
+            //
+            sendCommand(service_id, {command: 'touchMove', touchMoveX: deltaX, touchMoveY: deltaY});
+            //
+            last_x = current_x;
+            last_y = current_y;
+            //
+            wait(waitTime);
+            //
+        }
         //
     }, false)
     //
