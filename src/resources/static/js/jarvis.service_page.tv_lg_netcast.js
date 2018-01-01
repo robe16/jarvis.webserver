@@ -14,9 +14,10 @@ function tvlgnetcast_touchpad(service_id) {
     //
     var waitTime = 100; // 0.1sec
     //
-    // http://www.javascriptkit.com/javatutors/touchevents.shtml
     //
     trackpad_obj.addEventListener('touchstart', function(e) {
+        //
+        sendCommand(service_id, {command: 'cursorVisbility', visibility: true});
         //
         var touchobj = e.changedTouches[0]
         //
@@ -32,8 +33,8 @@ function tvlgnetcast_touchpad(service_id) {
         var current_x = parseInt(touchobj.clientX);
         var current_y = parseInt(touchobj.clientY);
         //
-        var deltaX = last_x - current_x;
-        var deltaY = last_y - current_y;
+        var deltaX = current_x - last_x;
+        var deltaY = current_y - last_y;
         //
         sendCommand(service_id, {command: 'touchMove', touchMoveX: deltaX, touchMoveY: deltaY});
         //
@@ -44,7 +45,15 @@ function tvlgnetcast_touchpad(service_id) {
         //
     }, false)
     //
-    trackpad_obj.addEventListener('touchend', function(e) {}, false)
+    trackpad_obj.addEventListener('touchend', function(e) {
+        //
+        setTimeout(allow_click, 10);     // 0.01 seconds
+        setTimeout(cursor_hide, 10000);  // 10 seconds
+        //
+    }, false)
+    //
+    // TODO - touch version of 'click'
+    //
     //
     //
     var mouseMoveFlag = false;
@@ -53,6 +62,7 @@ function tvlgnetcast_touchpad(service_id) {
     trackpad_obj.addEventListener('mousedown', function(e) {
         //
         sendCommand(service_id, {command: 'cursorVisbility', visibility: true});
+        //
         last_x = parseInt(e.clientX);
         last_y = parseInt(e.clientY);
         //
@@ -93,6 +103,8 @@ function tvlgnetcast_touchpad(service_id) {
         }
         //
     }, false)
+    //
+    //
     //
     //
     function allow_click() {
