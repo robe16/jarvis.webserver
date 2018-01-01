@@ -12,6 +12,8 @@ function tvlgnetcast_touchpad(service_id) {
     var last_x = 0;
     var last_y = 0;
     //
+    var waitTime = 500;
+    //
     // http://www.javascriptkit.com/javatutors/touchevents.shtml
     //
     trackpad_obj.addEventListener('touchstart', function(e) {
@@ -34,7 +36,7 @@ function tvlgnetcast_touchpad(service_id) {
         last_x = current_x;
         last_y = current_y;
         //
-        wait(500); //0.5sec
+        wait(waitTime); //0.5sec
         //
     }, false)
     //
@@ -49,10 +51,14 @@ function tvlgnetcast_touchpad(service_id) {
         //
         mouseDownFlag = true;
         //
+    }, false)
+    //
+    trackpad_obj.addEventListener('mousemove', function(e) {
+        //
         last_x = parseInt(trackpad_obj.clientX);
         last_y = parseInt(trackpad_obj.clientY);
         //
-        wait(500); //0.5sec
+        wait(waitTime); //0.5sec
         //
         while (mouseDownFlag) {
             //
@@ -67,7 +73,7 @@ function tvlgnetcast_touchpad(service_id) {
             last_x = current_x;
             last_y = current_y;
             //
-            wait(500); //0.5sec
+            wait(waitTime); //0.5sec
             //
         }
         //
