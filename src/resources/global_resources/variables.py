@@ -25,6 +25,7 @@ service_uri_command = '/command'
 
 service_uri_lgtvnetcast_command_keyInput = '/command/keyInput'
 service_uri_lgtvnetcast_command_executeApp = '/command/executeApp'
+service_uri_lgtvnetcast_command_cursorVisbility = '/command/cursor/visibility'
 service_uri_lgtvnetcast_command_touchMove = '/command/touch/move'
 service_uri_lgtvnetcast_command_touchClick = '/command/touch/click'
 service_uri_lgtvnetcast_command_touchWheel = '/command/touch/wheel'

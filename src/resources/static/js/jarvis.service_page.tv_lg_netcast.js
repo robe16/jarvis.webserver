@@ -53,6 +53,7 @@ function tvlgnetcast_touchpad(service_id) {
     //
     trackpad_obj.addEventListener('mousedown', function(e) {
         //
+        sendCommand(service_id, {command: 'cursorVisbility', visibility: true});
         mouseDownFlag = true;
         //
     }, false)
@@ -86,8 +87,18 @@ function tvlgnetcast_touchpad(service_id) {
     trackpad_obj.addEventListener('mouseup', function(e) {
         //
         mouseDownFlag = false;
+        setTimeout(cursorVisbility, 2000);
         //
     }, false)
+    //
+    //
+    function cursorVisbility() {
+        //
+        if (mouseDownFlag) {
+            sendCommand(service_id, {command: 'cursorVisbility', visibility: false});
+        }
+        //
+    }
     //
     //
 }
