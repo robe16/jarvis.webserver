@@ -9,8 +9,8 @@ function tvlgnetcast_touchpad(service_id) {
     var trackpad_id = "trackpad-" + service_id;
     var trackpad_obj = document.getElementById(trackpad_id);
     //
-    var last_x = 0;
-    var last_y = 0;
+    var last_x;
+    var last_y;
     //
     var waitTime = 500; // 0.5sec
     //
@@ -61,15 +61,13 @@ function tvlgnetcast_touchpad(service_id) {
         //
         if (mouseDownFlag) {
             //
-            var touchobj = e.changedTouches[0]
-            //
-            last_x = parseInt(touchobj.clientX);
-            last_y = parseInt(touchobj.clientY);
+            last_x = parseInt(e.clientX);
+            last_y = parseInt(e.clientY);
             //
             wait(waitTime);
             //
-            var current_x = parseInt(touchobj.clientX);
-            var current_y = parseInt(touchobj.clientY);
+            var current_x = parseInt(e.clientX);
+            var current_y = parseInt(e.clientY);
             //
             var deltaX = last_x - current_x;
             var deltaY = last_y - current_y;
