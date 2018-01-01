@@ -18,15 +18,19 @@ function tvlgnetcast_touchpad(service_id) {
     //
     trackpad_obj.addEventListener('touchstart', function(e) {
         //
-        last_x = parseInt(trackpad_obj.clientX);
-        last_y = parseInt(trackpad_obj.clientY);
+        var touchobj = e.changedTouches[0]
+        //
+        last_x = parseInt(touchobj.clientX);
+        last_y = parseInt(touchobj.clientY);
         //
     }, false)
     //
     trackpad_obj.addEventListener('touchmove', function(e) {
         //
-        var current_x = parseInt(trackpad_obj.clientX);
-        var current_y = parseInt(trackpad_obj.clientY);
+        var touchobj = e.changedTouches[0]
+        //
+        var current_x = parseInt(touchobj.clientX);
+        var current_y = parseInt(touchobj.clientY);
         //
         var deltaX = last_x - current_x;
         var deltaY = last_y - current_y;
@@ -57,13 +61,15 @@ function tvlgnetcast_touchpad(service_id) {
         //
         if (mouseDownFlag) {
             //
-            last_x = parseInt(trackpad_obj.clientX);
-            last_y = parseInt(trackpad_obj.clientY);
+            var touchobj = e.changedTouches[0]
+            //
+            last_x = parseInt(touchobj.clientX);
+            last_y = parseInt(touchobj.clientY);
             //
             wait(waitTime);
             //
-            var current_x = parseInt(trackpad_obj.clientX);
-            var current_y = parseInt(trackpad_obj.clientY);
+            var current_x = parseInt(touchobj.clientX);
+            var current_y = parseInt(touchobj.clientY);
             //
             var deltaX = last_x - current_x;
             var deltaY = last_y - current_y;
