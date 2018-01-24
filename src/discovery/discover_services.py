@@ -11,6 +11,9 @@ from resources.lang.enGB.logs import logDesc_services_Discovery
 
 def discover_services(services):
     while True:
+        #
+        service_id = ''
+        #
         try:
             #
             s = socket(AF_INET, SOCK_DGRAM)
@@ -68,4 +71,4 @@ def discover_services(services):
                                             'active': True,
                                             'timestamp': datetime.datetime.now()}
         except Exception as e:
-            log_internal(logException, logDesc_services_Discovery, exception=e)
+            log_internal(logException, logDesc_services_Discovery, description=service_id, exception=e)
