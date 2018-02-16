@@ -30,8 +30,6 @@ function sendCommand(serviceID, data) {
 function updatePage(serviceID) {
     try {
         //
-        var dataJSON = JSON.stringify(data);
-        //
         var url = '/service/page/' + serviceID + '?body=True'
         //
         var xhr = new XMLHttpRequest();
