@@ -1,24 +1,27 @@
-function sendNestCmd(group, thing, command, value, nest_model, nest_device, nest_device_id) {
+function sendNest_thermostat_tempUp(service_id, device_id) {
     //
-    x = sendHttp('/command/' + group +
-                '/' + thing +
-                '?command=' + command +
-                '&value=' + value +
-                '&nest_model=' + nest_model +
-                '&nest_device=' + nest_device +
-                '&nest_device_id=' + nest_device_id, null, 'GET', 1, true)
+    var tempCurrent = _nest_thermostat_temp_current(device_id);
+    var tempNew = tempCurrent + 0.5;
     //
-    if (x) {
-        document.getElementById('body_nest').innerHTML = x;
-    }
+    sendNest_thermostat_temp(service_id, device_id, tempNew);
+    setTimeout(updatePage(service_id), 2000);
     //
 }
 
-function updateNest(url){
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open('GET', url, false);
-    xmlHttp.send(null);
-    if (xmlHttp.status==200) {
-        document.getElementById('body_nest').innerHTML = xmlHttp.responseText}
-    setTimeout(function () {updateNest(url);}, 30000);
+function sendNest_thermostat_tempDown(service_id, device_id) {
+    //
+    var tempCurrent = _nest_thermostat_temp_current(device_id);
+    var tempNew = tempCurrent - 0.5;
+    //
+    sendNest_thermostat_temp(service_id, device_id, tempNew);
+    setTimeout(updatePage(service_id), 2000);
+    //
+}
+
+function _nest_thermostat_temp_current(device_id) {
+    return document.getElementById(device_id + '_temp').innerHTML;
+}
+
+function sendNest_thermostat_temp(service_id, device_id, new_temperature) {
+    sendCommand(service_id, {device_type: 'thermostat', device_id: device_id, temperature: new_temperature});
 }

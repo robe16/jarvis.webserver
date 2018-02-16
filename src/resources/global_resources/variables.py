@@ -38,6 +38,14 @@ service_uri_virginmediativo_channel = '/channel'
 service_uri_virginmediativo_recordings = '/recordings'
 service_uri_virginmediativo_enterpin = '/enterpin'
 
+service_uri_nest_data_all = '/all'
+service_uri_nest_data_structures = '/structures'
+service_uri_nest_data_structure_specific = '/structure/{structure_id}'
+service_uri_nest_data_devices = '/devices'
+service_uri_nest_data_devices_type = '/devices/{device_type}'
+service_uri_nest_data_device_specific = '/devices/{device_type}/{device_id}'
+
+
 service_header_clientid_label = 'jarvis.client-service'
 
 httpStatusSuccess = 200

@@ -18,7 +18,7 @@ from resources.lang.enGB.logs import logDescPortListener
 from service_commands.services import serviceCommand
 from service_images.services import serviceImage
 from service_page.groups import groupPage
-from service_page.services import servicePage
+from service_page.services import servicePage, serviceHtml
 
 
 def start_bottle(port_threads, services):
@@ -205,8 +205,16 @@ def start_bottle(port_threads, services):
         args = _get_log_args(request)
         #
         try:
+            body_only = (request.query['body'].lower() == 'true')
+        except:
+            body_only = False
+        #
+        try:
             #
-            page = servicePage(services, service_id)
+            if body_only:
+                page = serviceHtml(services, service_id)
+            else:
+                page = servicePage(services, service_id)
             #
             status = httpStatusSuccess
             #

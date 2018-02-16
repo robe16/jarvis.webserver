@@ -3,6 +3,7 @@ from resources.global_resources.variables import projectName
 from html.page_body import create_page
 from service_page.service.tv_lg_netcast import createPage_tv_lg_netcast
 from service_page.service.virginmedia_tivo import createPage_virginmedia_tivo
+from service_page.service.nest import createPage_nest
 
 
 def servicePage(services, service_id):
@@ -11,8 +12,11 @@ def servicePage(services, service_id):
     resources += '<script src="/resource/js/jarvis.service_functions.js"></script>'
     resources += '<link rel="stylesheet" href="/resource/css/jarvis.service_page.css">'
     #
+    with open(os.path.join(os.path.dirname(__file__), '../resources/html/services/service_page_container.html'), 'r') as f:
+        body_html = f.read().format(service_id=service_id, body=serviceHtml(services, service_id))
+    #
     return create_page(services,
-                       serviceHtml(services, service_id),
+                       body_html,
                        resources=resources,
                        title='{projectName}: {name}'.format(projectName=projectName,
                                                             name=services[service_id]['name_long']),
@@ -31,6 +35,8 @@ def serviceHtml(services, service_id):
                 page_body = createPage_tv_lg_netcast(services[service_id])
             elif service_type == 'virginmedia_tivo':
                 page_body = createPage_virginmedia_tivo(services[service_id])
+            elif service_type == 'nest':
+                page_body = createPage_nest(services[service_id])
             else:
                 with open(os.path.join(os.path.dirname(__file__), '../resources/html/services/_unknown.html'), 'r') as f:
                     page_body = f.read().format(service_id=service_id)

@@ -26,3 +26,30 @@ function sendCommand(serviceID, data) {
         alert("An error has been encountered, please try again.\n\n" + err)
     }
 }
+
+function updatePage(serviceID) {
+    try {
+        //
+        var dataJSON = JSON.stringify(data);
+        //
+        var url = '/service/page/' + serviceID + '?body=True'
+        //
+        var xhr = new XMLHttpRequest();
+        //
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                document.getElementById('page-body_' + serviceID).innerHTML = xhr.response;
+            }
+        };
+        xhr.onerror = function () {
+            console.error(xhr.statusText);
+        };
+        //
+        xhr.open("GET", url, true);
+        xhr.send();
+        //
+    }
+    catch(err) {
+        alert("An error has been encountered, please try again.\n\n" + err)
+    }
+}
