@@ -4,7 +4,7 @@ function sendNest_thermostat_tempUp(service_id, device_id) {
     var temp_current = _nest_thermostat_temp_current(device_id, temp_unit);
     var temp_increment = _nest_thermostat_temp_increment(temp_unit);
     //
-    var temp_new = tempCurrent + _temp_increment;
+    var temp_new = temp_current + _temp_increment;
     //
     sendNest_thermostat_temp(service_id, device_id, temp_new, temp_unit);
     setTimeout(updatePage(service_id), 2000);
