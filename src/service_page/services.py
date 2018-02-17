@@ -12,8 +12,7 @@ def servicePage(services, service_id):
     resources += '<script src="/resource/js/jarvis.service_functions.js"></script>'
     resources += '<link rel="stylesheet" href="/resource/css/jarvis.service_page.css">'
     #
-    with open(os.path.join(os.path.dirname(__file__), '../resources/html/services/service_page_container.html'), 'r') as f:
-        body_html = f.read().format(service_id=service_id, body=serviceHtml(services, service_id))
+    body_html = serviceHtml(services, service_id)
     #
     return create_page(services,
                        body_html,

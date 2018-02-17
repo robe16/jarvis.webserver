@@ -62,7 +62,8 @@ def createPage_virginmedia_tivo(service):
                                      function_body=_html_channels(service),
                                      body_class='')
     #
-    args = {'resources': resources,
+    args = {'service_id': service['service_id'],
+            'resources': resources,
             'html_buttons': html_buttons,
             'html_body': html_body}
     #

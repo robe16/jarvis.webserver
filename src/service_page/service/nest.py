@@ -83,7 +83,8 @@ def createPage_nest(service):
                                          function_body=_html_cameras(service['service_id'], data['cameras']),
                                          body_class='service_function_body{active}'.format(active=cls_active))
     #
-    args = {'resources': resources,
+    args = {'service_id': service['service_id'],
+            'resources': resources,
             'html_buttons': html_buttons,
             'html_body': html_body}
     #

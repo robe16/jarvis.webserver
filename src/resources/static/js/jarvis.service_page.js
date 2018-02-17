@@ -36,7 +36,7 @@ function updatePage(serviceID) {
         //
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4) {
-                document.getElementById('page-body_' + serviceID).innerHTML = xhr.response;
+                document.getElementById('service-body_' + serviceID).innerHTML = xhr.response;
             }
         };
         xhr.onerror = function () {
