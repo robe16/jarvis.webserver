@@ -26,19 +26,13 @@ function sendNest_thermostat_tempDown(service_id, device_id) {
 }
 
 function _nest_thermostat_temp_unit(device_id) {
-    _temp_unit = document.getElementById(device_id + '_temp_unit').innerHTML;
-    //
-    if (_temp_unit=='&#8451;') {
-        return 'c';
-    } else {
-        return 'f';
-    }
+    return document.getElementById(device_id + "_temp_unit").innerHTML;
 }
 
 function _nest_thermostat_temp_current(device_id, _temp_unit) {
-    var _temp = document.getElementById(device_id + '_temp').innerHTML;
+    var _temp = document.getElementById(device_id + "_temp").getAttribute("temp_unit");
     //
-    if (_temp_unit=='c') {
+    if (_temp_unit=="c") {
         return parseFloat(_temp);
     } else {
         return parseInt(_temp);
@@ -46,7 +40,7 @@ function _nest_thermostat_temp_current(device_id, _temp_unit) {
 }
 
 function _nest_thermostat_temp_increment(_temp_unit) {
-    if (_temp_unit=='c') {
+    if (_temp_unit=="c") {
         return 0.5;
     } else {
         return 1;
@@ -54,10 +48,10 @@ function _nest_thermostat_temp_increment(_temp_unit) {
 }
 
 function sendNest_thermostat_temp(service_id, device_id, new_temperature, temp_unit) {
-    var cmd = {device_type: 'thermostat',
+    var cmd = {device_type: "thermostat",
                device_id: device_id};
     //
-    if (temp_unit=='c') {
+    if (temp_unit=="c") {
         cmd.target_temperature_c = new_temperature
     } else {
         cmd.target_temperature_f = new_temperature

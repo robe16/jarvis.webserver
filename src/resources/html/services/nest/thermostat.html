@@ -310,7 +310,7 @@
                 </svg>
                 <div class="therm_temp_label">
                     <p style="margin-bottom: 5px; font-size: 12dp;">{temp_hvac}</p>
-                    <h3 style="margin-top: 5px;">{temp_target}<span style="font-family: sans-serif; font-size: 12px; vertical-align: top;">{temp_unit}</span></h3>
+                    <h3 style="margin-top: 5px;">{temp_target}<span style="font-family: sans-serif; font-size: 12px; vertical-align: top;">{temp_unit_symbol}</span></h3>
                 </div>
                 <div class="therm_temp_cmds">
                     <span class="therm_temp_glyph therm_temp_glyph_{is_online} glyphicon glyphicon-chevron-down" aria-hidden="true" onclick="sendNest_thermostat_tempDown('{service_id}', '{nest_device_id}')"></span>
@@ -318,7 +318,7 @@
                 </div>
             </span>
         </span>
-        <h4 style="text-align: center;">{therm_label}<span id="{nest_device_id}_temp">{temp_ambient}</span><span id="{nest_device_id}_temp_unit" style="font-family: sans-serif; font-size: 12px; vertical-align: top;">{temp_unit}</span></h4>
+        <h4 style="text-align: center;">{therm_label}<span id="{nest_device_id}_temp">{temp_ambient}</span><span id="{nest_device_id}_temp_unit" temp_unit="{temp_unit}" style="font-family: sans-serif; font-size: 12px; vertical-align: top;">{temp_unit_symbol}</span></h4>
         <h5 style="text-align: center;">{name}<br><img class="img_leaf leaf_{has_leaf}" src="/img/service/service_img_nest_leaf.png"></h5>
     </div>
 </div>
