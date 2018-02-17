@@ -6,7 +6,7 @@ function sendNest_thermostat_tempUp(service_id, device_id) {
     //
     var temp_new = tempCurrent + _temp_increment;
     //
-    sendNest_thermostat_temp(service_id, device_id, temp_new);
+    sendNest_thermostat_temp(service_id, device_id, temp_new, temp_unit);
     setTimeout(updatePage(service_id), 2000);
     //
 }
@@ -19,7 +19,7 @@ function sendNest_thermostat_tempDown(service_id, device_id) {
     //
     var temp_new = temp_current - temp_increment;
     //
-    sendNest_thermostat_temp(service_id, device_id, temp_new);
+    sendNest_thermostat_temp(service_id, device_id, temp_new, temp_unit);
     setTimeout(updatePage(service_id), 2000);
     //
 }
