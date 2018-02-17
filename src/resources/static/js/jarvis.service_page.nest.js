@@ -14,14 +14,13 @@ function sendNest_thermostat_tempUp(service_id, device_id) {
 
 function sendNest_thermostat_tempDown(service_id, device_id) {
     //
-    var tempCurrent = _nest_thermostat_temp_current(device_id);
+    var temp_unit = _nest_thermostat_temp_unit(device_id);
+    var temp_current = _nest_thermostat_temp_current(device_id, temp_unit);
+    var temp_increment = _nest_thermostat_temp_increment(temp_unit);
     //
-    var _temp_unit = _nest_thermostat_temp_unit(device_id);
-    var _temp_increment = _nest_thermostat_temp_increment(_temp_unit);
+    var temp_new = temp_current - temp_increment;
     //
-    var tempNew = tempCurrent - _temp_increment;
-    //
-    sendNest_thermostat_temp(service_id, device_id, tempNew);
+    sendNest_thermostat_temp(service_id, device_id, temp_new);
     setTimeout(updatePage(service_id), 2000);
     //
 }
@@ -36,7 +35,7 @@ function _nest_thermostat_temp_unit(device_id) {
     }
 }
 
-function _nest_thermostat_temp_current(device_id) {
+function _nest_thermostat_temp_current(device_id, _temp_unit) {
     var _temp = document.getElementById(device_id + '_temp').innerHTML;
     //
     if (_temp_unit=='c') {
