@@ -1,12 +1,12 @@
 function sendNest_thermostat_tempUp(service_id, device_id) {
     //
     var temp_unit = _nest_thermostat_temp_unit(device_id);
-    var temp_current = _nest_thermostat_temp_current(device_id, temp_unit);
+    var temp_target_current = _nest_thermostat_temp_target_current(device_id, temp_unit);
     var temp_increment = _nest_thermostat_temp_increment(temp_unit);
     //
-    var temp_new = temp_current + temp_increment;
+    var temp_target_new = temp_current + temp_increment;
     //
-    sendNest_thermostat_temp(service_id, device_id, temp_new, temp_unit);
+    sendNest_thermostat_temp(service_id, device_id, temp_target_new, temp_unit);
     setTimeout(updatePage(service_id), 2000);
     //
 }
@@ -14,12 +14,12 @@ function sendNest_thermostat_tempUp(service_id, device_id) {
 function sendNest_thermostat_tempDown(service_id, device_id) {
     //
     var temp_unit = _nest_thermostat_temp_unit(device_id);
-    var temp_current = _nest_thermostat_temp_current(device_id, temp_unit);
+    var temp_target_current = _nest_thermostat_temp_target_current(device_id, temp_unit);
     var temp_increment = _nest_thermostat_temp_increment(temp_unit);
     //
-    var temp_new = temp_current - temp_increment;
+    var temp_target_new = temp_current - temp_increment;
     //
-    sendNest_thermostat_temp(service_id, device_id, temp_new, temp_unit);
+    sendNest_thermostat_temp(service_id, device_id, temp_target_new, temp_unit);
     setTimeout(updatePage(service_id), 2000);
     //
 }
@@ -28,8 +28,8 @@ function _nest_thermostat_temp_unit(device_id) {
     return document.getElementById(device_id + "_temp_unit").getAttribute("temp_unit");
 }
 
-function _nest_thermostat_temp_current(device_id, temp_unit) {
-    var _temp = document.getElementById(device_id + "_temp").innerHTML;
+function _nest_thermostat_temp_target_current(device_id, temp_unit) {
+    var _temp = document.getElementById(device_id + "_temp_target").innerHTML;
     //
     if (temp_unit=="c") {
         return parseFloat(_temp);
