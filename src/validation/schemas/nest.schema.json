@@ -1,0 +1,7 @@
+{
+  "type": "object",
+  "device_type": {"type" : "string"},
+  "device_id": {"type" : "string"},
+  "temperature": {"type" : "float"},
+  "required": ["device_type", "device_id"]
+}

@@ -15,6 +15,7 @@ from parameters import bottle_resource_cache_life
 from resources.global_resources.variables import *
 from resources.global_resources.logs import logException, logPass
 from resources.lang.enGB.logs import logDescPortListener
+from validation.validation import validate_nest
 from service_commands.services import serviceCommand
 from service_images.services import serviceImage
 from service_page.groups import groupPage
@@ -242,13 +243,26 @@ def start_bottle(port_threads, services):
         #
         args = _get_log_args(request)
         #
+        service_type = services[service_id]['service_type']
+        #
         try:
             #
             command = request.json
             #
-            rsp = serviceCommand(services, service_id, command)
+            if service_type == 'tv_lg_netcast':
+                validation_pass = True  # TODO - schema validation for tv_lg_netcast
+            elif service_type == 'virginmedia_tivo':
+                validation_pass = True  # TODO - schema validation for virginmedia_tivo
+            elif service_type == 'nest':
+                validation_pass = validate_nest(command)
+            else:
+                validation_pass = False
             #
-            status = httpStatusSuccess if rsp else httpStatusFailure
+            if validation_pass:
+                rsp = serviceCommand(services, service_id, command)
+                status = httpStatusSuccess if rsp else httpStatusFailure
+            else:
+                status = httpStatusBadrequest
             #
             args['result'] = logPass
             args['http_response_code'] = status
