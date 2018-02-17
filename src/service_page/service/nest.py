@@ -19,6 +19,7 @@ def createPage_nest(service):
     #
     resources = '<script src="/resource/js/jarvis.service_page.nest.js"></script>'
     resources += '<link rel="stylesheet" href="/resource/css/jarvis.service_page.nest.css">'
+    resources += '<script>setInterval(updatePage({service_id}), 30000);</script>'.format(service_id=service['service_id'])
     #
     html_buttons = ''
     html_body = ''
