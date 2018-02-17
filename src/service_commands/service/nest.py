@@ -6,8 +6,6 @@ from resources.global_resources.logs import logPass, logFail
 
 def sendCmd_nest(service, command):
     #
-    cmd = {}
-    #
     if command['device_type'] == 'thermostat':
         service_uri = service_uri_nest_data_device_specific.format(device_type=command['device_type'],
                                                                    device_id=command['device_id'])
@@ -19,13 +17,13 @@ def sendCmd_nest(service, command):
                                                    uri=service_uri)
     #
     headers = {service_header_clientid_label: serviceId}
-    r = requests.post(service_url, json=cmd, headers=headers)
+    r = requests.post(service_url, json=command, headers=headers)
     #
     #
     logResult = logPass if (r.status_code == requests.codes.ok) else logFail
     log_outbound(logResult,
                  service['ip'], service['port'], 'POST', service_uri,
-                 '-', cmd,
+                 '-', command,
                  r.status_code)
     #
     return r.status_code == requests.codes.ok
