@@ -11,12 +11,12 @@ def sendCmd_nest(service, command):
     if command['device_type'] == 'thermostat':
         #
         try:
-            cmd['target_temperature_c'] = float(command['target_temperature_c'])
+            command['target_temperature_c'] = float(command['target_temperature_c'])
         except:
             pass
         #
         try:
-            cmd['target_temperature_f'] = int(command['target_temperature_f'])
+            command['target_temperature_f'] = int(command['target_temperature_f'])
         except:
             pass
         #
@@ -30,7 +30,7 @@ def sendCmd_nest(service, command):
                                                    uri=service_uri)
     #
     headers = {service_header_clientid_label: serviceId}
-    r = requests.post(service_url, json=cmd, headers=headers)
+    r = requests.post(service_url, json=command, headers=headers)
     #
     #
     logResult = logPass if (r.status_code == requests.codes.ok) else logFail
