@@ -28,18 +28,18 @@ function _nest_thermostat_temp_unit(device_id) {
     return document.getElementById(device_id + "_temp_unit").innerHTML;
 }
 
-function _nest_thermostat_temp_current(device_id, _temp_unit) {
+function _nest_thermostat_temp_current(device_id, temp_unit) {
     var _temp = document.getElementById(device_id + "_temp").getAttribute("temp_unit");
     //
-    if (_temp_unit=="c") {
+    if (temp_unit=="c") {
         return parseFloat(_temp);
     } else {
         return parseInt(_temp);
     }
 }
 
-function _nest_thermostat_temp_increment(_temp_unit) {
-    if (_temp_unit=="c") {
+function _nest_thermostat_temp_increment(temp_unit) {
+    if (temp_unit=="c") {
         return 0.5;
     } else {
         return 1;
