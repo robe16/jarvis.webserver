@@ -1,5 +1,5 @@
 {
   "device_type": "thermostat",
   "device_id": "",
-  "temperature": 0
+  "target_temperature_c": 0
 }

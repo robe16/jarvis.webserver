@@ -2,6 +2,7 @@
   "type": "object",
   "device_type": {"type" : "string"},
   "device_id": {"type" : "string"},
-  "temperature": {"type" : "float"},
+  "target_temperature_c": {"type" : "float"},
+  "target_temperature_f": {"type" : "integer"},
   "required": ["device_type", "device_id"]
 }

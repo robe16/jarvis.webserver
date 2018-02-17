@@ -1,7 +1,11 @@
 function sendNest_thermostat_tempUp(service_id, device_id) {
     //
     var tempCurrent = _nest_thermostat_temp_current(device_id);
-    var tempNew = tempCurrent + 0.5;
+    //
+    var _temp_unit = _nest_thermostat_temp_unit(device_id);
+    var _temp_increment = _nest_thermostat_temp_increment(_temp_unit);
+    //
+    var tempNew = tempCurrent + _temp_increment;
     //
     sendNest_thermostat_temp(service_id, device_id, tempNew);
     setTimeout(updatePage(service_id), 2000);
@@ -11,17 +15,54 @@ function sendNest_thermostat_tempUp(service_id, device_id) {
 function sendNest_thermostat_tempDown(service_id, device_id) {
     //
     var tempCurrent = _nest_thermostat_temp_current(device_id);
-    var tempNew = tempCurrent - 0.5;
+    //
+    var _temp_unit = _nest_thermostat_temp_unit(device_id);
+    var _temp_increment = _nest_thermostat_temp_increment(_temp_unit);
+    //
+    var tempNew = tempCurrent - _temp_increment;
     //
     sendNest_thermostat_temp(service_id, device_id, tempNew);
     setTimeout(updatePage(service_id), 2000);
     //
 }
 
-function _nest_thermostat_temp_current(device_id) {
-    return parseFloat(document.getElementById(device_id + '_temp').innerHTML);
+function _nest_thermostat_temp_unit(device_id) {
+    _temp_unit = document.getElementById(device_id + '_temp_unit').innerHTML;
+    //
+    if (_temp_unit=='&#8451;') {
+        return 'c';
+    } else {
+        return 'f';
+    }
 }
 
-function sendNest_thermostat_temp(service_id, device_id, new_temperature) {
-    sendCommand(service_id, {device_type: 'thermostat', device_id: device_id, temperature: new_temperature});
+function _nest_thermostat_temp_current(device_id) {
+    var _temp = document.getElementById(device_id + '_temp').innerHTML;
+    //
+    if (_temp_unit=='c') {
+        return parseFloat(_temp);
+    } else {
+        return parseInt(_temp);
+    }
+}
+
+function _nest_thermostat_temp_increment(_temp_unit) {
+    if (_temp_unit=='c') {
+        return 0.5;
+    } else {
+        return 1;
+    }
+}
+
+function sendNest_thermostat_temp(service_id, device_id, new_temperature, temp_unit) {
+    var cmd = {device_type: 'thermostat',
+               device_id: device_id};
+    //
+    if (temp_unit=='c') {
+        cmd.target_temperature_c = new_temperature
+    } else {
+        cmd.target_temperature_f = new_temperature
+    }
+    //
+    sendCommand(service_id, cmd);
 }
