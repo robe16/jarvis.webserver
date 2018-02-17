@@ -156,6 +156,7 @@ def _html_thermostats(service_id, data):
             is_online = 'offline'
             therm_hvac_state = 'offline'
             temp_hvac_statement = ''
+            _temp_unit = ''
             temp_unit_html = ''
             therm_label = 'Offline'
             therm_temp_target = ''
