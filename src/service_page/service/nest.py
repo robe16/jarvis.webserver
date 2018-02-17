@@ -199,6 +199,32 @@ def _html_thermostats(service_id, data):
         with open(os.path.join(os.path.dirname(__file__), '../../resources/html/services/nest/thermostat.html'), 'r') as f:
             _html += f.read().format(**args)
         #
+        # UI ticks only created for celsius
+        if _temp_unit == 'c':
+            #
+            _str_to_replace = 'tick-target temp-tick-c-{temp}'.format(temp=therm_temp_target)
+            _html = _html.replace(_str_to_replace, 'tick-target tick-target-active')
+            #
+            if therm_hvac_state == 'heating' or therm_hvac_state == 'cooling':
+                _str_to_replace = 'tick-ambient temp-tick-c-{temp}'.format(temp=therm_temp_ambient)
+                if therm_temp_ambient < therm_temp_target:
+                    _col = 'blue'
+                else:
+                    _col = 'red'
+                _html = _html.replace(_str_to_replace, 'tick-ambient tick-ambient-active tick-ambient-active-{col}'.format(col=_col))
+            #
+            _str_to_replace = 'tick-target temp-tick-c-{temp}'.format(temp=therm_temp_target)
+            _html = _html.replace(_str_to_replace, 'tick-target tick-target-active')
+            #
+            if therm_hvac_state == 'heating' or therm_hvac_state =='cooling':
+                _str_to_replace = 'tick-ambient temp-tick-c-{temp}'.format(temp=therm_temp_ambient)
+                if therm_temp_ambient < therm_temp_target:
+                    _col = 'blue'
+                else:
+                    _col = 'red'
+                _html = _html.replace(_str_to_replace, 'tick-ambient tick-ambient-active tick-ambient-active-{col}'.format(col=_col))
+            #
+        #
         count += 1
         #
     #
