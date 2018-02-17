@@ -7,7 +7,7 @@ from resources.global_resources.logs import logPass, logFail
 def sendCmd_nest(service, command):
     #
     if command['device_type'] == 'thermostat':
-        cmd = {'temperature_target': command['temperature']}
+        cmd = {'temperature_target': float(command['temperature'])}
         service_uri = service_uri_nest_data_device_specific.format(device_type=command['device_type'],
                                                                    device_id=command['device_id'])
     else:
