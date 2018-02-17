@@ -38,7 +38,7 @@ def sendCmd_tv_lg_netcast(service, command):
     #
     logResult = logPass if (r.status_code == requests.codes.ok) else logFail
     log_outbound(logResult,
-                 service['ip'], service['port'], 'POST', service_uri_command,
+                 service['ip'], service['port'], 'POST', service_uri,
                  '-', cmd,
                  r.status_code)
     #
