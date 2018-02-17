@@ -25,11 +25,11 @@ function sendNest_thermostat_tempDown(service_id, device_id) {
 }
 
 function _nest_thermostat_temp_unit(device_id) {
-    return document.getElementById(device_id + "_temp_unit").innerHTML;
+    return document.getElementById(device_id + "_temp_unit").getAttribute("temp_unit");
 }
 
 function _nest_thermostat_temp_current(device_id, temp_unit) {
-    var _temp = document.getElementById(device_id + "_temp").getAttribute("temp_unit");
+    var _temp = document.getElementById(device_id + "_temp").innerHTML;
     //
     if (temp_unit=="c") {
         return parseFloat(_temp);
