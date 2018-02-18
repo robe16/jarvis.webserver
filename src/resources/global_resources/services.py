@@ -6,10 +6,10 @@ service_variables = {'tv_lg_netcast': {'logo': 'service_logo_lg.png',
                               'type': 'service_logo_nest_blue.png'},
                      'icloud': {'logo': 'service_logo_apple.png',
                                 'type': False},
-                     'news': {'logo': False,
-                              'type': False},
+                     'news': {'logo': 'service_logo_newsapi.png',
+                              'type': 'service_type_news.png'},
                      'weather': {'logo': 'service_logo_metoffice.png',
-                                 'type': False},
+                                 'type': 'service_type_weather.png'},
                      'tvlistings': {'logo': False,
                                     'type': False}
                      }
