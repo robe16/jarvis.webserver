@@ -1,0 +1,10 @@
+{
+    "type": "object",
+    "command": {"type": "string", "enum": ["keyInput", "executeApp", "touchMove", "touchClick", "touchWheel"]},
+    "key": {"type": "string"},
+    "auid": {"type": "string"},
+    "touchMoveX": {"type": "number"},
+    "touchMoveY": {"type": "number"},
+    "touchWheelDirection": {"type": "string", "enum": ["up", "down"]},
+    "required": ["command"]
+}

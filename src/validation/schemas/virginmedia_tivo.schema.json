@@ -1,0 +1,7 @@
+{
+  "type": "object",
+  "command": {"type": "string", "enum": ["command", "channel", "enterpin"]},
+  "code": {"type": "string"},
+  "channel": {"type": "string"},
+  "required": ["command"]
+}
