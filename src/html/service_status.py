@@ -25,15 +25,14 @@ def create_servicestatus(services):
             #
             if type in service_variables:
                 #
+                img_type = ''
                 if service_variables[type]['type']:
-                    img_type = service_variables[type]['type']
-                else:
-                    img_type = 'logo_other.png'
+                    img_type = '<img class="img-circle servicestatus_logo" src="/img/service/{filename}"/>'.format(filename=service_variables[type]['type'])
                 #
-                if service_variables[type]['logo']:
-                    img_logo = service_variables[type]['logo']
-                else:
-                    img_logo = 'logo_other.png'
+                img_logo = ''
+                if len(service_variables[type]['logo']):
+                    for l in service_variables[type]['logo']:
+                        img_logo += '<img class="img-circle servicestatus_logo" src="/img/service/{filename}"/>'.format(filename=l)
                 #
             else:
                 img_type = 'logo_other.png'
@@ -59,8 +58,8 @@ def create_servicestatus(services):
                     'groups': html_groups,
                     'subservices': _html_subservices(services[s]['subservices']),
                     'status': status,
-                    'img_type': '/img/service/{img_type}'.format(img_type=img_type),
-                    'img_logo': '/img/service/{img_logo}'.format(img_logo=img_logo)}
+                    'img_type': img_type,
+                    'img_logo': img_logo}
             #
             if services[s]['timestamp'] < (datetime.datetime.now() + datetime.timedelta(seconds=discovery_service_mia)):
                 with open(os.path.join(os.path.dirname(__file__), '../resources/html/service_status/service.html'), 'r') as f:
