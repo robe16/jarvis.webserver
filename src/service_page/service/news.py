@@ -24,7 +24,7 @@ def createPage_news(service):
     with open(os.path.join(os.path.dirname(__file__), '../../resources/html/services/service_function_body.html'), 'r') as f:
         html_body += f.read().format(service_id=service['service_id'],
                                      function_id='top_headlines',
-                                     function_body=_html_articles(service),
+                                     function_body=_html_articles(service, 'country'),
                                      body_class='service_function_body_active')
     #
     args = {'service_id': service['service_id'],
@@ -38,12 +38,12 @@ def createPage_news(service):
     return page_body
 
 
-def _html_articles(service):
+def _html_articles(service, option):
     #
     timestamp = datetime.datetime.now().strftime('%d/%m/%Y %H:%M:%S')
     html_articles = '<p style="text-align: right">Last updated {timestamp}</p>'.format(timestamp=timestamp)
     #
-    data = _get_headlines(service)
+    data = _get_headlines(service, option)
     dict_html = _create_dict_of_article_html(data)
     #
     for html_key in sorted(dict_html.keys(), reverse=True):
@@ -52,9 +52,9 @@ def _html_articles(service):
     return html_articles
 
 
-def _get_headlines(service):
+def _get_headlines(service, option):
     #
-    uri = service_uri_nest_headlines.format(option='sources')
+    uri = service_uri_nest_headlines.format(option=option)
     #
     service_url = 'http://{ip}:{port}{uri}'.format(ip=service['ip'],
                                                    port=service['port'],
