@@ -47,7 +47,10 @@ def groupHtml(services, group_id):
                 #
                 type = services[service]['service_type']
                 if type in service_variables:
-                    img = service_variables[type]['type']
+                    if service_variables[type]['type']:
+                        img = service_variables[type]['type']
+                    else:
+                        img = service_variables[type]['logo'][0]
                 else:
                     img = 'logo_other.png'
                 #
