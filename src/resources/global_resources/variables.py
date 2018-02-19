@@ -45,6 +45,7 @@ service_uri_nest_data_devices = '/devices'
 service_uri_nest_data_devices_type = '/devices/{device_type}'
 service_uri_nest_data_device_specific = '/devices/{device_type}/{device_id}'
 
+service_uri_nest_headlines = '/news/headlines/{option}'
 
 service_header_clientid_label = 'jarvis.client-service'
 
