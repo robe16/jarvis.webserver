@@ -27,6 +27,7 @@ groups = {
         "Heating": {"image": "group_theme_heating.png"},
         "Sockets": {"image": "group_theme_sockets.png"},
         "Lighing": {"image": "group_theme_lighting.png"},
-        "Smoke Detectors": {"image": "group_theme_smoke-detectors.png"}
+        "Smoke Detectors": {"image": "group_theme_smoke-detectors.png"},
+        "Information": {"image": "group_theme_information.png"}
     }
 }
