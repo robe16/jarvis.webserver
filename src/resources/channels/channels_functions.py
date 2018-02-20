@@ -33,3 +33,17 @@ def _get_image(chan_item, quality):
         return chan_item[quality]['image']
     else:
         return False
+
+
+def get_category(channel_name):
+    #
+    try:
+        chan_item = channels[channel_name]
+    except Exception as e:
+        log_internal(logException, 'Channel name \'{chan}\' not found in list of available resources'.format(chan=channel_name), exception=e)
+        return False
+    #
+    return chan_item['category']
+
+def get_categories():
+    return ['Entertainment', 'Movies', 'Sports', 'Factual', 'Lifestyle', 'Kids', 'Music', 'News', 'Radio']
