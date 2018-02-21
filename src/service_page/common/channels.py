@@ -79,7 +79,7 @@ def createhtml_channels(service, channels):
         #
     #
     #
-    # args = {'title': 'All Channels',
+    # args = {'title': 'Categories',
     #         'dropdowns': _html_pill_nav}
     # #
     # with open(os.path.join(os.path.dirname(__file__), '../../resources/html/common/pill_nav_dropdown.html'), 'r') as f:
