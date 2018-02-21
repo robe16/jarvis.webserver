@@ -34,6 +34,7 @@ service_uri_lgtvnetcast_3d = '/3d'
 service_uri_lgtvnetcast_image_app = '/img/appicon/{auid}'
 service_uri_lgtvnetcast_image_screenshot = '/img/screenshot'
 
+service_uri_virginmediativo_channels = '/channels'
 service_uri_virginmediativo_channel = '/channel'
 service_uri_virginmediativo_recordings = '/recordings'
 service_uri_virginmediativo_enterpin = '/enterpin'

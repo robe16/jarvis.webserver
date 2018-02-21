@@ -6,16 +6,12 @@ from resources.global_resources.logs import logPass, logFail, logException
 from resources.channels.channels_functions import get_image
 from resources.global_resources.variables import *
 from resources.lang.enGB.logs import *
-
-
-def createhtml_channels(service):
-    #TODO
-    return ''
+from service_page.common.channels import createhtml_channels
 
 
 def createPage_virginmedia_tivo(service):
     #
-    resources = ''
+    resources = '<link rel="stylesheet" href="/resource/css/jarvis.service_page.channels.css">'
     #
     html_buttons = ''
     html_body = ''
@@ -76,14 +72,16 @@ def createPage_virginmedia_tivo(service):
 def _html_channels(service):
     #
     current_chan = _current_chan(service)
-    html_channels = createhtml_channels(service)
+    channels = _get_channels(service)
+    html_channels = createhtml_channels(service, channels)
+    #
     with open(os.path.join(os.path.dirname(__file__), '../../resources/html/services/virginmedia_tivo/channels.html'), 'r') as f:
         args = {'now_viewing_logo': current_chan['logo'],
                 'now_viewing': current_chan['name'],
                 'html_channels': html_channels}
-        html_channels = f.read().format(**args)
+        _html = f.read().format(**args)
     #
-    return html_channels
+    return _html
 
 
 def _current_chan(service):
@@ -204,6 +202,27 @@ def _get_recordings(service):
     host = 'http://{ip}:{port}'.format(ip=service['ip'],
                                        port=service['port'])
     uri = service_uri_virginmediativo_recordings
+    #
+    headers = {service_header_clientid_label: serviceId}
+    r = requests.get('{host}{uri}'.format(host=host, uri=uri), headers=headers)
+    #
+    logResult = logPass if (r.status_code == requests.codes.ok) else logFail
+    log_outbound(logResult,
+                 service['ip'], service['port'], 'GET', uri,
+                 '-', '-',
+                 r.status_code)
+    #
+    if r.status_code == requests.codes.ok:
+        return r.json()
+    else:
+        return False
+
+
+def _get_channels(service):
+    #
+    host = 'http://{ip}:{port}'.format(ip=service['ip'],
+                                       port=service['port'])
+    uri = service_uri_virginmediativo_channels
     #
     headers = {service_header_clientid_label: serviceId}
     r = requests.get('{host}{uri}'.format(host=host, uri=uri), headers=headers)
