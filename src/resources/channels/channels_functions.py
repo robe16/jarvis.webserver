@@ -45,5 +45,16 @@ def get_category(channel_name):
     #
     return chan_item['category']
 
+
+def get_sequence_number(channel_name):
+    #
+    try:
+        chan_item = channels[channel_name]
+    except Exception as e:
+        log_internal(logException, 'Channel name \'{chan}\' not found in list of available resources'.format(chan=channel_name), exception=e)
+        return False
+    #
+    return chan_item['sequence']
+
 def get_categories():
     return ['Entertainment', 'Movies', 'Sports', 'Factual', 'Lifestyle', 'Kids', 'Music', 'News', 'Radio']

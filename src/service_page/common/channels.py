@@ -1,5 +1,5 @@
 import os
-from resources.channels.channels_functions import get_image, get_category, get_categories
+from resources.channels.channels_functions import get_image, get_category, get_sequence_number, get_categories
 
 
 def createhtml_channels(service, channels):
@@ -27,7 +27,7 @@ def createhtml_channels(service, channels):
             category = get_category(channel_name)
             #
             if not category in _html_categories.keys():
-                _html_categories[category] = ''
+                _html_categories[category] = {}
             #
             args = {'service_id': service['service_id'],
                     'channel_id': '',
@@ -37,15 +37,19 @@ def createhtml_channels(service, channels):
                     'cls_highlight': ''}
             #
             with open(os.path.join(os.path.dirname(__file__), '../../resources/html/services/common/channel_grid_item.html'), 'r') as f:
-                _html_categories[category] += f.read().format(**args)
+                _html_categories[category][get_sequence_number(channel_name)] = f.read().format(**args)
             #
         except Exception as e:
             pass
     #
     for category in _html_categories.keys():
         #
+        _html_category = ''
+        for seq_id in sorted(_html_categories[category].keys()):
+            _html_category += _html_categories[category][seq_id]
+        #
         args = {'category': category,
-                'channels': _html_categories[category]}
+                'channels': _html_category}
         #
         with open(os.path.join(os.path.dirname(__file__), '../../resources/html/services/common/channel_grid_container.html'), 'r') as f:
             _html_categories[category] = f.read().format(**args)
