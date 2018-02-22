@@ -1,0 +1,5 @@
+{
+    "type": "object",
+    "command": {"type": "string", "enum": ["power"]},
+    "required": ["command"]
+}

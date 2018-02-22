@@ -15,7 +15,7 @@ from parameters import bottle_resource_cache_life
 from resources.global_resources.variables import *
 from resources.global_resources.logs import logException, logPass
 from resources.lang.enGB.logs import logDescPortListener
-from validation.validation import validate_tv_lg_netcast, validate_virginmedia_tivo, validate_nest
+from validation.validation import validate_tv_lg_netcast, validate_virginmedia_tivo, validate_xbox_one, validate_nest
 from service_commands.services import serviceCommand
 from service_images.services import serviceImage
 from service_page.groups import groupPage
@@ -253,6 +253,8 @@ def start_bottle(port_threads, services):
                 validation_pass = validate_tv_lg_netcast(command)
             elif service_type == 'virginmedia_tivo':
                 validation_pass = validate_virginmedia_tivo(command)
+            elif service_type == 'xbox_one':
+                validation_pass = validate_xbox_one(command)
             elif service_type == 'nest':
                 validation_pass = validate_nest(command)
             else:

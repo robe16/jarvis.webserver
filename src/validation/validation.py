@@ -13,6 +13,11 @@ def validate_virginmedia_tivo(inpt):
     return _validate_schema(inpt, schema)
 
 
+def validate_xbox_one(inpt):
+    schema = _get_schema('xbox_one')
+    return _validate_schema(inpt, schema)
+
+
 def validate_nest(inpt):
     schema = _get_schema('nest')
     return _validate_schema(inpt, schema)

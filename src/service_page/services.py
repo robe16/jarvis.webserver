@@ -3,6 +3,7 @@ from resources.global_resources.variables import projectName
 from html.page_body import create_page
 from service_page.service.tv_lg_netcast import createPage_tv_lg_netcast
 from service_page.service.virginmedia_tivo import createPage_virginmedia_tivo
+from service_page.service.xbox_one import createPage_xbox_one
 from service_page.service.nest import createPage_nest
 from service_page.service.news import createPage_news
 
@@ -35,6 +36,8 @@ def serviceHtml(services, service_id):
                 page_body = createPage_tv_lg_netcast(services[service_id])
             elif service_type == 'virginmedia_tivo':
                 page_body = createPage_virginmedia_tivo(services[service_id])
+            elif service_type == 'xbox_one':
+                page_body = createPage_xbox_one(services[service_id])
             elif service_type == 'nest':
                 page_body = createPage_nest(services[service_id])
             elif service_type == 'news':
