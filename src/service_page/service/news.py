@@ -54,7 +54,7 @@ def _html_articles(service, option):
 
 def _get_headlines(service, option):
     #
-    uri = service_uri_nest_headlines.format(option=option)
+    uri = service_uri_news_headlines.format(option=option)
     #
     service_url = 'http://{ip}:{port}{uri}'.format(ip=service['ip'],
                                                    port=service['port'],
