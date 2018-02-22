@@ -115,7 +115,7 @@ def _create_dict_of_article_html(data):
                 image_url = ''
             #
             args_item = {'source_name': article['source']['name'],
-                         'article_link': article['url'].encode('utf-8'),
+                         'article_link': article['url'],
                          'article_title': article['title'],
                          'article_description': article['description'],
                          'article_date': publish_string,
