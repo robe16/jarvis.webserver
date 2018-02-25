@@ -1,4 +1,5 @@
 import os
+import threading
 from common_functions.urlencode import url_decode
 from resources.lang.enGB.logs import *
 from resources.global_resources.variables import projectName
@@ -10,6 +11,7 @@ from service_page.services import serviceHtml
 from html.page_body import create_page
 from log.log import log_internal
 
+html_pages = ''
 
 def groupPage(services, group_id):
     #
@@ -28,6 +30,9 @@ def groupPage(services, group_id):
 
 
 def groupHtml(services, group_id):
+    #
+    global html_pages
+    _threads_serviceHtml = []
     #
     grouped_services = group_services(services)
     #
@@ -70,18 +75,20 @@ def groupHtml(services, group_id):
                 with open(os.path.join(os.path.dirname(__file__), '../resources/html/groups/group_item_btn.html'), 'r') as f:
                     html_buttons += f.read().format(**args)
                 #
-                args = {'service_id': services[service]['service_id'],
-                        'service_body': serviceHtml(services, services[service]['service_id']),
-                        'class': class_page}
-                #
-                with open(os.path.join(os.path.dirname(__file__), '../resources/html/groups/group_item_body.html'), 'r') as f:
-                    html_pages += f.read().format(**args)
+                # Threads to create service html body
+                t = threading.Thread(target=thread_serviceHtml, args=(services, service, class_page, ))
+                t.start()
+                _threads_serviceHtml.append(t)
                 #
             #
             for subservice in grouped_services[category][group_name]['subservices']:
                 pass
                 #
                 # TODO
+        #
+        # Wait till all service html bodies are created
+        for t in _threads_serviceHtml:
+            t.join()
         #
         args = {'service_buttons': html_buttons,
                 'service_pages': html_pages}
@@ -97,3 +104,16 @@ def groupHtml(services, group_id):
         #
         with open(os.path.join(os.path.dirname(__file__), '../resources/html/groups/group_error.html'), 'r') as f:
             return f.read().format(group_id=group_id)
+
+
+def thread_serviceHtml(services, service, class_page):
+    #
+    global html_pages
+    #
+    args = {'service_id': services[service]['service_id'],
+            'service_body': serviceHtml(services, services[service]['service_id']),
+            'class': class_page}
+    #
+    with open(os.path.join(os.path.dirname(__file__), '../resources/html/groups/group_item_body.html'), 'r') as f:
+        html_pages += f.read().format(**args)
+    #
