@@ -46,7 +46,12 @@ def _html_weather(service):
     #
     data = _get_weather(service)
     #
-    html = ''
+    args_details = {'town': data['location']['name'],
+                    'county': data['location']['unitaryAuthArea'],
+                    'timestamp': datetime.datetime.now().strftime('%d/%m/%Y %H:%M:%S')}
+    #
+    with open(os.path.join(os.path.dirname(__file__), '../../resources/html/services/weather/details_header.html'), 'r') as f:
+        html = f.read().format(**args_details)
     #
     days_count = 0
     #
