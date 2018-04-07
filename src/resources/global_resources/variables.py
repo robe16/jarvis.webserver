@@ -51,6 +51,11 @@ service_uri_xboxone_powerstatus = '/powerstatus'
 
 service_uri_news_headlines = '/news/headlines/{option}'
 
+service_uri_weather_all = '/weather/all'
+service_uri_weather_forecast = '/weather/forecast/{option}'
+service_uri_weather_sunrisesunset = '/weather/sunrise-sunset/{date}'
+service_uri_weather_location = '/weather/location'
+
 service_header_clientid_label = 'jarvis.client-service'
 
 httpStatusSuccess = 200

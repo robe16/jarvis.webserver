@@ -6,6 +6,7 @@ from service_page.service.virginmedia_tivo import createPage_virginmedia_tivo
 from service_page.service.xbox_one import createPage_xbox_one
 from service_page.service.nest import createPage_nest
 from service_page.service.news import createPage_news
+from service_page.service.weather import createPage_weather
 
 
 def servicePage(services, service_id):
@@ -42,6 +43,8 @@ def serviceHtml(services, service_id):
                 page_body = createPage_nest(services[service_id])
             elif service_type == 'news':
                 page_body = createPage_news(services[service_id])
+            elif service_type == 'weather':
+                page_body = createPage_weather(services[service_id])
             else:
                 with open(os.path.join(os.path.dirname(__file__), '../resources/html/services/_unknown.html'), 'r') as f:
                     page_body = f.read().format(service_id=service_id)
