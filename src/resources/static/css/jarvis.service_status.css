@@ -55,6 +55,10 @@
     }
 }
 
+.row > .col-md-6:nth-child(2n+1) {
+    clear: both;
+}
+
 
 .servicestatus_spacer {margin-bottom: 0.5em;}
 .servicestatus_label {margin-top: 0px;}
