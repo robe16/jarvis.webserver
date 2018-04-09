@@ -56,6 +56,9 @@ service_uri_weather_forecast = '/weather/forecast/{option}'
 service_uri_weather_sunrisesunset = '/weather/sunrise-sunset/{date}'
 service_uri_weather_location = '/weather/location'
 
+service_uri_tvlistings_all = '/tvlistings/all'
+service_uri_tvlistings_channel = '/tvlistings/channel/{channame}'
+
 service_header_clientid_label = 'jarvis.client-service'
 
 httpStatusSuccess = 200
