@@ -67,7 +67,8 @@ def createhtml_channels(service, channels):
             active = ''
         #
         args = {'active': active,
-                'category': category.lower(),
+                'category': '{service}_{category}'.format(service=service['service_id'],
+                                                          category=category).lower(),
                 'title': category}
         #
         with open(os.path.join(os.path.dirname(__file__), '../../resources/html/common/pill_nav_item.html'), 'r') as f:
@@ -75,7 +76,8 @@ def createhtml_channels(service, channels):
         #
         #
         args = {'active': active,
-                'category': category.lower(),
+                'category': '{service}_{category}'.format(service=service['service_id'],
+                                                          category=category).lower(),
                 'body': _html_categories[category]}
         #
         with open(os.path.join(os.path.dirname(__file__), '../../resources/html/common/pill_content.html'), 'r') as f:

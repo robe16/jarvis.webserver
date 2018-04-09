@@ -52,7 +52,7 @@ def _html_tvlistings(service):
     #
     if not str(_listings)=='False':
         args = {'timestamp': datetime.datetime.now().strftime('%d/%m/%Y %H:%M:%S'),
-                'body_tvlistings': _create_html(_listings)}
+                'body_tvlistings': _create_html(service, _listings)}
     else:
         args = {'timestamp': datetime.datetime.now().strftime('%d/%m/%Y %H:%M:%S'),
                 'body_tvlistings': 'ERROR'}
@@ -63,7 +63,7 @@ def _html_tvlistings(service):
     return _return
 
 
-def _create_html(_listings):
+def _create_html(service, _listings):
     #
     current_hour = datetime.datetime.now().hour
     current_hourly_time = datetime.datetime.combine(datetime.date.today(),
@@ -175,7 +175,8 @@ def _create_html(_listings):
             #
             with open(os.path.join(os.path.dirname(__file__), '../../resources/html/common/pill_nav_item.html'), 'r') as f:
                 html_pill_nav += f.read().format(active=active,
-                                                 category=category.lower(),
+                                                 category='{service}_{category}'.format(service=service['service_id'],
+                                                                                        category=category).lower(),
                                                  title=category)
             #
             #
@@ -197,7 +198,8 @@ def _create_html(_listings):
             #
             with open(os.path.join(os.path.dirname(__file__), '../../resources/html/common/pill_content.html'), 'r') as f:
                 html_pill_contents += f.read().format(active=active,
-                                                      category=category.lower(),
+                                                      category='{service}_{category}'.format(service=service['service_id'],
+                                                                                             category=category).lower(),
                                                       body=html_pill_body)
         #
         #
