@@ -1,7 +1,7 @@
 import os
 import datetime
 import requests
-from common_functions.time_functions import timestamp_now, utc_to_local
+from common_functions.time_functions import timestamp_now, check_is_bst
 from resources.global_resources.variables import *
 from resources.global_resources.logs import logPass, logFail
 from resources.channels.channels import channels
@@ -66,9 +66,9 @@ def _html_tvlistings(service):
 
 def _create_html(service, _listings):
     #
-    current_hour = utc_to_local(datetime.datetime.now()).hour
-    current_hourly_time = datetime.datetime.combine(utc_to_local(datetime.date.today()),
-                                                    utc_to_local(datetime.time(current_hour)))
+    current_hour = datetime.datetime.now().hour
+    current_hourly_time = datetime.datetime.combine(datetime.datetime.now().date(),
+                                                                 datetime.time(current_hour))
     #
     html_hours_title = ''
     for x in range(0, (2 * max_hours) + 1, 1):
@@ -83,7 +83,7 @@ def _create_html(service, _listings):
         #
     #
     # vertical line for now() time
-    left_dist = _calc_item_width(current_hourly_time, utc_to_local(datetime.datetime.now()))
+    left_dist = _calc_item_width(current_hourly_time, datetime.datetime.now())
     #
     first_tab = True
     html_pill_nav = ''
