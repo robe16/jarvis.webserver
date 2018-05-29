@@ -5,6 +5,9 @@ MAINTAINER robe16
 RUN apt-get update \
     && apt-get install -y python3 python3-pip
 
+# Set the time zone
+RUN echo "Europe/London" > /config/etc/timezone
+
 WORKDIR /jarvis/webserver
 
 # Bundle app source
