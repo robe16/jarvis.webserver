@@ -53,11 +53,11 @@ def _html_weather(service):
     with open(os.path.join(os.path.dirname(__file__), '../../resources/html/services/weather/details_header.html'), 'r') as f:
         html = f.read().format(**args_details)
     #
-    days_count = 0
-    #
-    while days_count < len(data['days']):
+    days_keys = list(data['days'].keys())
+    days_keys.sort()
+    for d in days_keys:
         #
-        day_item = data['days'][str(days_count)]
+        day_item = data['days'][d]
         daytime = day_item['daytime']
         nighttime = day_item['nighttime']
         hourly = day_item['3hourly']
@@ -76,11 +76,12 @@ def _html_weather(service):
             date_label = 'Tomorrow'
         #
         html_hrs = ''
-        hours_count = 0
         #
-        while hours_count < len(hourly):
+        hours_keys = list(hourly.keys())
+        hours_keys.sort()
+        for h in hours_keys:
             #
-            hour_item = hourly[str(hours_count)]
+            hour_item = hourly[h]
             #
             args_hours = {'time': hour_item['time'],
                           'weather_type_glyph': getWeatherType_glyph(hour_item['weather_type']),
@@ -91,7 +92,6 @@ def _html_weather(service):
             with open(os.path.join(os.path.dirname(__file__), '../../resources/html/services/weather/hour_item.html'), 'r') as f:
                 html_hrs += f.read().format(**args_hours)
             #
-            hours_count += 1
         #
         args_item = {'date_day': date_name,
                      'date': date_label,
@@ -117,8 +117,6 @@ def _html_weather(service):
                      'n_visibility': nighttime['visibility'],
                      'n_precipitation_prob': nighttime['precipitation_prob'],
                      'hour_weather': html_hrs}
-        #
-        days_count += 1
         #
         with open(os.path.join(os.path.dirname(__file__), '../../resources/html/services/weather/day_item.html'), 'r') as f:
             html += f.read().format(**args_item)
