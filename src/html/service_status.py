@@ -35,8 +35,8 @@ def create_servicestatus(services):
                         img_logo += '<img class="img-circle servicestatus_logo" src="/img/service/{filename}"/>'.format(filename=l)
                 #
             else:
-                img_type = 'logo_other.png'
-                img_logo = 'logo_other.png'
+                img_type = '<img class="img-circle servicestatus_logo" src="/img/service/logo_other.png"/>'
+                img_logo = '<img class="img-circle servicestatus_logo" src="/img/service/logo_other.png"/>'
             #
             status = 'Online' if services[s]['active'] else 'Offline'
             #
