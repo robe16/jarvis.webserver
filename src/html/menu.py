@@ -1,7 +1,6 @@
 import os
 from common_functions.urlencode import url_encode
-from resources.global_resources.variables import uri_servicestatus
-from resources.global_resources.logs import logException
+from resources.global_resources.log_vars import logException
 from resources.lang.enGB.logs import logDesc_htmlMenu
 from log.log import log_internal
 from discovery.group_services import group_services
@@ -65,4 +64,4 @@ def _html_menu_lhs(services):
 
 def _html_menu_rhs():
     with open(os.path.join(os.path.dirname(__file__), '../resources/html/common/menu_rhs.html'), 'r') as f:
-        return f.read().format(uri_servicestatus=uri_servicestatus)
+        return f.read().format(uri_servicestatus='/services/status')

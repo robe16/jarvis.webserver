@@ -1,7 +1,7 @@
 import os
 import requests
 from resources.global_resources.variables import *
-from resources.global_resources.logs import logPass, logFail, logException
+from resources.global_resources.log_vars import logPass, logFail, logException
 from log.log import log_outbound
 
 

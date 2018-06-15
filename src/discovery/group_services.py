@@ -1,5 +1,5 @@
 from resources.groups.groups_functions import get_group_category_list
-from resources.global_resources.logs import logException
+from resources.global_resources.log_vars import logException
 from resources.lang.enGB.logs import *
 from log.log import log_internal
 

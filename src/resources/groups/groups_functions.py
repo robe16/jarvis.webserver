@@ -1,7 +1,7 @@
 from resources.groups.groups import groups as groups
 from log.log import log_internal
 from resources.lang.enGB.logs import logDesc_group_NotFound, logDesc_group_ImageNameNotFound
-from resources.global_resources.logs import logFail, logException
+from resources.global_resources.log_vars import logFail, logException
 
 
 def get_group_list():

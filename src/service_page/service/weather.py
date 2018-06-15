@@ -2,7 +2,7 @@ import os
 import datetime
 import requests
 from resources.global_resources.variables import *
-from resources.global_resources.logs import logPass, logFail
+from resources.global_resources.log_vars import logPass, logFail
 from log.log import log_outbound
 
 

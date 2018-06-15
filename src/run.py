@@ -5,7 +5,7 @@ from discovery.update_services import update_services
 from log.log import log_internal
 from portlistener import start_bottle
 from resources.lang.enGB.logs import logDescStartingService, logDescPortListener
-from resources.global_resources.logs import logPass, logException
+from resources.global_resources.log_vars import logPass, logException
 
 port_threads = []
 

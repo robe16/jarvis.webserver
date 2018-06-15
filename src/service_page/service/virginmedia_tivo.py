@@ -2,7 +2,7 @@ import os
 import requests
 
 from log.log import log_outbound, log_internal
-from resources.global_resources.logs import logPass, logFail, logException
+from resources.global_resources.log_vars import logPass, logFail, logException
 from resources.channels.channels_functions import get_image
 from resources.global_resources.variables import *
 from resources.lang.enGB.logs import *

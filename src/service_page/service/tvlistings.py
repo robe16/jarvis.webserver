@@ -1,9 +1,9 @@
 import os
 import datetime
 import requests
-from common_functions.time_functions import timestamp_now, check_is_bst
+from common_functions.time_functions import timestamp_now
 from resources.global_resources.variables import *
-from resources.global_resources.logs import logPass, logFail
+from resources.global_resources.log_vars import logPass, logFail
 from resources.channels.channels import channels
 from resources.channels.channels_functions import get_image, get_category, get_sequence_number, get_categories
 from log.log import log_outbound

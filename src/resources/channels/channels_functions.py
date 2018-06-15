@@ -1,6 +1,6 @@
 from log.log import log_internal
 from resources.channels.channels import channels
-from resources.global_resources.logs import logFail, logException
+from resources.global_resources.log_vars import logFail, logException
 
 
 def get_image(channel_name, quality=''):

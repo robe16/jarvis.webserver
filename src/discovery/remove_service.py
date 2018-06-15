@@ -1,6 +1,6 @@
 from log.log import log_internal
 from resources.lang.enGB.logs import logDesc_services_RemoveService
-from resources.global_resources.logs import logPass, logException
+from resources.global_resources.log_vars import logPass, logException
 
 
 def remove_service(services, service_id):

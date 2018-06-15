@@ -1,7 +1,7 @@
 import requests
 from log.log import log_outbound
 from resources.global_resources.variables import *
-from resources.global_resources.logs import logPass, logFail
+from resources.global_resources.log_vars import logPass, logFail
 
 
 def getImage_tv_lg_netcast(service, filename, query):
