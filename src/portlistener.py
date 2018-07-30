@@ -1,9 +1,8 @@
-import threading
 from bottle import error
 from bottle import get, post, delete
 from bottle import request, run, HTTPResponse
 
-from config.config import get_cfg_port_listener
+from config.config import get_cfg_port
 from html.error import create_error
 from log.log import log_internal
 from resources.global_resources.log_vars import logPass
@@ -21,7 +20,7 @@ from apis.get_image import get_image
 from apis.get_favicon import get_favicon
 
 
-def start_bottle(port_threads, services):
+def start_bottle(services):
 
     ################################################################################################
     # APIs
@@ -83,21 +82,10 @@ def start_bottle(port_threads, services):
 
     ################################################################################################
 
-    def bottle_run(x_host, x_port):
-        log_internal(logPass, logDescPortListener.format(port=x_port), description='started')
-        run(host=x_host, port=x_port, debug=True)
+    host = '0.0.0.0'
+    port = get_cfg_port()
+    run(host=host, port=port, server='paste', debug=True)
+
+    log_internal(logPass, logDescPortListener.format(port=port), description='started')
 
     ################################################################################################
-
-    host = 'localhost'
-    ports = get_cfg_port_listener()
-    for port in ports:
-        t = threading.Thread(target=bottle_run, args=(host, port,))
-        port_threads.append(t)
-
-    # Start all threads
-    for t in port_threads:
-        t.start()
-    # Use .join() for all threads to keep main process 'alive'
-    for t in port_threads:
-        t.join()
