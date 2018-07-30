@@ -82,7 +82,7 @@ def start_bottle(services):
 
     ################################################################################################
 
-    host = '0.0.0.0'
+    host = 'localhost'
     port = get_cfg_port()
     run(host=host, port=port, server='paste', debug=True)
 
