@@ -113,12 +113,12 @@ def _create_html(service, _listings):
             if len(_listings[chan_id]['listings']):
                 #
                 temp_html = ''
-                item_keys = sorted(_listings[chan_id].keys())
+                item_keys = sorted(_listings[chan_id]['listings'].keys())
                 #
                 for item in item_keys:
                     #
-                    start = datetime.datetime.strptime(_listings[chan_id][item]['start'], isoformat)
-                    end = datetime.datetime.strptime(_listings[chan_id][item]['end'], isoformat)
+                    start = datetime.datetime.strptime(_listings[chan_id]['listings'][item]['start'], isoformat)
+                    end = datetime.datetime.strptime(_listings[chan_id]['listings'][item]['end'], isoformat)
                     #
                     if (start > current_hourly_time or end > current_hourly_time) and start < (current_hourly_time + datetime.timedelta(hours=max_hours)):
                         #
@@ -136,17 +136,17 @@ def _create_html(service, _listings):
                         #
                         subtitle = ''
                         try:
-                            if _listings[chan_id][item]['subtitle'] != '':
-                                subtitle = '{subtitle}: '.format(subtitle=_listings[chan_id][item]['subtitle'])
+                            if _listings[chan_id]['listings'][item]['subtitle'] != '':
+                                subtitle = '{subtitle}: '.format(subtitle=_listings[chan_id]['listings'][item]['subtitle'])
                         except Exception as e:
                             pass
                         #
                         args_item = {'width': item_width - 2,
                                      'start': start.strftime(time_format),
                                      'end': end.strftime(time_format),
-                                     'title': _listings[chan_id][item]['title'],
+                                     'title': _listings[chan_id]['listings'][item]['title'],
                                      'subtitle': subtitle,
-                                     'desc': _listings[chan_id][item]['desc']}
+                                     'desc': _listings[chan_id]['listings'][item]['desc']}
                         #
                         with open(os.path.join(os.path.dirname(__file__), '../../resources/html/services/tvlistings/listing_item.html'), 'r') as f:
                             temp_html += f.read().format(**args_item)
