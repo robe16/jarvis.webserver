@@ -94,30 +94,30 @@ def _create_html(service, _listings):
     html_listings = {}
     #
     #
-    for chan_name in channels:
+    for chan_id in channels:
         #
-        category = get_category(chan_name)
+        category = get_category(chan_id)
         #
         if not category in html_channels.keys():
             html_channels[category] = {}
             html_listings[category] = {}
         #
-        logo = get_image(chan_name)
+        logo = get_image(chan_id)
         #
         with open(os.path.join(os.path.dirname(__file__), '../../resources/html/services/tvlistings/channel_item.html'), 'r') as f:
-            html_channels[category][get_sequence_number(chan_name)] = f.read().format(imgchan=logo)
+            html_channels[category][get_sequence_number(chan_id, False)] = f.read().format(imgchan=logo)
         #
         # Create listing items
         try:
-            if len(_listings[chan_name]) > 0:
+            if len(_listings[chan_id]):
                 #
                 temp_html = ''
-                item_keys = sorted(_listings[chan_name].keys())
+                item_keys = sorted(_listings[chan_id].keys())
                 #
                 for item in item_keys:
                     #
-                    start = datetime.datetime.strptime(_listings[chan_name][item]['start'], isoformat)
-                    end = datetime.datetime.strptime(_listings[chan_name][item]['end'], isoformat)
+                    start = datetime.datetime.strptime(_listings[chan_id][item]['start'], isoformat)
+                    end = datetime.datetime.strptime(_listings[chan_id][item]['end'], isoformat)
                     #
                     if (start > current_hourly_time or end > current_hourly_time) and start < (current_hourly_time + datetime.timedelta(hours=max_hours)):
                         #
@@ -135,17 +135,17 @@ def _create_html(service, _listings):
                         #
                         subtitle = ''
                         try:
-                            if _listings[chan_name][item]['subtitle'] != '':
-                                subtitle = '{subtitle}: '.format(subtitle=_listings[chan_name][item]['subtitle'])
+                            if _listings[chan_id][item]['subtitle'] != '':
+                                subtitle = '{subtitle}: '.format(subtitle=_listings[chan_id][item]['subtitle'])
                         except Exception as e:
                             pass
                         #
                         args_item = {'width': item_width - 2,
                                      'start': start.strftime(time_format),
                                      'end': end.strftime(time_format),
-                                     'title': _listings[chan_name][item]['title'],
+                                     'title': _listings[chan_id][item]['title'],
                                      'subtitle': subtitle,
-                                     'desc': _listings[chan_name][item]['desc']}
+                                     'desc': _listings[chan_id][item]['desc']}
                         #
                         with open(os.path.join(os.path.dirname(__file__), '../../resources/html/services/tvlistings/listing_item.html'), 'r') as f:
                             temp_html += f.read().format(**args_item)
@@ -155,13 +155,13 @@ def _create_html(service, _listings):
             args_listings = {'listings': temp_html}
             #
             with open(os.path.join(os.path.dirname(__file__), '../../resources/html/services/tvlistings/listing_row.html'), 'r') as f:
-                html_listings[category][get_sequence_number(chan_name)] = f.read().format(**args_listings)
+                html_listings[category][get_sequence_number(chan_id, False)] = f.read().format(**args_listings)
             #
         except Exception as e:
             args_listings = {'listings': '<div style="padding: 5px;">No listings available</div>'}
             #
             with open(os.path.join(os.path.dirname(__file__), '../../resources/html/services/tvlistings/listing_row.html'), 'r') as f:
-                html_listings[category][get_sequence_number(chan_name)] = f.read().format(**args_listings)
+                html_listings[category][get_sequence_number(chan_id, False)] = f.read().format(**args_listings)
     #
     #
     try:
