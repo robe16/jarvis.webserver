@@ -3,5 +3,6 @@
   "command": {"type": "string", "enum": ["command", "channel", "enterpin"]},
   "code": {"type": "string"},
   "channel": {"type": "string"},
+  "plus1": {"type": "boolean"},
   "required": ["command"]
 }
