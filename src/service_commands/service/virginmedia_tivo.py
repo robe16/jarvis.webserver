@@ -11,6 +11,8 @@ def sendCmd_virginmedia_tivo(service, command):
         service_uri = service_uri_command
     elif command['command'] == 'channel':
         cmd = {'channel': command['channel']}
+        if 'plus1' in command:
+            cmd['plus1'] = True
         service_uri = service_uri_virginmediativo_channel
     elif command['command'] == 'enterpin':
         cmd = {}

@@ -150,7 +150,7 @@ def _recordings(json_recordings):
                 else:
                     episodenumber = ''
                 #
-                imgFile = get_image(iFile['channel']['name'], iFile['channel']['quality'])
+                imgFile = get_image(iFile['channel']['id'], iFile['channel']['quality'], iFile['channel']['plus1'])
                 img = '<img style="height: 25px;" src="/img/channel/{imgFile}"/>'.format(imgFile=imgFile)
                 #
                 seriesdrop_html += '<div class="row">'

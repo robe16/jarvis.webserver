@@ -1,43 +1,52 @@
 import os
 from resources.channels.channels_functions import get_image, get_category, get_sequence_number, get_categories
 
-
+# TODO - plus1 channels
 def createhtml_channels(service, channels):
     #
     _html_categories = {}
     #
-    for channel_name in channels['channels']:
+    for channel_id in channels['channels']:
         #
-        channel = channels['channels'][channel_name]
+        channel = channels['channels'][channel_id]
         #
         try:
             #
-            if channel['hd']:
+            plus1 = False
+            #
+            if 'hd' in channel['quality']:
                 quality = 'hd'
-            elif channel['sd']:
+            elif 'sd' in channel['quality']:
                 quality = 'sd'
             else:
                 raise Exception
             #
-            image = get_image(channel_name, quality)
+            image = get_image(channel_id, quality)
             #
+            # backup - if retrieval of required hd image fails, attempt with sd
             if not image and quality == 'hd':
-                image = get_image(channel_name, 'sd')
+                image = get_image(channel_id, 'sd')
             #
-            category = get_category(channel_name)
+            category = get_category(channel_id)
             #
             if not category in _html_categories.keys():
                 _html_categories[category] = {}
             #
+            if plus1:
+                command_data = '{{command: \'channel\', channel: \'{channel_name}\', plus1: \'{plus1}\'}}'.format(
+                    channel_name=channel_id, plus1=plus1)
+            else:
+                command_data = '{{command: \'channel\', channel: \'{channel_name}\'}}'.format(channel_name=channel_id)
+            #
             args = {'service_id': service['service_id'],
                     'channel_id': '',
-                    'channel_name': channel_name,
+                    'channel_name': channels['channels'][channel_id]['name'],
                     'channel_image': image,
-                    'sendCommand_data': '{{command: \'channel\', channel: \'{channel_name}\'}}'.format(channel_name=channel_name),
+                    'sendCommand_data': command_data,
                     'cls_highlight': ''}
             #
             with open(os.path.join(os.path.dirname(__file__), '../../resources/html/services/common/channel_grid_item.html'), 'r') as f:
-                _html_categories[category][get_sequence_number(channel_name)] = f.read().format(**args)
+                _html_categories[category][get_sequence_number(channel_id, plus1)] = f.read().format(**args)
             #
         except Exception as e:
             pass
