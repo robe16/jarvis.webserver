@@ -3,12 +3,21 @@ from resources.channels.channels import channels
 from resources.global_resources.log_vars import logFail, logException
 
 
+def get_name(channel_id):
+    #
+    try:
+        return channels[channel_id]['name']
+    except Exception as e:
+        log_internal(logException, 'Could not get image name for \'{chan}\''.format(chan=channel_id), exception=e)
+        return ''
+
+
 def get_image(channel_id, quality='', plus1=False):
     #
     try:
         chan_item = channels[channel_id]
     except Exception as e:
-        log_internal(logException, 'Channel name \'{chan}\' not found in list of available resources'.format(chan=channel_id), exception=e)
+        log_internal(logException, 'Channel id \'{chan}\' not found in list of available resources'.format(chan=channel_id), exception=e)
         return False
     #
     if not quality == '':

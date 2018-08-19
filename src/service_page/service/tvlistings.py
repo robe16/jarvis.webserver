@@ -109,7 +109,8 @@ def _create_html(service, _listings):
         #
         # Create listing items
         try:
-            if len(_listings[chan_id]):
+            # TODO - currently only realtime/non-plus1, to update to also show plus1 listings
+            if len(_listings[chan_id]['listings']):
                 #
                 temp_html = ''
                 item_keys = sorted(_listings[chan_id].keys())
