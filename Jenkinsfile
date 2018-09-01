@@ -18,12 +18,6 @@ node {
         string(name: 'serviceID',
                description: 'serviceID that will be used for individual container image',
                defaultValue: '*')
-        string(name: 'deploymentServer',
-               description: 'Server to deploy the Docker container',
-               defaultValue: '*')
-        string(name: 'deploymentUsername',
-               description: 'Username for the server the Docker container will be deployed to (used for ssh/scp)',
-               defaultValue: '*')
         string(name: 'fileConfig',
                description: 'Location of config file on host device',
                defaultValue: '*')
@@ -31,19 +25,17 @@ node {
                description: 'Location of log directory on host device',
                defaultValue: '*')
         //
-        build_args = [""].join(" ")
-        //
-        //
         docker_volumes = ["-v /etc/ssl/certs:/etc/ssl/certs",
                           "-v ${params.fileConfig}:/jarvis/${serviceType}/config/config.json",
                           "-v ${params.folderLog}:/jarvis/${serviceType}/log/logfiles/"].join(" ")
         //
-        //
-        deployLogin = "${params.deploymentUsername}@${params.deploymentServer}"
+        deploymentUsername  = credentials('deploymentUsername_jarvis01')
+        deploymentServer    = credentials('deploymentServer_jarvis01')
+        deployLogin = "${deploymentUsername}@${deploymentServer}"
         //
     }
 
-    if (params["serviceID"]!="*" && params["deploymentServer"]!="*" && params["deploymentUsername"]!="*" && params["fileConfig"]!="*" && params["folderLog"]!="*") {
+    if (params["serviceID"]!="*" && params["fileConfig"]!="*" && params["folderLog"]!="*") {
 
         stage("checkout") {
             git url: "${githubUrl}"
