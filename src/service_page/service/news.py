@@ -24,7 +24,7 @@ def createPage_news(service):
     with open(os.path.join(os.path.dirname(__file__), '../../resources/html/services/service_function_body.html'), 'r') as f:
         html_body += f.read().format(service_id=service['service_id'],
                                      function_id='top_headlines',
-                                     function_body=_html_articles(service, 'country'),
+                                     function_body=_html_articles(service, 'sources'),
                                      body_class='service_function_body_active')
     #
     args = {'service_id': service['service_id'],
